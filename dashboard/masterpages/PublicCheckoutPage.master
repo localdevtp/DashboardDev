@@ -1,0 +1,68 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/PublicMaster.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+
+	<div id="page">
+		<div class="container">
+			<umbraco:Macro Alias="EasyListListingCheckout" runat="server"></umbraco:Macro>
+		</div>
+	</div>
+
+</asp:content>
+	
+
+<asp:Content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script>
+		$(function(){
+			
+			// Hide hidden fields from validator
+			$('#form-checkout .hidden input').addClass('ignore');
+			
+			// New Member or current?
+			$('#form-checkout [name="member"]').on('change',function(){
+				$('#member-login, #member-register').addClass('hidden');
+				$('#form-checkout .hidden input').addClass('ignore');
+				
+				if($(this).val() === 'true') {
+					$('#form-checkout #member-login').removeClass('hidden');
+					$('#form-checkout #member-login input').removeClass('ignore');
+				} else {
+					$('#form-checkout #member-register').removeClass('hidden');
+					$('#form-checkout #member-register input').removeClass('ignore');
+				}
+			});
+			
+			// Package changes
+			$('#form-checkout [name="package"]').on('change',function(){
+				var v = $(this).parent('.packagebox').data('price');
+				$('#form-checkout .packagebox').removeClass('active');
+				$(this).parent('.packagebox').addClass('active');
+				$('.total-cost strong').text('$'+ v +'.00');
+			
+				// Have payment?
+				if(v > 0) {
+					$('#form-checkout #cc-check').removeClass('hidden');
+					$('#form-checkout #cc-check input').removeClass('ignore');
+				} else {
+					$('#form-checkout #cc-check').addClass('hidden');
+					$('#form-checkout #cc-check input').addClass('ignore');
+				}
+			});
+			
+			// IE8 support for package change
+			$('.lt-ie9 #form-checkout .packagebox').on('click',function(){
+				$('input',this).prop('checked',true);
+				$('input',this).trigger('change');
+			});
+			
+			// Validation
+			$.metadata.setType('attr', 'data-validate');
+			$('#form-checkout').validate({
+				ignore: '.ignore'
+			});
+			
+			
+		});
+	</script>
+</asp:Content>

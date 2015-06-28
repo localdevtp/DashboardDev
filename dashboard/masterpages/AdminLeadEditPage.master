@@ -1,0 +1,101 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ID="Content1" ContentPlaceHolderId="content" runat="server">
+    <ul class="breadcrumb">
+      <li>
+        <a href="/">
+          <i class="icon-home"></i> Home
+        </a>
+        <i class="icon-dot"></i>
+      </li>
+      <li>
+        <a href="/leads">
+          <i class="icon-bar"></i> Leads
+        </a>
+      </li>
+    </ul>
+
+    <umbraco:Macro Alias="EasyListLeadEdit" runat="server"></umbraco:Macro>
+
+    <form id="Form1" runat='server' class='hidden'>
+      <asp:ScriptManager ID="ScriptManager1" runat="server">
+      </asp:ScriptManager>
+
+      <div id ="BuyerAdd">
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+          <ContentTemplate>
+            <umbraco:Macro Alias="EasyListCountrySelection" runat="server"></umbraco:Macro>
+          </ContentTemplate>
+        </asp:UpdatePanel>
+      </div>
+      <div id ="CompanyAdd">
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+          <ContentTemplate>
+            <umbraco:Macro Alias="EasyListCountrySelection" runat="server"></umbraco:Macro>
+          </ContentTemplate>
+        </asp:UpdatePanel>
+      </div>
+    </form>
+
+  </asp:content>
+
+  <asp:content ID="Content2" ContentPlaceHolderId="scripts" runat="server">
+    <umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+    <script>
+        $(function () {
+            $.metadata.setType('attr', 'data-validate');
+            $('#edit-lead').validate();
+            $("#listing-price").maskMoney();
+
+            // setup location typeahead
+            $('#buyer-location,#company-location,#listing-location').typeahead({
+
+                source: function (query, process) {
+
+                    // Add load status
+                    var $self = this.$element;
+                    $self.css({
+                        background: 'url(/media/1111/ajax-loader.gif) no-repeat 95% center'
+                    });
+
+                    // Remove load status on blur
+                    $self.on('blur.load-status', function () { $(this).css('background', 'none'); });
+
+                    // Data source
+                    return $.getJSON(
+      '/api?api=LocSearch&query=' + query,
+      function (data) {
+          if (data.State == 1) {
+              $self.css('background', 'none');
+              var LocInfo = jQuery.parseJSON(data.Result);
+              return process(LocInfo);
+          }
+
+      });
+                },
+
+                // Highlight typed in result
+                highlighter: function (item) {
+                    var regex = new RegExp('(' + this.query + ')', 'gi');
+                    return item.replace(regex, "<strong>$1</strong>");
+                }
+            });
+
+            // setup form functions - Listing condition logic
+            $(".listing-condition").change(function (e) {
+                if ($('.listing-condition option:selected').val() == 'New' || $('.listing-condition option:selected').val() == '') {
+                    $(".listing-condition-desc").hide();
+                    $(".listing-condition-desc").removeClass("required");
+                } else {
+                    $(".listing-condition-desc").show();
+                    $(".listing-condition-desc").addClass("required");
+                }
+            });
+
+            // location
+            $('#BuyerAdd').appendTo('#BuyerCountrySelection');
+            $('#CompanyAdd').appendTo('#CompanyCountrySelection');
+
+        });
+    </script>
+  </asp:content>

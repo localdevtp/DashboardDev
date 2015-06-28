@@ -1,0 +1,60 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server">
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+    <meta name="description" content="Get a professionally designed business website and email package live on the internet in just 7 days. Super easy setup, professional design, hosted business email, low prices!" />
+    <meta name="keywords" content="web, design, australia, unique, websites, construction, uniquewebsites, copywriting, photography, graphic design, low cost." />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="ROBOTS" content="INDEX, FOLLOW" />
+    <meta name="rating" content="General" />
+    <meta name="language" content="EN" />
+    <meta name="classification" content="Business" />
+
+    <link href="http://images.uniquemail.com/parking/welcome.css" rel="stylesheet" type="text/css" />
+    <title>Welcome to the future home of another Unique Website!</title>
+</head>
+<body>
+    <div id="container">
+      <div id="header" style="height: 120px">
+            <div id="header-logo">
+                <a href="http://www.uniquewebsites.com.au">
+                    <img src="http://images.uniquemail.com/parking/unique-websites-logo.png" alt="Unique Websites"
+                        width="304" height="113" border="0" />
+                </a>
+            </div>
+        </div>
+        <div id="left">
+        </div>
+        <div id="center">
+            <div id="center-top">
+            </div>
+            <div id="center-middle">
+
+                <div id="title">
+                   Website under construction!</div>
+                 <div id="message">
+                   We're currently putting the finishing touches on another Unique Website here and
+                   will be launching soon!
+                   <br /><br />
+                   Please check back here for an update in a few days time!</div>
+                <div id="countdown">
+                </div>
+            </div>
+
+            <div id="center-bottom">
+            </div>
+        </div>
+        <div id="right">
+        </div>
+        <div id="footer">
+            Another Unique Website website under construction by <a href="http://www.uniquewebsites.com.au">
+                Unique Websites.</a> &copy; <%= DateTime.Today.ToString("yyyy") %> <a href="http://www.uniquewesbites.com.au">www.uniquewebsites.com.au</a>
+
+            All Rights Reserved.</div>
+    </div>
+</body>
+</html>
+</asp:Content>

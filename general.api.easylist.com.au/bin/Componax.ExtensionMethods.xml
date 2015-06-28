@@ -1,0 +1,1991 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Componax.ExtensionMethods</name>
+    </assembly>
+    <members>
+        <member name="T:Componax.ExtensionMethods.EventExtenders">
+            <summary>
+            Contains extension methods to assist in raising events
+            </summary>
+            <remarks>
+            <para>Note that in order to use these extenders in your code,
+            the consuming class must contain a reference to System.Linq as well as this library, e.g.
+            </para><code>
+            using System.Linq;
+            using Componax.ExtensionMethods;
+            </code></remarks>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Componax.ExtensionMethods.EventExtenders.RaiseEvent``1(System.EventHandler{``0},System.Object,``0)" -->
+        <!-- Badly formed XML comment ignored for member "M:Componax.ExtensionMethods.EventExtenders.RaiseEventOnUIThread``1(System.EventHandler{``0},System.Object,``0)" -->
+        <member name="T:Componax.ExtensionMethods.FileUploadInfo">
+            <summary>
+            Contains data for a file to be uploaded using HTTP(S)
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.FileUploadInfo.#ctor">
+            <summary>
+            Initializes a new instance of the FileUploadInfo class
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.FileUploadInfo.#ctor(System.String,System.String,Componax.ExtensionMethods.MimeHelperType)">
+            <summary>
+            Initializes a new instance of the FileUploadInfo class
+            </summary>
+            <param name="fileName"></param>
+            <param name="controlName"></param>
+            <param name="helperType"></param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.FileUploadInfo.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the FileUploadInfo class
+            </summary>
+            <param name="fileName"></param>
+            <param name="controlName"></param>
+            <param name="contentType"></param>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileUploadInfo.FileName">
+            <summary>
+            Gets or Sets the full file name with path for the file to be uploaded
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileUploadInfo.FileUploadControlName">
+            <summary>
+            Gets or Sets the HTML form element name for the file upload control
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileUploadInfo.ContentType">
+            <summary>
+            Gets or Sets the content (MIME) type of the file
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.WhereCondition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition.Create``2(System.Collections.Generic.IEnumerable{``0},System.String,Componax.ExtensionMethods.ConditionalOperatorTypes,``1)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="S"></typeparam>
+            <param name="dataSource"></param>
+            <param name="propertyName"></param>
+            <param name="condType"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition.Create``1(System.Collections.Generic.IEnumerable{``0},System.String,Componax.ExtensionMethods.ConditionalOperatorTypes,System.Object,System.Type)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="dataSource"></param>
+            <param name="propertyName"></param>
+            <param name="condType"></param>
+            <param name="value"></param>
+            <param name="valueType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition.Combine``1(Componax.ExtensionMethods.WhereCondition{``0},Componax.ExtensionMethods.ConditionalOperatorTypes,Componax.ExtensionMethods.WhereCondition{``0})">
+            <summary>
+            Creates a Condition which combines two other Conditions
+            </summary>
+            <typeparam name="T">The type the condition will execute against</typeparam>
+            <param name="cond1">The first Condition</param>
+            <param name="condType">The operator to use on the conditions</param>
+            <param name="cond2">The second Condition</param>
+            <returns>A new Condition which combines two Conditions into one according to the specified operator</returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition.Combine``1(Componax.ExtensionMethods.WhereCondition{``0},Componax.ExtensionMethods.ConditionalOperatorTypes,Componax.ExtensionMethods.WhereCondition{``0}[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cond1"></param>
+            <param name="condType"></param>
+            <param name="conditions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition.CombineExpression(System.Linq.Expressions.Expression,Componax.ExtensionMethods.ConditionalOperatorTypes,System.Linq.Expressions.Expression)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="condType"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition.CombineExpression(System.Linq.Expressions.Expression,Componax.ExtensionMethods.ComparisonOperatorTypes,System.Linq.Expressions.Expression)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="condType"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition.CombineExpression(System.Linq.Expressions.Expression,Componax.ExtensionMethods.StringOperatorTypes,System.Linq.Expressions.Expression)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="condType"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition.CombineFunc``1(System.Func{``0,System.Boolean},Componax.ExtensionMethods.ConditionalOperatorTypes,System.Func{``0,System.Boolean})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="d1"></param>
+            <param name="condType"></param>
+            <param name="d2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition.GetParamInstance(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="dataType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Componax.ExtensionMethods.WhereCondition`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition`1.#ctor(System.String,Componax.ExtensionMethods.ConditionalOperatorTypes,System.Object,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="propName"></param>
+            <param name="condType"></param>
+            <param name="value"></param>
+            <param name="valueType"></param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition`1.#ctor(System.String,Componax.ExtensionMethods.ComparisonOperatorTypes,System.Object,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="propName"></param>
+            <param name="condType"></param>
+            <param name="value"></param>
+            <param name="valueType"></param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition`1.#ctor(System.String,Componax.ExtensionMethods.StringOperatorTypes,System.Object,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="propName"></param>
+            <param name="condType"></param>
+            <param name="value"></param>
+            <param name="valueType"></param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition`1.Combine(Componax.ExtensionMethods.WhereCondition{`0},Componax.ExtensionMethods.ConditionalOperatorTypes,Componax.ExtensionMethods.WhereCondition{`0})">
+            <summary>
+            
+            </summary>
+            <param name="cond1"></param>
+            <param name="condType"></param>
+            <param name="cond2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition`1.Combine(Componax.ExtensionMethods.WhereCondition{`0},Componax.ExtensionMethods.ConditionalOperatorTypes,Componax.ExtensionMethods.WhereCondition{`0}[])">
+            <summary>
+            
+            </summary>
+            <param name="cond1"></param>
+            <param name="condType"></param>
+            <param name="conditions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition`1.Matches(`0)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition`2.#ctor(System.String,Componax.ExtensionMethods.ConditionalOperatorTypes,`1)">
+            <summary>
+            
+            </summary>
+            <param name="propName"></param>
+            <param name="condType"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition`2.#ctor(System.String,Componax.ExtensionMethods.ComparisonOperatorTypes,`1)">
+            <summary>
+            
+            </summary>
+            <param name="propName"></param>
+            <param name="condType"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WhereCondition`2.#ctor(System.String,Componax.ExtensionMethods.StringOperatorTypes,`1)">
+            <summary>
+            
+            </summary>
+            <param name="propName"></param>
+            <param name="condType"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:Componax.ExtensionMethods.LinqHelper`1">
+            <summary>
+            A helper class for simplifying C.R.U.D operations on Linq-to-SQL tables
+            </summary>
+            <typeparam name="TTable">A reference to the database context class</typeparam>
+        </member>
+        <member name="M:Componax.ExtensionMethods.LinqHelper`1.GetDbContext">
+            <summary>
+            Creates a new reference of the database context
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.LinqHelper`1.Select``1(System.String)">
+            <summary>
+            Selects a single database record by it's primary key
+            </summary>
+            <typeparam name="TTable">The table type</typeparam>
+            <param name="id">The record's primary key</param>
+            <returns>An instance of T or null</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.LinqHelper`1.Select``1">
+            <summary>
+            Selects records from the database
+            </summary>
+            <typeparam name="TTable">The table type</typeparam>
+            <returns>A List of all records</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.LinqHelper`1.Select``1(System.Int32,System.Int32)">
+            <summary>
+            Selects a page of records from the database
+            </summary>
+            <typeparam name="TTable">The Table to query</typeparam>
+            <param name="pageNumber">The starting page number</param>
+            <param name="pageSize">The number of records to return per page</param>
+            <returns>A Paged List</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.LinqHelper`1.GetPrimaryKeyType``1">
+            <summary>
+            Return the primary key type for a table (by table type)
+            </summary>
+            <typeparam name="TTable"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.LinqHelper`1.GetPrimaryKeyName``1">
+            <summary>
+            Return the primary key name for a table (by table type)
+            </summary>
+            <typeparam name="TTable"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.LinqHelper`1.Insert``1(``0)">
+            <summary>
+            Insert an Object into a Table
+            </summary>
+            <typeparam name="TTable"></typeparam>
+            <param name="item"></param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.LinqHelper`1.Update``1(``0)">
+            <summary>
+            Update an Existing Object
+            </summary>        
+            <remarks>Use the <see cref="T:Componax.ExtensionMethods.LinqUpdateIgnoreAttribute"/> on the table class
+            to specify which properties should be ignored when performing the database update.</remarks>
+            <typeparam name="TTable"></typeparam>
+            <param name="item">The object to update</param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.LinqHelper`1.Delete``1(``0)">
+            <summary>
+            Remove an object
+            </summary>
+            <typeparam name="TTable"></typeparam>
+            <param name="item"></param>
+        </member>
+        <member name="P:Componax.ExtensionMethods.LinqHelper`1.ConnectionString">
+            <summary>
+            Sets the database connection string
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.PagedList`1">
+            <summary>
+            Contains response data for a paged list
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Componax.ExtensionMethods.PagedList`1.Results">
+            <summary>
+            A page of items
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.PagedList`1.TotalRecords">
+            <summary>
+            The total number of records
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.PagedList`1.PageSize">
+            <summary>
+            The number of records to return for each page
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.PagedList`1.PageNumber">
+            <summary>
+            The current page number
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.PagedList`1.TotalPages">
+            <summary>
+            The total number of pages available
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.LinqUpdateIgnoreAttribute">
+            <summary>
+            A class decorator that defines property names to be ignored when updating a LINQ database object
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.LinqUpdateIgnoreAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes a new instance of the LinqUpdateIgnoreAttribute class
+            </summary>
+            <param name="ignoreProperties">An array of property names to ignore when updating the class</param>
+        </member>
+        <member name="P:Componax.ExtensionMethods.LinqUpdateIgnoreAttribute.IgnoreProperties">
+            <summary>
+            Gets or Sets the array of property names to ignore when performing database updates
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.WebRequestExtensions">
+            <summary>
+            Contains extension methods for the System.Net.WebRequest class and its inheritors
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WebRequestExtensions.DownloadFile(System.Net.HttpWebRequest,System.String)">
+            <summary>
+            Downloads a file via HTTP using the web proxy defined in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultWebProxy"/>, and the default
+            chunk size defined in <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultBufferSize"/>
+            </summary>
+            <param name="request">The <see cref="T:System.Net.HttpWebRequest"/> instance</param>
+            <param name="savePath">The full path and file name of the target file</param>
+            <remarks>
+            This overload is not suitable for FTP transfers as it does not support credentials
+            </remarks>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WebRequestExtensions.DownloadFile(System.Net.HttpWebRequest,System.String,System.EventHandler{Componax.ExtensionMethods.FileProgressEventArgs})">
+            <summary>
+            Downloads a file via HTTP using the web proxy defined in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultWebProxy"/>, and the default
+            chunk size defined in <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultBufferSize"/>
+            with progress events raised using the specified event handler
+            </summary>
+            <param name="request">The <see cref="T:System.Net.HttpWebRequest"/> instance</param>
+            <param name="savePath">The full path and file name of the target file</param>
+            <param name="progressHandler">The method to handle file progress events</param>
+            <remarks>
+            This overload is not suitable for FTP transfers as it does not support credentials
+            </remarks>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WebRequestExtensions.DownloadFile(System.Net.WebRequest,System.String,System.String,System.String)">
+            <summary>
+            Downloads a file with credentials using the web proxy defined in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultWebProxy"/>, and the default
+            chunk size defined in <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultBufferSize"/>
+            </summary>
+            <param name="request">The <see cref="T:System.Net.WebRequest"/> instance</param>
+            <param name="userName">The user name to pass in the request credentials</param>
+            <param name="password">The password to pass in the request credentials</param>
+            <param name="savePath">The full path and file name of the target file</param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WebRequestExtensions.DownloadFile(System.Net.WebRequest,System.String,System.String,System.String,System.EventHandler{Componax.ExtensionMethods.FileProgressEventArgs})">
+            <summary>
+            Downloads a file with credentials,  using the web proxy defined in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultWebProxy"/>, and the default
+            chunk size defined in <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultBufferSize"/>
+            with progress events raised using the specified event handler
+            </summary>
+            <param name="request">The <see cref="T:System.Net.WebRequest"/> instance</param>
+            <param name="userName">The user name to pass in the request credentials</param>
+            <param name="password">The password to pass in the request credentials</param>
+            <param name="savePath">The full path and file name of the target file</param>
+            <param name="progressHandler">The method to handle file progress events</param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WebRequestExtensions.DownloadFile(System.Net.WebRequest,System.Net.ICredentials,System.Net.IWebProxy,System.String)">
+            <summary>
+            Downloads a file with credentials, using the specified proxy and the default
+            chunk size defined in <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultBufferSize"/>
+            </summary>
+            <param name="request">The <see cref="T:System.Net.WebRequest"/> instance</param>
+            <param name="credentials">The credentials to pass with the request</param>
+            <param name="proxy">The proxy server to route the request through</param>
+            <param name="savePath">The full path and file name of the target file</param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WebRequestExtensions.DownloadFile(System.Net.WebRequest,System.Net.ICredentials,System.Net.IWebProxy,System.String,System.EventHandler{Componax.ExtensionMethods.FileProgressEventArgs})">
+            <summary>
+            Downloads a file with credentials, using the specified proxy and the default
+            chunk size defined in <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultBufferSize"/>
+            with progress events raised using the specified event handler
+            </summary>
+            <param name="request">The <see cref="T:System.Net.WebRequest"/> instance</param>
+            <param name="credentials">The credentials to pass with the request</param>
+            <param name="proxy">The proxy server to route the request through</param>
+            <param name="savePath">The full path and file name of the target file</param>
+            <param name="progressHandler">The method to handle file progress events</param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WebRequestExtensions.GetDownloadRequestMethod(System.Net.WebRequest)">
+            <summary>
+            Gets the download method string based on the WebRequest type
+            </summary>
+            <param name="request">The WebRequest instance</param>
+            <returns>A download method type string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WebRequestExtensions.DownloadFile(System.Net.WebRequest,System.Net.ICredentials,System.Net.IWebProxy,System.String,System.Int32,System.String,System.EventHandler{Componax.ExtensionMethods.FileProgressEventArgs})">
+            <summary>
+            Downloads a file
+            </summary>
+            <param name="request">The WebRequest instance</param>
+            <param name="credentials">The credentials to pass with the request</param>
+            <param name="proxy">The proxy to route the request via</param>
+            <param name="method">The request method to use</param>
+            <param name="bufferSize">The buffer (chunk) size for the download</param>
+            <param name="savePath">The full path and file name of the target file</param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WebRequestExtensions.UploadFile(System.Net.WebRequest,System.Net.ICredentials,System.Net.IWebProxy,System.String,System.Int32,System.String,System.EventHandler{Componax.ExtensionMethods.FileProgressEventArgs})">
+            <summary>
+            Uploads a file
+            </summary>
+            <param name="request"></param>
+            <param name="credentials"></param>
+            <param name="proxy"></param>
+            <param name="method"></param>
+            <param name="bufferSize"></param>
+            <param name="filePath"></param>
+            <param name="progressHandler"></param>
+        </member>
+        <member name="T:Componax.ExtensionMethods.FileProgressEventArgs">
+            <summary>
+            Contains data for file progress events with support for cancelling the operation
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.FileProgressEventArgs.#ctor(Componax.ExtensionMethods.FileTransferType,System.Uri,System.Uri,System.String,System.Int64,System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Initializes a new instance of the FileProgressEventArgs class
+            </summary>
+            <param name="transferType">The type of transfer being reported</param>
+            <param name="request">The URI of the request</param>
+            <param name="response">The URI of the actual response</param>
+            <param name="path">The local file path</param>
+            <param name="total">The total number of bytes to transfer</param>
+            <param name="completed">The number of bytes transferred</param>
+            <param name="elapsed">The time elapsed, in ticks</param>
+            <param name="transferElapsed">The actual transfer time elapsed, in ticks</param>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileProgressEventArgs.FileTransferType">
+            <summary>
+            Gets the file transfer type being reported
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileProgressEventArgs.RequestUri">
+            <summary>
+            Gets the URI for the associated remote file
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileProgressEventArgs.ResponseUri">
+            <summary>
+            Gets the URI that actually repsonded to the request
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileProgressEventArgs.LocalPath">
+            <summary>
+            Gets the path to the associated local file
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileProgressEventArgs.TotalLength">
+            <summary>
+            Gets the total length of the operation in bytes
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileProgressEventArgs.TotalLengthString">
+            <summary>
+            Gets the total length as a human readable string
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileProgressEventArgs.CompletedLength">
+            <summary>
+            Gets the completed length in bytes
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileProgressEventArgs.CompletedLengthString">
+            <summary>
+            Gets the completed length as a human readable string
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileProgressEventArgs.PercentComplete">
+            <summary>
+            Gets the percentage completed (range: 0 to 1.0)
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileProgressEventArgs.BytesPerSecond">
+            <summary>
+            Gets the average transfer rate in bytes per second
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileProgressEventArgs.BytesPerSecondString">
+            <summary>
+            Gets the average transfer rate as a human readable value
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileProgressEventArgs.TimeElapsed">
+            <summary>
+            Gets the total time elapsed
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileProgressEventArgs.TimeRemaining">
+            <summary>
+            Gets the estimated time remaining
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileProgressEventArgs.Cancel">
+            <summary>
+            Gets or Sets whether the current operation should be cancelled
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.FileTransferResponse">
+            <summary>
+            Contains response data for file transfer operations
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.FileTransferResponse.#ctor(Componax.ExtensionMethods.FileTransferType,System.Int32,System.String,System.Uri,System.Uri,System.String,System.Int64,System.Int64,System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            Initializes a new instance of the FileTransferResponse class
+            </summary>
+            <param name="transferType">The type of transfer being reported</param>
+            <param name="request">The URI of the request</param>
+            <param name="response">The URI of the actual response</param>
+            <param name="path">The local file path</param>
+            <param name="total">The total number of bytes to transfer</param>
+            <param name="completed">The number of bytes transferred</param>
+            <param name="elapsed">The time elapsed, in ticks</param>
+            <param name="transferElapsed">The actual transfer time elapsed, in ticks</param>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileTransferResponse.FileTransferType">
+            <summary>
+            Gets the file transfer type being reported
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileTransferResponse.StatusCode">
+            <summary>
+            Gets the status code returned by the server
+            </summary>
+            <remarks>
+            For HTTP web requests, cast the code to <see cref="T:System.Net.HttpStatusCode"/>.
+            For FTP web requests, cast the code to <see cref="T:System.Net.FtpStatusCode"/>.
+            For cancelled operations and FileWebRequest operations, 
+            this value will be zero, and therefore not castable.
+            </remarks>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileTransferResponse.StatusDescription">
+            <summary>
+            Gets the status description returned by the server
+            </summary>
+            <remarks>
+            This value is only available for HTTP and FTP transfers
+            </remarks>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileTransferResponse.RequestUri">
+            <summary>
+            Gets the URI for the associated remote file
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileTransferResponse.ResponseUri">
+            <summary>
+            Gets the URI that actually repsonded to the request
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileTransferResponse.LocalPath">
+            <summary>
+            Gets the path to the associated local file
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileTransferResponse.TotalLength">
+            <summary>
+            Gets the total length of the operation in bytes
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileTransferResponse.TotalLengthString">
+            <summary>
+            Gets the total length as a human readable string
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileTransferResponse.CompletedLength">
+            <summary>
+            Gets the completed length in bytes
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileTransferResponse.CompletedLengthString">
+            <summary>
+            Gets the completed length as a human readable string
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileTransferResponse.PercentComplete">
+            <summary>
+            Gets the percentage completed (range: 0 to 1.0)
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileTransferResponse.BytesPerSecond">
+            <summary>
+            Gets the average transfer rate in bytes per second
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileTransferResponse.BytesPerSecondString">
+            <summary>
+            Gets the average transfer rate as a human readable value
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileTransferResponse.TimeElapsed">
+            <summary>
+            Gets the total time elapsed
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.FileTransferResponse.Cancelled">
+            <summary>
+            Gets or Sets whether the operation was cancelled
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.FileTransferType">
+            <summary>
+            Specifies the type of a file transfer operation
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.FileTransferType.Download">
+            <summary>
+            File download
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.FileTransferType.Upload">
+            <summary>
+            File upload
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.WebRequestHelpers">
+            <summary>
+            Contains helpers for the WebRequest Extension methods
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.WebRequestHelpers.FormatBytes(System.Double)">
+            <summary>
+            Formats a long number into a human readable value
+            </summary>
+            <param name="bytes">The amount of bytes</param>
+            <returns>A formatted string, e.g. 1KB, 2MB, 3TB, etc</returns>
+        </member>
+        <member name="T:Componax.ExtensionMethods.EnumExtenders">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.EnumExtenders.Description(System.Enum)">
+            <summary>
+            Gets the value of the description attribute for an enum item
+            </summary>
+            <param name="value">The enum value to query</param>
+            <returns>The description attribute, or the enum.ToString() if no description present</returns>
+        </member>
+        <member name="T:Componax.ExtensionMethods.EnumListItem`1">
+            <summary>
+            Contains data-binding information for an enumeration value
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Componax.ExtensionMethods.EnumListItem`1.#ctor(`0,System.String)">
+            <summary>
+            Initializes a new instance of the EnumListItem class
+            </summary>
+            <param name="val">The enumeration value</param>
+            <param name="text">The display text</param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.EnumListItem`1.ToString">
+            <summary>
+            Returns the description text of the enum item
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Componax.ExtensionMethods.EnumListItem`1.Value">
+            <summary>
+            Gets or Sets the enumeration value
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.EnumListItem`1.Text">
+            <summary>
+            Gets or Sets the display text
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.EnumListItem`1.ValueInt">
+            <summary>
+            Gets the underlying integer value of the enum item
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.EnumList`1">
+            <summary>
+            Contains helpers for creating a list of Enum List Items
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Componax.ExtensionMethods.EnumList`1.#ctor">
+            <summary>
+            Initializes a new instance of the EnumList class
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.EnumList`1.FindValue(System.String)">
+            <summary>
+            Gets the enum value from the supplied string value
+            </summary>
+            <param name="value">The string value of the EnumListItem</param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.EnumList`1.FindDescription(System.String)">
+            <summary>
+            Gets the enum value from the supplied description
+            </summary>
+            <param name="description">The description of the EnumListItem</param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.EnumList`1.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the EnumList class
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.StringOperatorTypes">
+            <summary>
+            Specifies the operator to use for string comparisons
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.StringOperatorTypes.Equals">
+            <summary>
+            Equals
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.StringOperatorTypes.NotEquals">
+            <summary>
+            Doesn't Equal
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.StringOperatorTypes.StartsWith">
+            <summary>
+            Starts With
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.StringOperatorTypes.EndsWith">
+            <summary>
+            Ends With
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.StringOperatorTypes.Contains">
+            <summary>
+            Contains
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.ComparisonOperatorTypes">
+            <summary>
+            Specifies the operator to use for value comparisons
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.ComparisonOperatorTypes.Equals">
+            <summary>
+            Equals
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.ComparisonOperatorTypes.NotEquals">
+            <summary>
+            Doesn't Equal
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.ComparisonOperatorTypes.LessThan">
+            <summary>
+            Less Than
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.ComparisonOperatorTypes.LessThanOrEqual">
+            <summary>
+            Less Than or Equal To
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.ComparisonOperatorTypes.GreaterThan">
+            <summary>
+            Greater Than
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.ComparisonOperatorTypes.GreaterThanOrEqual">
+            <summary>
+            Greater Than or Equal To
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.ConditionalOperatorTypes">
+            <summary>
+            Specifies the conditional operator to be used when chaining queries
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:Componax.ExtensionMethods.ConditionalOperatorTypes.And" -->
+        <!-- Badly formed XML comment ignored for member "F:Componax.ExtensionMethods.ConditionalOperatorTypes.AndAlso" -->
+        <member name="F:Componax.ExtensionMethods.ConditionalOperatorTypes.Or">
+            <summary>
+            Or (|)
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.ConditionalOperatorTypes.OrElse">
+            <summary>
+            Or Else (||)
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.ConditionalOperatorTypes.ExclusiveOr">
+            <summary>
+            XOR (^)
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.DecimalExtenders">
+            <summary>
+            Contains extension methods for the <see cref="T:System.Decimal"/> class
+            </summary>
+            <remarks>
+            <para>Note that in order to use these extenders in your code,
+            the consuming class must contain a reference to System.Linq as well as this library, e.g.
+            </para><code>
+            using System.Linq;
+            using Componax.ExtensionMethods;
+            </code></remarks>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DecimalExtenders.RoundDecimalPoints(System.Decimal,System.Int32)">
+            <summary>
+            Rounds the supplied decimal to the specified amount of decimal points
+            </summary>
+            <param name="val">The decimal to round</param>
+            <param name="decimalPoints">The number of decimal points to round the output value to</param>
+            <returns>A rounded decimal</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DecimalExtenders.RoundToTwoDecimalPoints(System.Decimal)">
+            <summary>
+            Rounds the supplied decimal value to two decimal points
+            </summary>
+            <param name="val">The decimal to round</param>
+            <returns>A decimal value rounded to two decimal points</returns>
+        </member>
+        <member name="T:Componax.ExtensionMethods.CryptoHelpers">
+            <summary>
+            Contains helper methods for working woth cryptography
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.CryptoHelpers.Encrypt(System.String,System.String,System.String,System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Encrypts specified plaintext using Rijndael symmetric key algorithm
+            and returns a base64-encoded result.
+            </summary>
+            <param name="plainText">
+            Plaintext value to be encrypted.
+            </param>
+            <param name="passPhrase">
+            Passphrase from which a pseudo-random password will be derived. The
+            derived password will be used to generate the encryption key.
+            Passphrase can be any string. In this example we assume that this
+            passphrase is an ASCII string.
+            </param>
+            <param name="saltValue">
+            Salt value used along with passphrase to generate password. Salt can
+            be any string. In this example we assume that salt is an ASCII string.
+            </param>
+            <param name="hashAlgorithm">
+            Hash algorithm used to generate password. Allowed values are: "MD5" and
+            "SHA1". SHA1 hashes are a bit slower, but more secure than MD5 hashes.
+            </param>
+            <param name="passwordIterations">
+            Number of iterations used to generate password. One or two iterations
+            should be enough.
+            </param>
+            <param name="initVector">
+            Initialization vector (or IV). This value is required to encrypt the
+            first block of plaintext data. For RijndaelManaged class IV must be 
+            exactly 16 ASCII characters long.
+            </param>
+            <param name="keySize">
+            Size of encryption key in bits. Allowed values are: 128, 192, and 256. 
+            Longer keys are more secure than shorter keys.
+            </param>
+            <returns>
+            Encrypted value formatted as a base64-encoded string.
+            </returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.CryptoHelpers.Decrypt(System.String,System.String,System.String,System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Decrypts specified ciphertext using Rijndael symmetric key algorithm.
+            </summary>
+            <param name="cipherText">
+            Base64-formatted ciphertext value.
+            </param>
+            <param name="passPhrase">
+            Passphrase from which a pseudo-random password will be derived. The
+            derived password will be used to generate the encryption key.
+            Passphrase can be any string. In this example we assume that this
+            passphrase is an ASCII string.
+            </param>
+            <param name="saltValue">
+            Salt value used along with passphrase to generate password. Salt can
+            be any string. In this example we assume that salt is an ASCII string.
+            </param>
+            <param name="hashAlgorithm">
+            Hash algorithm used to generate password. Allowed values are: "MD5" and
+            "SHA1". SHA1 hashes are a bit slower, but more secure than MD5 hashes.
+            </param>
+            <param name="passwordIterations">
+            Number of iterations used to generate password. One or two iterations
+            should be enough.
+            </param>
+            <param name="initVector">
+            Initialization vector (or IV). This value is required to encrypt the
+            first block of plaintext data. For RijndaelManaged class IV must be
+            exactly 16 ASCII characters long.
+            </param>
+            <param name="keySize">
+            Size of encryption key in bits. Allowed values are: 128, 192, and 256.
+            Longer keys are more secure than shorter keys.
+            </param>
+            <returns>
+            Decrypted string value.
+            </returns>
+            <remarks>
+            Most of the logic in this function is similar to the Encrypt
+            logic. In order for decryption to work, all parameters of this function
+            - except cipherText value - must match the corresponding parameters of
+            the Encrypt function which was called to generate the
+            ciphertext.
+            </remarks>
+        </member>
+        <member name="T:Componax.ExtensionMethods.StringExtenders">
+            <summary>
+            Contains extension methods for the <see cref="T:System.String"/> class
+            </summary>
+            <remarks>
+            <para>Note that in order to use these extenders in your code,
+            the consuming class must contain a reference to System.Linq as well as this library, e.g.
+            </para><code>
+            using System.Linq;
+            using Componax.ExtensionMethods;
+            </code></remarks>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.Encrypt(System.String,System.String,System.String)">
+            <summary>
+            Encrypts the string using the AES-256 bit alg 
+            </summary>
+            <param name="source">The plain text to encrypt</param>
+            <param name="password">The password</param>
+            <param name="salt">The salt string</param>
+            <returns>A base-64 encoded and ecrypted string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.Decrypt(System.String,System.String,System.String)">
+            <summary>
+            Decrypts the base 64 encoded string using rhe AES-256 bit alg
+            </summary>
+            <param name="source">The base 64 string to decrypt</param>
+            <param name="password">The password</param>
+            <param name="salt">The salt string</param>
+            <returns>Decrypted plain text</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.Contains(System.String,System.String,System.StringComparison)">
+            <summary>
+            Performs a contains test using the specified string comparison method
+            </summary>
+            <param name="source">The source string</param>
+            <param name="toCheck">The string to check</param>
+            <param name="comp">The comparison method to use</param>
+            <returns>True if the source string conatins the string to check, otherwise false</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.Reverse(System.String)">
+            <summary>
+            Reverse the order of a string
+            </summary>      
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.FormatWith(System.String,System.Object[])">
+            <summary>
+            Applies formatting to the specified string
+            </summary>      
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.GetSummary(System.String,System.Int32)">
+            <summary>
+            Truncates the string to the specified amount of characters, adding "..." if required
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.GetSummary(System.String,System.Int32,System.String)">
+            <summary>
+            Truncates the string to the specified amount of characters, with a selectable trailer
+            </summary>
+            <param name="source"></param>
+            <param name="maxLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ContainsInsensitive(System.String,System.String)">
+            <summary>
+            Peforms a case-insenstive string comparison (uses StringComparison.OrdinalIgnoreCase)
+            </summary>
+            <param name="source">The source string</param>
+            <param name="toCheck">The string to check</param>
+            <returns>True if the source string conatins the string to check, otherwise false</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToTitleCase(System.String)">
+            <summary>
+            Converts the supplied string to Title Case
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.Left(System.String,System.Int32)">
+            <summary>
+            Trims the string and returns the left portion to the specified length
+            </summary>
+            <param name="s"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToProperCase(System.String)">
+            <summary>
+            Converts the supplied string to Title Case with special handling for
+            Mc, Mac, apostophes and periods.
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToProperCase(System.String,System.Boolean)">
+            <summary>
+            Converts the supplied string to Title Case with special handling for
+            Mc, Mac, apostophes and periods.
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToTitleCase(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Coverts the supplied string to Title Case
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.RemoveNonNumeric(System.String)">
+            <summary>
+            Removes non-numeric characters from the input string
+            </summary>
+            <param name="s">The source string</param>
+            <returns>A string with non-numeric characters removed</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.LimitCharacters(System.String,System.String,System.Boolean)">
+            <summary>
+            Limits a string to a pre-defined list of allowable characters
+            </summary>
+            <param name="str">The input string to process</param>
+            <param name="allowableCharacters">A string conataining all of the allowable characters</param>
+            <param name="ignoreCase">If true, the character comparisons will be case independant</param>
+            <returns>A trimmed version of the input string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.HtmlEncode(System.String)">
+            <summary>
+            Converts a string to a HTML encoded string
+            </summary>
+            <param name="str">The string to convert to HTML</param>
+            <returns>A HTML formatted string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.HtmlDecode(System.String)">
+            <summary>
+            Decodes a HTML encoded string
+            </summary>
+            <param name="str">The string to convert</param>
+            <returns>A regualar string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ParseQueryString(System.String)">
+            <summary>
+            Parses a query string into a NameValueCollection, using the encoding method specified in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultEncoding"/>
+            </summary>
+            <param name="str">The query string to parse</param>
+            <returns>A Name/Value collection</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ParseQueryString(System.String,System.Text.Encoding)">
+            <summary>
+            Parses a query string into a NameValueCollection
+            </summary>
+            <param name="str">The query string to parse</param>
+            <param name="encoding">The encoding scheme to use when parsing the query string</param>
+            <returns>A Name/Value collection</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.UrlEncode(System.String)">
+            <summary>
+            Encodes a URL string, using the encoding method specified in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultEncoding"/>
+            </summary>
+            <param name="str">The text to encode</param>
+            <returns>A URL encoded version of the source string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.UrlEncode(System.String,System.Text.Encoding)">
+            <summary>
+            URL encodes the specified string
+            </summary>
+            <param name="str">The text to encode</param>
+            <param name="encoding">The encoding scheme to use when URL encoding the string</param>
+            <returns>A URL encoded version of the source string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.UrlDecode(System.String)">
+            <summary>
+            Converts a string that has been encoded for transmission in a URL into a decoded string, 
+            using the encoding method specified in <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultEncoding"/>
+            </summary>
+            <param name="str">The text to decode</param>
+            <returns>A URL decoded version of the source string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.UrlDecode(System.String,System.Text.Encoding)">
+            <summary>
+            Converts a string that has been encoded for transmission in a URL into a decoded string.
+            </summary>
+            <param name="str">The text to decode</param>
+            <param name="encoding">The encoding scheme to use when decoding the string</param>
+            <returns>A URL decoded version of the source string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.StripHtml(System.String)">
+            <summary>
+            Removes all HTML markup tags from the supplied string.
+            </summary>
+            <param name="str">The text to strip</param>
+            <returns>The source sring stripped of all HTML markup</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToLines(System.String,System.Boolean)">
+            <summary>
+            Splits the supplied string into an array of lines using the system default
+            line terminator.
+            </summary>
+            <param name="str">The string to split</param>
+            <param name="trimLines">If true, leading and trailing whitespace will be removed from each line.</param>
+            <returns>A string list representing each line of text</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToObjectFromXml``1(System.String)">
+            <summary>
+            Deserializes an XML string into an object instance, using the encoding method specified in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultEncoding"/>
+            </summary>
+            <typeparam name="T">The type of object to deserialize</typeparam>
+            <param name="str">The XML string representantion of the object</param>
+            <returns>An instance of T</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToObjectFromXml``1(System.String,System.Text.Encoding)">
+            <summary>
+            Deserializes an XML string into an object instance
+            </summary>
+            <typeparam name="T">The type of object to deserialize</typeparam>
+            <param name="str">The XML string representantion of the object</param>
+            <param name="encoding">The encoding scheme to use when deserializing the object</param>
+            <returns>An instance of T</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToObjectFromXml(System.String,System.Type)">
+            <summary>
+            Deserializes an XML string into an object instance, using the encoding method specified in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultEncoding"/>
+            </summary>
+            <param name="str">The XML string representantion of the object</param>
+            <param name="sourceType">The type of object to deserialize</param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToObjectFromXml(System.String,System.Type,System.Text.Encoding)">
+            <summary>
+            Deserializes an XML string into an object instance
+            </summary>
+            <param name="str">The XML string representantion of the object</param>
+            <param name="sourceType">The type of object to deserialize</param>
+            <param name="encoding">The encoding scheme to use when deserializing the object</param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToObjectFromBase64``1(System.String)">
+            <summary>
+            Deserializes a Base64 encoded string to an object instance
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToObjectFromBase64(System.String,System.Type)">
+            <summary>
+            Deserializes a Base64 encoded string to an object instance
+            </summary>
+            <param name="str"></param>
+            <param name="sourceType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToStream(System.String)">
+            <summary>
+            Coneverts a string into a <see cref="T:System.IO.Stream"/>, using the encoding method specified in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultEncoding"/>
+            </summary>
+            <param name="str">The string to convert</param>
+            <returns>A stream representation of the source string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToStream(System.String,System.Text.Encoding)">
+            <summary>
+            Coneverts a string into a <see cref="T:System.IO.Stream"/>
+            </summary>
+            <param name="str">The string to convert</param>
+            <param name="encoding">The encoding scheme to use for the conversion</param>
+            <returns>A stream representation of the source string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToByteArray(System.String)">
+            <summary>
+            Converts a string into a byte array, using the encoding method specified in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultEncoding"/>
+            </summary>
+            <param name="str">The string to convert</param>
+            <returns>A byte array representation of the source string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToByteArray(System.String,System.Text.Encoding)">
+            <summary>
+            Converts a string into a byte array
+            </summary>
+            <param name="str">The string to convert</param>
+            <param name="encoding">The encoding scheme to use for the conversion</param>
+            <returns>A byte array representation of the source string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToBool(System.String)">
+            <summary>
+            Parses the string into a boolean value
+            </summary>
+            <param name="str">The string to parse</param>
+            <returns>A System.Boolean</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToShort(System.String)">
+            <summary>
+            Parses the string into a short (Int16) value
+            </summary>
+            <param name="str">The string to parse</param>
+            <returns>A System.Int16</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToInt(System.String)">
+            <summary>
+            Parses the string into an int (Int32) value
+            </summary>
+            <param name="str">The string to parse</param>
+            <returns>A System.Int32</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToLong(System.String)">
+            <summary>
+            Parses the string into a long (Int64) value
+            </summary>
+            <param name="str">The string to parse</param>
+            <returns>A System.Int64</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToDecimal(System.String)">
+            <summary>
+            Parses the string into a decimal value
+            </summary>
+            <param name="str">The string to parse</param>
+            <returns>A System.Decimal</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToFloat(System.String)">
+            <summary>
+            Parses the string into a float (Single) value
+            </summary>
+            <param name="str">The string to parse</param>
+            <returns>A System.Single</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToDateTime(System.String,System.String)">
+            <summary>
+            Parses the supplied string into a DateTime instance
+            </summary>
+            <param name="str">The string to parse</param>
+            <param name="format">The format structure to apply to the converted DateTime.
+            Valid formats include "yyyy-MM-ddTHH:mm:sszzzzzz" and its subsets.
+            The string is validated against this format.
+            </param>
+            <returns>A DateTime instance</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToDateTime(System.String,System.String[])">
+            <summary>
+            Parses the supplied string into a DateTime instance
+            </summary>
+            <param name="str">The string to parse</param>
+            <param name="formats">A array containing the format structures to apply to the 
+            converted DateTime.
+            Valid formats include "yyyy-MM-ddTHH:mm:sszzzzzz" and its subsets.
+            </param>
+            <returns>A DateTime instance</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.RemoveDiacritics(System.String)">
+            <summary>
+            Remove accent from strings 
+            </summary>
+            <example>
+             input:  "Příliš žluťoučký kůň úpěl ďábelské ódy."
+             result: "Prilis zlutoucky kun upel dabelske ody."
+            </example>
+            <param name="s"></param>
+            <remarks>founded at http://stackoverflow.com/questions/249087/
+            how-do-i-remove-diacritics-accents-from-a-string-in-net</remarks>
+            <returns>string without accents</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.MD5(System.String)">
+            <summary>
+            from http://weblogs.asp.net/gunnarpeipman/archive/2007/11/18/c-extension-methods.aspx
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.IfNullOrEmpty(System.String,System.String)">
+            <summary>
+            Tests whether a tring is null or empty, and if so returns the
+            alternate instead of the source value.
+            </summary>
+            <param name="str">The source string</param>
+            <param name="alternateValue">The alternate value</param>
+            <returns>A string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.TrimToNull(System.String)">
+            <summary>
+            Trims a string and returns null instead of string.Emtpy for value-less strings
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToHtmlNumberedString(System.String)">
+            <summary>
+            Converts the provided string into a HTML numbered string, including standard ASCII characters
+            e.g.
+            test@test.com becomes: &#116;&#101;&#115;&#116;&#64;&#116;&#101;&#115;&#116;&#46;&#99;&#111;&#109;
+            </summary>
+            <param name="str">The string to encode</param>
+            <returns>An encdoded string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.StringExtenders.ToHtmlNumberedString(System.String,System.Boolean)">
+            <summary>
+            Converts the provided string into a HTML numbered string.
+            </summary>
+            <param name="str">The string to encode</param>
+            <param name="includeAscii">If true, ASCII characters will be encoded, if false, only
+            characters after the ASCII range will be encoded.</param>
+            <returns>An encdoded string</returns>
+        </member>
+        <member name="T:Componax.ExtensionMethods.DateTimeExtenders">
+            <summary>
+            Contains extension methods for the <see cref="T:System.DateTime"/> class
+            </summary>
+            <remarks>
+            <para>Note that in order to use these extenders in your code,
+            the consuming class must contain a reference to System.Linq as well as this library, e.g.
+            </para><code>
+            using System.Linq;
+            using Componax.ExtensionMethods;
+            </code></remarks>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.ToShortDate(System.DateTime)">
+            <summary>
+            Converts the DateTime into a short date string using the default culture specified in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultCulture"/>
+            </summary>
+            <param name="date">The DateTime to parse</param>
+            <returns>A culture-dependant short date string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.ToShortDate(System.Nullable{System.DateTime})">
+            <summary>
+            Converts the DateTime into a short date string using the default culture specified in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultCulture"/>
+            </summary>
+            <param name="date">The DateTime to parse</param>
+            <returns>A culture-dependant short date string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.ToString(System.Nullable{System.DateTime},System.String,System.String)">
+            <summary>
+            Converts a nullable DateTime into a string
+            </summary>
+            <param name="date"></param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.ToShortDate(System.DateTime,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a DateTime into a short date string using the specified culture
+            </summary>
+            <param name="date">The DateTime to parse</param>
+            <param name="culture">The culture to use for the conversion</param>
+            <returns>A culture-dependant short date string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.ToShortDate(System.DateTime,System.String)">
+            <summary>
+            Converts a DateTime into a short date string using the specified culture string
+            </summary>
+            <param name="date">The DateTime to parse</param>
+            <param name="culture">The culture to use for the conversion (e.g. "en-AU", "en-US", "ro-RO")</param>
+            <returns>A culture-dependant short date string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.ToLongDate(System.DateTime)">
+            <summary>
+            Converts the DateTime into a long date string using the default culture specified in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultCulture"/>
+            </summary>
+            <param name="date">The DateTime to parse</param>
+            <returns>A culture-dependant long date string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.ToLongDate(System.DateTime,System.String)">
+            <summary>
+            Converts a DateTime into a long date string using the specified culture string
+            </summary>
+            <param name="date">The DateTime to parse</param>
+            <param name="culture">The culture to use for the conversion (e.g. "en-AU", "en-US", "ro-RO")</param>
+            <returns>A culture-dependant long date string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.ToLongDate(System.DateTime,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a DateTime into a long date string using the specified culture
+            </summary>
+            <param name="date">The DateTime to parse</param>
+            <param name="culture">The culture to use for the conversion</param>
+            <returns>A culture-dependant long date string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.ToShortTime(System.DateTime)">
+            <summary>
+            Converts the DateTime into a short time string using the default culture specified in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultCulture"/>
+            </summary>
+            <param name="time">The DateTime to parse</param>
+            <returns>A culture-dependant short time string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.ToShortTime(System.DateTime,System.String)">
+            <summary>
+            Converts a DateTime into a short time string using the specified culture string
+            </summary>
+            <param name="date">The DateTime to parse</param>
+            <param name="culture">The culture to use for the conversion (e.g. "en-AU", "en-US", "ro-RO")</param>
+            <returns>A culture-dependant short time string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.ToShortTime(System.DateTime,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a DateTime into a short time string using the specified culture
+            </summary>
+            <param name="time">The DateTime to parse</param>
+            <param name="culture">The culture to use for the conversion</param>
+            <returns>A culture-dependant short time string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.ToLongTime(System.DateTime)">
+            <summary>
+            Converts the DateTime into a long time string using the default culture specified in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultCulture"/>
+            </summary>
+            <param name="time">The DateTime to parse</param>
+            <returns>A culture-dependant long time string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.ToLongTime(System.DateTime,System.String)">
+            <summary>
+            Converts a DateTime into a long time string using the specified culture string
+            </summary>
+            <param name="date">The DateTime to parse</param>
+            <param name="culture">The culture to use for the conversion (e.g. "en-AU", "en-US", "ro-RO")</param>
+            <returns>A culture-dependant long time string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.ToLongTime(System.DateTime,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a DateTime into a long time string using the specified culture
+            </summary>
+            <param name="time">The DateTime to parse</param>
+            <param name="culture">The culture to use for the conversion</param>
+            <returns>A culture-dependant long time string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.FirstDayOfMonth(System.DateTime)">
+            <summary>
+            Returns the first day of the month for the specified date
+            </summary>
+            <param name="date">The DateTime to be processed</param>
+            <returns>The first day of the month for the specified date</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.LastDayOfMonth(System.DateTime)">
+            <summary>
+            Returns the last day of the month for the specified date
+            </summary>
+            <param name="date">The DateTime to be processed</param>
+            <returns>The last day of the month for the specified date</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.FirstDayOfWeek(System.DateTime)">
+            <summary>
+            Returns the first day of the week for the specified date
+            </summary>
+            <param name="date">The DateTime to be processed</param>
+            <returns>The first day of the week for the specified date</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.LastDayOfWeek(System.DateTime)">
+            <summary>
+            Returns the last day of the week for the specified date
+            </summary>
+            <param name="date">The DateTime to be processed</param>
+            <returns>The last day of the week for the specified date</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.DateOnly(System.DateTime)">
+            <summary>
+            Returns the date at midnight for the specified DateTime
+            </summary>
+            <param name="date">The DateTime to be processed</param>
+            <returns>A modified version of the date with the time set at midnight</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.TimeOnly(System.DateTime)">
+            <summary>
+            Returns the time on the 1/1/2000
+            </summary>
+            <param name="date">The DateTime to be processed</param>
+            <returns>The time of the orginal, with the date forced to 2000-01-01</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.GetEndOfDay(System.DateTime)">
+            <summary>
+            Returns the date at 23:59.59.999 for the specified DateTime
+            </summary>
+            <param name="date">The DateTime to be processed</param>
+            <returns>The date at 23:50.59.999</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.WeekOfYear(System.DateTime)">
+            <summary>
+            Returns the ISO 8601 week of the year number
+            </summary>
+            <param name="date">The DateTime to process</param>
+            <returns>The week number of the specified date</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.IsDateEqual(System.DateTime,System.DateTime)">
+            <summary>
+            Returns a boolean indicating if the specified date is on the same day, ignoring any
+            time values.
+            </summary>
+            <param name="date1">The source DateTime</param>
+            <param name="date2">The DateTime to compare</param>
+            <returns>True if the dates match ignoring times, otherwise false</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.IsWeekend(System.DateTime)">
+            <summary>
+            Returns whether the DateTime falls on a weekend day
+            </summary>
+            <param name="date">The date to be processed</param>
+            <returns>Whether the specified date occurs on a weekend</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DateTimeExtenders.IsWeekDay(System.DateTime)">
+            <summary>
+            Returns whether the DateTime falls on a weekday
+            </summary>
+            <param name="date">The date to be processed</param>
+            <returns>Whether the specified date occurs on a weekday</returns>
+        </member>
+        <member name="T:Componax.ExtensionMethods.ExtensionMethodsSettings">
+            <summary>
+            Contains global variables used in the Componax.ExtensionMethods library
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.ExtensionMethodsSettings.#cctor">
+            <summary>
+            Initializes a static instance of the ExtensionMethodsSettings class
+            </summary>
+        </member>
+        <member name="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultEncoding">
+            <summary>
+            Gets or Sets the default encoding scheme extension methods should use
+            </summary>
+            <remarks>
+            The default value for this property is <see cref="P:System.Text.Encoding.UTF8"/>
+            </remarks>
+        </member>
+        <member name="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultCulture">
+            <summary>
+            Gets or Sets the default culture information extension methods should use
+            </summary>
+            <remarks>
+            The default value for this property is <see cref="P:System.Globalization.CultureInfo.CurrentUICulture"/>
+            </remarks>
+        </member>
+        <member name="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultBufferSize">
+            <summary>
+            Gets or Sets the default buffer size (in bytes) used for streaming operations
+            </summary>
+            <remarks>
+            The default value for this property is 4096 bytes
+            </remarks>
+        </member>
+        <member name="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultWebProxy">
+            <summary>
+            Gets or Sets the default web proxy to use for net based operations
+            </summary>
+            <remarks>
+            The defalt value for this property is null
+            </remarks>
+        </member>
+        <member name="P:Componax.ExtensionMethods.ExtensionMethodsSettings.ByteFormats">
+            <summary>
+            Gets or Sets the classifiers for Bytes, KB, MB, GB, TB, PB, and EB 
+            </summary>
+            <remarks>
+            The strings in this array are used to format byte counts for the
+            WebRequestExtensions methods. The values should reflect 1024 ^ n
+            increments, starting with "Bytes", then onto "Megabytes",
+            "Gigabytes", "Terabytes", etc.
+            </remarks>
+        </member>
+        <member name="P:Componax.ExtensionMethods.ExtensionMethodsSettings.MimeTypes">
+            <summary>
+            Gets or Sets a list of standard mime types for common file extensions
+            </summary>
+            <remarks>
+            The key is the raw extension in lower case, including prefix period (e.g. '.pdf', '.txt')
+            </remarks>
+        </member>
+        <member name="T:Componax.ExtensionMethods.ObjectExtenders">
+            <summary>
+            Contains extension methods for anything deriving from System.Object
+            </summary>
+            <remarks>
+            <para>Note that in order to use these extenders in your code,
+            the consuming class must contain a reference to System.Linq as well as this library, e.g.
+            </para><code>
+            using System.Linq;
+            using Componax.ExtensionMethods;
+            </code></remarks>
+        </member>
+        <member name="M:Componax.ExtensionMethods.ObjectExtenders.CopyPropertiesFrom(System.Object,System.Object)">
+            <summary>
+            Copies the readable and writable public property values from the source object to the target
+            </summary>
+            <remarks>The source and target objects must be of the same type.</remarks>
+            <param name="target">The target object</param>
+            <param name="source">The source object</param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.ObjectExtenders.CopyPropertiesFrom(System.Object,System.Object,System.String[])">
+            <summary>
+            Copies the readable and writable public property values from the source object to the target
+            </summary>
+            <remarks>The source and target objects must be of the same type.</remarks>
+            <param name="target">The target object</param>
+            <param name="source">The source object</param>
+            <param name="ignoreProperties">A list of property names to ignore</param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.ObjectExtenders.CopyPropertiesFrom(System.Object,System.Object,System.Boolean,System.String[])">
+            <summary>
+            Copies the readable and writable public property values from the source object to the target
+            </summary>
+            <remarks>The source and target objects must be of the same type.</remarks>
+            <param name="target">The target object</param>
+            <param name="source">The source object</param>
+            <param name="ignoreProperties">A list of property names to ignore</param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.ObjectExtenders.CopyPropertiesFrom(System.Object,System.Object,System.String[],System.Boolean)">
+            <summary>
+            Copies the readable and writable public property values from the source object to the target
+            </summary>
+            <remarks>The source and target objects must be of the same type.</remarks>
+            <param name="target">The target object</param>
+            <param name="source">The source object</param>
+            <param name="includeLists">Specifies whether to copy lists from the source to the target</param>
+            <param name="ignoreProperties">An array of property names to ignore</param>
+        </member>
+        <member name="M:Componax.ExtensionMethods.ObjectExtenders.ToPropertiesString(System.Object)">
+            <summary>
+            Returns a string representation of the objects property values
+            </summary>
+            <param name="source">The object for the string representation</param>
+            <returns>A string</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.ObjectExtenders.ToPropertiesString(System.Object,System.String,System.Boolean)">
+            <summary>
+            Returns a string representation of the objects property values
+            </summary>
+            <param name="source">The object for the string representation</param>
+            <param name="delimiter">The line terminstor string to use between properties</param>
+            <param name="includeReadOnly">Specifies whether to include read-only properties in the result
+            </param>
+            <returns>A string</returns>
+            <remarks>Null property values are output as "[NULL]" whilst
+            properties that throw an exception when refelecting are output as "[UNREADABLE]"</remarks>
+        </member>
+        <member name="M:Componax.ExtensionMethods.ObjectExtenders.DeepClone(System.Object)">
+            <summary>
+            Creates a deep clone of the specified object using XML serialization
+            </summary>
+            <remarks>
+            The object to be cloned should be decorated with the 
+            <see cref="T:System.SerializableAttribute"/>, or implement the <see cref="!:ISerializable"/> interface.
+            </remarks>
+            <param name="source">The object to deep clone</param>
+            <returns>A copy of the source object</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.ObjectExtenders.ToXml(System.Object)">
+            <summary>
+            Serializes the object into an XML string, using the encoding method specified in
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.DefaultEncoding"/>
+            </summary>
+            <remarks>
+            The object to be serialized should be decorated with the 
+            <see cref="T:System.SerializableAttribute"/>, or implement the <see cref="!:ISerializable"/> interface.
+            </remarks>
+            <param name="source">The object to serialize</param>
+            <returns>An XML encoded string representation of the source object</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.ObjectExtenders.ToXml(System.Object,System.Text.Encoding)">
+            <summary>
+            Serializes the object into an XML string
+            </summary>
+            <remarks>
+            The object to be serialized should be decorated with the 
+            <see cref="T:System.SerializableAttribute"/>, or implement the <see cref="!:ISerializable"/> interface.
+            </remarks>
+            <param name="source">The object to serialize</param>
+            <param name="encoding">The Encoding scheme to use when serializing the data to XML</param>
+            <returns>An XML encoded string representation of the source object</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.ObjectExtenders.ToBase64(System.Object)">
+            <summary>
+            Converts an object into a Base64 encoded string
+            </summary>
+            <param name="src">The object to serialize and convert to Base64</param>
+            <returns></returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.ObjectExtenders.GetPropertyValue(System.Object,System.String)">
+            <summary>
+            Gets the valus of an object's property using a text reference to the 
+            property name
+            </summary>
+            <param name="src">The object whose property you want to query</param>
+            <param name="property">The name of the property to query</param>
+            <returns>An object reference of the property value</returns>
+        </member>
+        <member name="T:Componax.ExtensionMethods.EqualityOperatorType">
+            <summary>
+            Specifies the equality operator type to use in a boolean expression
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.EqualityOperatorType.EqualTo">
+            <summary>
+            ==
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.EqualityOperatorType.NotEqualTo">
+            <summary>
+            !=
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.RelationalOperatorType">
+            <summary>
+            Specifies the type os relational or equality operator to use in an expression
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.RelationalOperatorType.EqualTo">
+            <summary>
+            ==
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.RelationalOperatorType.NotEqualTo">
+            <summary>
+            !=
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.RelationalOperatorType.LargerThan">
+            <summary>
+            >
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.RelationalOperatorType.LargerThanOrEqualTo">
+            <summary>
+            >=
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.RelationalOperatorType.LessThan">
+            <summary>
+            &lt;
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.RelationalOperatorType.LessThanOrEqualTo">
+            <summary>
+            &lt;=
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.ConditionalOperatorType">
+            <summary>
+            Specifies the type of conditional operator to apply between expressions
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:Componax.ExtensionMethods.ConditionalOperatorType.And" -->
+        <member name="F:Componax.ExtensionMethods.ConditionalOperatorType.Or">
+            <summary>
+            ||
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.SortOrderType">
+            <summary>
+            Specifies the order of a sorting operation
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.SortOrderType.Ascending">
+            <summary>
+            Sort in ascending order
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.SortOrderType.Descending">
+            <summary>
+            Sort in descending order
+            </summary>
+        </member>
+        <member name="T:Componax.ExtensionMethods.IEnumerableExtenders">
+            <summary>
+            Conatins extension methods for lists implementing the IEnumerable interface
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.IEnumerableExtenders.Sort``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Sorrts a list based on an expression containing a property name and a sort direction
+            </summary>
+            <typeparam name="T">The base type of the list</typeparam>
+            <param name="list">The list to sort</param>
+            <param name="sortExpression">The expression to use for sorting, e.g. "MyProperty ascending"</param>
+            <returns>A sorted list if the expression passed is valid, otherwise the supplied list</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.IEnumerableExtenders.Sort``1(System.Collections.Generic.IEnumerable{``0},System.String,Componax.ExtensionMethods.SortOrderType)">
+            <summary>
+            Sorts a list based on the provided property name string and the sort order specified
+            </summary>
+            <typeparam name="T">The base type of the list</typeparam>
+            <param name="list">The list to sort</param>
+            <param name="property">The property name to sort</param>
+            <param name="order">The order to sort by</param>
+            <returns>A sorted list</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.IEnumerableExtenders.Sort``1(System.Collections.Generic.IEnumerable{``0},System.Reflection.PropertyInfo,Componax.ExtensionMethods.SortOrderType)">
+            <summary>
+            Sorts a list based on the property information supplied and the sort order specified
+            </summary>
+            <typeparam name="T">The base type of the list</typeparam>
+            <param name="list">The list to sort</param>
+            <param name="prop">The property info to sort by</param>
+            <param name="order">The order to sort by</param>
+            <returns>A sorted list</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.XmlExtenders.GetNodeInnerText(System.Xml.XmlDocument,System.String,System.Xml.XmlNamespaceManager,System.String)">
+            <summary>
+            Gets the inner node text for an XmlDocument
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Componax.ExtensionMethods.MimeTypeHelper">
+            <summary>
+            Contains helper methods for determining the MIME type of a file
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.MimeTypeHelper.FindMimeFromData(System.IntPtr,System.String,System.Byte[],System.Int32,System.String,System.Int32,System.IntPtr@,System.Int32)">
+            <summary>
+            Determines the MIME type from the data provided.
+            </summary>
+            <param name="pBC">A pointer to the IBindCtx interface. Can be set to NULL.</param>
+            <param name="pwzUrl">A pointer to a string value that contains the URL of the data. 
+            Can be set to NULL if pBuffer contains the data to be sniffed. </param>
+            <param name="pBuffer">A pointer to the buffer that contains the data to be sniffed. 
+            Can be set to NULL if pwzUrl contains a valid URL.</param>
+            <param name="cbSize">An unsigned long integer value that contains the size of the buffer.</param>
+            <param name="pwzMimeProposed">A pointer to a string value that contains the proposed MIME type. 
+            This value is authoritative if nothing else can be determined about type. Can be set to NULL.</param>
+            <param name="dwMimeFlags">One of the following required values: 
+            FMFD_DEFAULT
+            No flags specified. Use default behavior for the function. 
+            FMFD_URLASFILENAME
+            Treat the specified pwzUrl as a file name. 
+            FMFD_ENABLEMIMESNIFFING
+            Use MIME-type detection even if FEATURE_MIME_SNIFFING is detected. Usually, this feature control key would disable MIME-type detection. 
+            FMFD_IGNOREMIMETEXTPLAIN
+            Perform MIME-type detection if "text/plain" is proposed, even if data sniffing is otherwise disabled. 
+            FMFD_SERVERMIME
+            </param>
+            <param name="ppwzMimeOut">The address of a string value that receives the suggested MIME type.</param>
+            <param name="dwReserved">Reserved. Must be set to 0.</param>
+            <returns>Returns one of the following values:
+            S_OK The operation completed successfully. 
+            E_FAIL The operation failed. 
+            E_INVALIDARG One or more arguments are invalid. 
+            E_OUTOFMEMORY There is insufficient memory to complete the operation. 
+            </returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.MimeTypeHelper.FindMimeType(System.String,Componax.ExtensionMethods.MimeHelperType)">
+            <summary>
+            Finds the MIME type for a file using the specified helper type
+            </summary>
+            <param name="fileName">The full path and file name of the file to scan</param>
+            <param name="helperType">The helper type used to determine the MIME type</param>
+            <returns>A string representing the file MIME type</returns>
+            <remarks>
+            <list type="">
+            <item>If using <see cref="F:Componax.ExtensionMethods.MimeHelperType.FileData"/> the actual file represented
+            by the the fileName attribute must exist and be readable by this code. Note that this 
+            method has the benefit of not relying on an accurate file extension, as the MIME type 
+            is determined from the first 256 bytes of the file itself.</item>
+            <item>If using <see cref="F:Componax.ExtensionMethods.MimeHelperType.Registry"/>, the file does not need to exist,
+            but this code must have access to the system registry. Use with caution within ASP.Net.
+            Also note that the registry method can only return the MIME types for file extensions
+            that have been registered on the executing machine, i.e. PDF will only work if Adobe
+            Acrobat has been installed.</item>
+            <item>If using <see cref="F:Componax.ExtensionMethods.MimeHelperType.List"/> the file does not need to exist, and 
+            no special code permissions will be required.</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Componax.ExtensionMethods.MimeTypeHelper.FindMimeTypeFromFileData(System.String,System.String)">
+            <summary>
+            Scans the first 256 bytes of the specified file then uses a P/Invoke call to
+            urlmon.dll to determine the MIME type
+            </summary>
+            <param name="fileName">The full path and name of the file to scan</param>
+            <param name="mimeProposed">(Optional) The proposed MIME type of the file</param>
+            <returns>A string representing the file MIME type</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.MimeTypeHelper.FindMimeTypeFromRegistry(System.String)">
+            <summary>
+            Attempts to get the MIME type for a file from the system registry, 
+            based on it's registered extension details.
+            </summary>
+            <param name="fileName">The name of the file to process. Full path info is not required
+            as all we're really using is the extension.</param>
+            <returns>A string representing the file MIME type</returns>
+        </member>
+        <member name="M:Componax.ExtensionMethods.MimeTypeHelper.FindMimeTypeFromList(System.String)">
+            <summary>
+            Attempts to get the MIME type for a file from  the list of MIME types
+            contained in <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.MimeTypes"/>
+            </summary>
+            <param name="fileName">The name of the file to process. Full path info is not required
+            as all we're really using is the extension.</param>
+            <returns>A string representing the file MIME type</returns>
+            <remarks>
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.MimeTypes"/> contains info for only the most 
+            common of file types, so you may want to extend the list to support more specialized
+            file extensions/MIME types.
+            </remarks>
+        </member>
+        <member name="T:Componax.ExtensionMethods.MimeHelperType">
+            <summary>
+            Specifies the method to use when trying to automatically determine the MIME type of a file
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.MimeHelperType.List">
+            <summary>
+            Determine the MIME type from the list of file extensions in 
+            <see cref="P:Componax.ExtensionMethods.ExtensionMethodsSettings.MimeTypes"/>
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.MimeHelperType.Registry">
+            <summary>
+            Determine the MIME type using the system registry
+            </summary>
+        </member>
+        <member name="F:Componax.ExtensionMethods.MimeHelperType.FileData">
+            <summary>
+            Determine the MIME type using a P/Invoke call to urlmon.dll, 
+            passing the first 256 bytes of file data
+            </summary>
+        </member>
+        <member name="M:Componax.ExtensionMethods.DirectoryInfoExtensions.CopyTo(System.IO.DirectoryInfo,System.String,System.Boolean)">
+            Copies all files from one directory to another.
+        </member>
+    </members>
+</doc>

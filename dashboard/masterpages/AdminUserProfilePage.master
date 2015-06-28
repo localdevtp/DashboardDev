@@ -1,0 +1,138 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/user/profile"><i class="icon-params"></i> My Profile</a></li>
+	</ul>
+	<ul	class="nav nav-pills">
+		<li class="active"><a href="/user/profile"><i class="icon-params">&nbsp;</i> My Profile</a></li>
+		<li><a href="/user/change-password"><i class="icon-key">&nbsp;</i> Change Password</a></li>
+	</ul>
+	
+	<umbraco:Macro Alias="EasyListUserProfile" runat="server" />
+	
+	<div id = "CountrySelection" style="display:none">
+		<form runat="server">
+			<asp:ScriptManager ID="ScriptManager1" runat="server">
+			</asp:ScriptManager>
+			<div>
+				<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+					<ContentTemplate>
+						<umbraco:Macro Alias="EasyListCountrySelection" runat="server"></umbraco:Macro>
+					</ContentTemplate>
+				</asp:UpdatePanel>
+			</div>	
+		</form>
+	</div>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="eayslist.editlocks,forms,easylist.ImageUpload" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script type="text/javascript">
+		$(function(){
+			$.metadata.setType('attr', 'data-validate');
+			
+			$.validator.addMethod("alphabets", function(value, element) { 
+				return this.optional(element) || /^[a-zA-Z ]*$/.test(value); 
+			}, "Please enter only alphabets.");
+			
+			$('.form-horizontal').validate();
+			$('#reset').on('change',function(){
+				if($(this).is(':checked')) {
+					$('.password-fields').fadeIn();
+					$('input[name="accountNewPassword"]').rules('add', { required: true });
+					$('input[name="accountNewPassword2"]').rules('add', { equalTo: "accountNewPassword" });
+				} else {
+					$('.password-fields').fadeOut();
+					$('input[name="accountNewPassword"]').rules('remove');
+					$('input[name="accountNewPassword2"]').rules('remove');
+				}
+			});
+			
+			$('#CountrySelection').clone(true).appendTo('#MyCountrySelectHere');
+			$('#CountrySelection').show();
+						
+			$("#UpdateAcc").click(
+				function(e){
+					$('#address-country-code').val($(".add-country").val());
+					
+					if ($(".add-region").length && $(".add-region").is(":visible"))
+					{
+						$('#address-region-id').val($(".add-region").val()); 
+						$('#address-region-name').val($('.add-region option:selected').first().text()); 
+					}else
+					{
+						$('#address-region-id').val("");
+						$('#address-region-name').val("");
+					}
+					
+					// Postal Code
+					if ($(".add-postalcode").length && $(".add-postalcode").is(":visible"))
+					{
+						$('#address-postalcode').val($(".add-postalcode").val());
+					}
+					else
+					{
+						$('#address-postalcode').val("");
+					}
+					
+					// District
+					if ($(".add-district-dropdown").length && $(".add-district-dropdown").is(":visible"))
+					{
+						$('#address-district').val($('.add-district-dropdown option:selected').first().text());
+					}else
+					{
+						$('#address-district').val($(".add-district").val());
+					}
+					
+					$('#AddressLine1').val($.trim($('#AddressLine1').val()));
+					$('#AddressLine2').val($.trim($('#AddressLine2').val()));
+				
+					$('.form-horizontal').removeClass('has-changes');
+					$('#ctl01').removeClass('has-changes'); // Country selection
+					//e.preventDefault();
+				}
+			);
+			
+			$('#request-otp').on('click', function(e){
+				var iframe = "<iframe id='ResendOTPIframe' frameborder='0' style='width:100%;height:180px' src='/otp.aspx'></iframe>";
+				alertModal(iframe, 'One-Time Password (OTP)');
+				//alert($("#ResendOTPIframe").contents().find('#OTPRefCode').val());
+				setInterval(function() {
+					var NewOTPRefCode = $("#ResendOTPIframe").contents().find('#OTPRefCode').val();
+					if (NewOTPRefCode != null)
+					{
+						$("#OTPLoginRefCode").text(NewOTPRefCode);
+						$("#OTPReferenceCode").val(NewOTPRefCode);
+					}
+				}, 1000);
+
+				e.preventDefault();
+			});
+			
+			/*
+			$('#profile').on('click','#profile-edit',function(e){
+				$('#profile-info').hide();
+				$('#profile-edit-form').show();
+				e.preventDefault();
+				return false;
+			});
+			$('#profile').on('click','#cancel-profile-edit',function(e){
+				$('#profile-info').show();
+				$('#profile-edit-form').hide();
+				e.preventDefault();
+				return false;
+			});
+			*/
+		});
+	</script>
+</asp:content>

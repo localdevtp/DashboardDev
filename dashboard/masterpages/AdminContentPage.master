@@ -1,0 +1,31 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminMaster.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	
+</asp:content>
+	
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<asp:ContentPlaceHolder Id="mainNavigation" runat="server">
+		<umbraco:Macro Alias="EasyListMainMenu" runat="server"></umbraco:Macro>
+	</asp:ContentPlaceHolder>	
+	
+	<div id="page">
+		<div class="container">
+			
+			<umbraco:Macro Alias="CurrentPage" runat="server" />
+			
+			<umbraco:Item field="content" runat="server" />
+			
+			<br /><br />
+		</div>
+	</div>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	
+</asp:content>

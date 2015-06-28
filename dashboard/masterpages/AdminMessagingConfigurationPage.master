@@ -1,0 +1,200 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li class="active"><i class="icon-paperplane"></i> Messaging</li>
+	</ul>
+	
+	<umbraco:Macro Alias="EasyListMessagingConfig" runat="server"></umbraco:Macro>
+
+</asp:content>	
+
+<asp:Content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script>
+		$(function(){
+			$.metadata.setType('attr', 'data-validate');
+			//$('.form-horizontal').validate();
+			
+			InitialiseGatewayRulesTable();
+			InitialiseGatewayAddButton();
+			InitialiseSubmitButton();
+			
+			TriggerScrollToProcessResult();
+		});
+		
+		function TriggerScrollToProcessResult() {
+			try {
+				$target = $('#process-result').parent();
+		
+				$('html, body').stop().animate({
+					'scrollTop': $target.offset().top
+				}, 900, 'swing');
+			} catch (err) { }
+		}
+		
+		function InitialiseSubmitButton() {
+			$('#save-configurations-btn').click(function(e) {
+				e.preventDefault();
+				$('#save-confirmation-modal').modal();				
+			});
+			
+			$('#confirm-save-btn').click(function(e) {
+				e.preventDefault();
+				
+				UpdateGatewayRulesData();
+				
+				// For seeing data being encoded correctly
+				// alert($('#gateway-rules-data').val());
+				
+				$('form#config-form').submit();
+			});
+		}
+		
+		function InitialiseDeleteRow(e) {
+			$(e).on('click',function(){
+				var $tr = $(this).closest('tr');
+				$tr.remove();
+			});
+		}
+		
+		function InitialiseSortUpRow(e) {
+			$(e).on('click', function(){
+				var $tr = $(this).closest('tr');
+				var index = $tr.index();
+				if(index > 0) {
+					
+					// do some funky animation if supported
+					if(Modernizr.csstransitions) {
+						$('td',$tr).css({ background:'#FFF' });
+						$('td',$tr.prev()).css({ background:'#FFF' });
+						$tr.prev().transition({ y:$tr.outerHeight() +'px' },300,'ease');
+						$tr.transition({ y:'-'+ $tr.outerHeight() +'px' },300,'ease',function(){
+							$tr.prev().removeAttr('style');
+							$tr.removeAttr('style');
+							$('td',$tr).removeAttr('style');
+							$('td',$tr.prev()).removeAttr('style');
+							$tr.insertBefore($tr.prev());	
+						});
+					} else {
+						$tr.insertBefore($tr.prev());
+					}
+				}
+			});
+		}
+		
+		function InitialiseSortDownRow(e) {
+			$(e).on('click', function(){
+				var $tr = $(this).closest('tr');
+				var index = $tr.index();
+				if(index != $('tr', $tr.parent()).length - 1 ) {
+					
+					// do some funky animation if supported
+					if(Modernizr.csstransitions) {
+						$('td',$tr).css({ background:'#FFF' });
+						$('td',$tr.next()).css({ background:'#FFF' });
+						$tr.next().transition({ y:'-'+$tr.outerHeight() +'px' },300,'ease');
+						$tr.transition({ y:$tr.outerHeight() +'px' },300,'ease',function(){
+							$tr.next().removeAttr('style');
+							$tr.removeAttr('style');
+							$('td',$tr).removeAttr('style');
+							$('td',$tr.next()).removeAttr('style');
+							$tr.insertAfter($tr.next());	
+						});
+					} else {
+						$tr.insertAfter($tr.next());
+					}
+				}
+			});
+		}
+		
+		function InitialiseGatewayRulesTable() {
+			// delete row
+			InitialiseDeleteRow('.gateway-remove');
+			
+			// sort up row
+			InitialiseSortUpRow('.gateway-sort-up');
+			
+			// sort down row
+			InitialiseSortDownRow('.gateway-sort-down');
+		}
+		
+		function InitialiseGatewayAddButton() {
+			var rowTemplate = 
+				'<tr>' +
+					'<td>$pattern$<div id="row-pattern" style="display: none">$pattern$</div></td>' +
+					'<td>$priorityText$<div id="row-priority" style="display: none">$priority$</div></td>' +
+					'<td>$gatewayText$<div id="row-gateway" style="display: none">$gateway$</div></td>' +
+					'<td>' +
+						'<button type="button" class="btn btn-small gateway-sort-up"><i class="icon-chevron-up"><xsl:text>' +
+						'</xsl:text></i></button>&nbsp;&nbsp;' +
+						'<button type="button" class="btn btn-small gateway-sort-down"><i class="icon-chevron-down"><xsl:text>' +
+						'</xsl:text></i></button>&nbsp;&nbsp;' +
+						'<button type="button" class="btn btn-small btn-danger gateway-remove"><i class="icon-remove"><xsl:text>' +
+						'</xsl:text></i></button>' +
+					'</td>' + 
+				'</tr>';
+			
+			// add row
+			$('#gateway-rules-add').on('click', function(e){
+				e.preventDefault();
+				
+				var pattern = $('#gateway-rules-pattern').val();
+				var priority = $('#gateway-rules-priority').val();
+				var gateway = $('#gateway-rules-gateway').val();
+				var priorityText = $('#gateway-rules-priority option[value="' + priority + '"]').text();
+				var gatewayText = $('#gateway-rules-gateway option[value="' + gateway + '"]').text();
+				
+				if (priority.length == 0 || gateway.length == 0) {
+					alert("Please select priority and gateway");
+					return;
+				}
+				
+				var row = rowTemplate
+					.replace(/\$pattern\$/g, pattern)
+					.replace('$priority$', priority)
+					.replace('$priorityText$', priorityText)
+					.replace('$gateway$', gateway)
+					.replace('$gatewayText$', gatewayText);
+
+				var $row = $(row);
+				
+				$('#gateway-rules-table tbody:last').append($row);
+				
+				InitialiseDeleteRow($row.find('.gateway-remove'));
+				InitialiseSortUpRow($row.find('.gateway-sort-up'));
+				InitialiseSortDownRow($row.find('.gateway-sort-down'));
+			});
+		}
+		
+		function UpdateGatewayRulesData() {
+			var $gatewayRulesData = $('#gateway-rules-data');
+			var $root = $('<root />');
+			var $rules = $('<arrayofrule />');
+			$root.append($rules);
+			
+			$('#gateway-rules-table tbody tr').each(function(){
+				rowPattern = $(this).find('#row-pattern').text();
+				rowPriority = $(this).find('#row-priority').text();
+				rowGateway = $(this).find('#row-gateway').text();
+				
+				$rule = $('<rule />'); 
+				$rules.append($rule);
+				$rule.append(
+					$('<pattern />').text(rowPattern),
+					$('<priority />').text(rowPriority),
+					$('<gateway />').text(rowGateway)
+				);
+			});
+
+			// $gatewayRulesData.val(HtmlEncode($root.html())); // Utilizing ArrayOfRule at server-end instead
+			$gatewayRulesData.val(HtmlEncode($rules.html()));
+		}
+		
+		function HtmlEncode(value){
+			return $('<div/>').text(value).html();
+		}
+	</script>
+</asp:Content>

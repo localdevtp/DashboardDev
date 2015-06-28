@@ -1,0 +1,1040 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/PrintMaster.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="pageHeader" runat="server">
+	<!-- Insert "pageHeader" markup here -->
+</asp:content>
+	
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<table class="print-table trading-post-roi">
+		<tbody>
+			<tr>
+				<td>
+					<!-- Header -->
+					<table class="print-header">
+						<tr>
+							<td>
+								<img src="/images/tp/tp-logo-white.png" alt="Trading Post" />
+							</td>
+							<td align="right">
+								<h1>ADVERTISING PERFORMANCE REPORT</h1>
+							</td>
+						</tr>
+					</table>
+					<!-- /Header -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<!-- Company Name -->
+					<div class="print-company">
+						<header><h2>Benstead Car Co - 47281</h2></header>
+						<span>3386 Pasific Highway</span>
+						<em>4 weeks ending 05 Feb 2012</em>
+					</div>
+					<!-- /Company Name -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<br />
+					<br />
+					<!-- 3-col -->
+					<table class="print-wells wells-3">
+						<tr>
+							<!-- DETAILED VEHICLE VIEWS -->
+							<td>
+								<div class="well left" style="height:280px;">
+									<h3>DETAILED VEHICLE VIEWS</h3>
+									<table class="print-table-icon">
+										<tr>
+											<td><i class="icon-screen"></i></td>
+											<td>9,999</td>
+										</tr>
+										<tr>
+											<td><i class="icon-tablet"></i></td>
+											<td>999</td>
+										</tr>
+										<tr>
+											<td><i class="icon-mobile"></i></td>
+											<td>999</td>
+										</tr>
+									</table>
+									<br />
+									The number of times people have viewed the details of your vehicle
+									online and on their mobile
+									<br />
+									<br />
+									<br />
+									<br />
+									Average Stock Items: 85
+								</div>
+							</td>
+							<!-- /DETAILED VEHICLE VIEWS -->
+							<!-- ADS IN SEARCH RESULTS -->
+							<td>
+								<div class="well" style="height:110px;">
+									<h3>ADS IN SEARCH RESULTS</h3>
+									<table class="print-table-icon">
+										<tr>
+											<td><i class="icon-search">&nbsp;</i>199,999</td>
+										</tr>
+									</table>
+									The number of times your vehicles and brand have appeared in search results
+								</div>
+								<div class="well" style="height:150px;">
+									<h3>POTENTIAL BUYERS</h3>
+									<div id="chart-potential-buyers" 
+									data-plot-category='{ "inLabel": true, "data":[[ ["15 Jan",250], ["22 Jan",263], ["29 Jan",253], ["05 Feb",232] ]]}'
+									style="width:223px;height:90px">&nbsp;</div>
+									<br />
+									The number of unique buyers viewing your ads
+								</div>
+							</td> 
+							<!-- /ADS IN SEARCH RESULTS -->
+							<!-- ENQUIRES -->
+							<td>
+								<div class="well right" style="height:280px;">
+									<h3>ENQUIRES</h3>
+									<table class="print-table-icon">
+										<tr>
+											<td><i class="icon-phone"></i></td>
+											<td>8</td>
+										</tr>
+										<tr>
+											<td><i class="icon-envelop"></i></td>
+											<td>5</td>
+										</tr>
+										<tr>
+											<td><i class="icon-location-2"></i></td>
+											<td>81</td>
+										</tr>
+										<tr>
+											<td><i class="icon-link"></i></td>
+											<td>14</td>
+										</tr>
+										<tr>
+											<td><i class="icon-enter"></i></td>
+											<td>44</td>
+										</tr>
+									</table>
+								</div>
+							</td>
+							<!-- /ENQUIRES -->
+						</tr>
+					</table>
+					<!-- /3-col -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<!-- DERIVED TOTAL RETURN ON INVESTMENT -->
+					<div class="well highlight">
+						<h2>DERIVED TOTAL RETURN ON INVESTMENT</h2>
+						<br />
+						<br />
+						<br />
+						<table>
+							<tr>
+								<td width="60%">
+									<h3>SALES OPPORTUNITIES</h3>
+									<div id="chart-sales-opportunities" 
+									data-plot-pie='{ "data":[ {"label":"Email", "data":5}, {"label":"Loc Req", "data":81}, {"label":"Phone", "data":8}, {"label":"Walk Ins", "data":44}, {"label":"Web Link", "data":14} ]}'
+									style="margin:0 auto;width:380px;height:250px;text-align:left;">&nbsp;</div>
+								</td>
+								<td width="40%">
+									<table class="exposure">
+										<tr>
+											<td><i class="icon-clock" style="font-size:60px;"></i></td>
+											<td>
+												<h3>BRAND EXPOSURE</h3>
+												<div class="time">
+													<span>54</span> hrs <span>17</span> min
+												</div>
+											</td>
+										</tr>
+									</table>
+									<p>
+										<strong>Multiply the value of your advertising.</strong><br />
+										Trading Post delivers value beyond the lead by letting buyers know who and where you are, as well as promoting your brand online.
+										<br /><br />
+										<strong>77% of people walk into a dealership after seeing an ad online</strong>
+									</p>
+								</td>
+							</tr>
+						</table>
+						<br />
+						<br />
+						<br />
+					</div>
+					<!-- /DERIVED TOTAL RETURN ON INVESTMENT -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="well footer">
+						<h2>
+							SELL MORE CARS WITH A DEDICATED MOBILE SITE<br />
+							<span>ASK YOUR ACCOUNT MANAGER HOW TODAY</span>
+						</h2>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- /trading-post-roi [Page 1] -->
+	
+	<table class="print-table break trading-post-roi">
+		<tbody>
+			<tr>
+				<td>
+					<!-- Header -->
+					<table class="print-header">
+						<tr>
+							<td>
+								<img src="/images/tp/tp-logo-white.png" alt="Trading Post" />
+							</td>
+							<td align="right">
+								<h1>ADVERTISING PERFORMANCE REPORT</h1>
+							</td>
+						</tr>
+					</table>
+					<!-- /Header -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<!-- Company Name -->
+					<div class="print-company">
+						<header><h2>Benstead Car Co - 47281</h2></header>
+						<span>3386 Pasific Highway</span>
+						<em>Last 12 weeks Performance</em>
+					</div>
+					<!-- /Company Name -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<br />
+					<h2 class="center">Advertising Performance</h2>
+					<!-- ESTIMATE WALK IN -->
+					<div class="well">
+						<h3>ESTIMATE WALK IN<sup>1</sup></h3>
+						<div id="chart-estimate-walk-in" 
+						data-plot-category='{ "tableLabel": true, "data":[[ ["20 Nov", 7], ["27 Nov", 17], ["04 Dec", 3], ["11 Dec", 10], ["18 Dec", 3], ["25 Dec", 17], ["01 Jan", 10], ["08 Jan", 23], ["15 Jan", 3], ["22 Jan", 23], ["29 Jan", 10], ["05 Feb", 7] ]]}'
+						style="width:100%;height:120px">&nbsp;</div>
+					</div>
+					<!-- /ESTIMATE WALK IN -->
+					
+					<!-- UNIQUE ONLINE VISITORS REPORT -->
+					<div class="well">
+						<h3>UNIQUE ONLINE VISITORS REPORT</h3>
+						<div id="chart-unique-online-visitors-report" 
+						data-plot-category='{ "tableLabel": true, "data":[[ ["20 Nov", 266], ["27 Nov", 245], ["04 Dec", 219], ["11 Dec", 210], ["18 Dec", 191], ["25 Dec", 120], ["01 Jan", 155], ["08 Jan", 174], ["15 Jan", 250], ["22 Jan", 263], ["29 Jan", 253], ["05 Feb", 232] ]]}'
+						style="width:100%;height:120px">&nbsp;</div>
+					</div>
+					<!-- /UNIQUE ONLINE VISITORS REPORT -->
+					
+					<!-- DIRECT ENQUIRY REPORT -->
+					<div class="well">
+						<h3>DIRECT ENQUIRY REPORT</h3>
+						<div id="chart-direct-enquiry-report" 
+						data-plot-category='{ "tableLabel": true,
+						"data":[ 
+						{ "label":"1300 No An", "data":[["20 Nov", 0], ["27 Nov", 2], ["04 Dec", 0], ["11 Dec", 0], ["18 Dec", 0], ["25 Dec", 0], ["01 Jan", 0], ["08 Jan", 0], ["15 Jan", 0], ["22 Jan", 1], ["29 Jan", 0], ["05 Feb", 0]] }, 
+						{ "label":"1300 Succ", "data":[["20 Nov", 1], ["27 Nov", 2], ["04 Dec", 1], ["11 Dec", 2], ["18 Dec", 0], ["25 Dec", 5], ["01 Jan", 3], ["08 Jan", 5], ["15 Jan", 3], ["22 Jan", 5], ["29 Jan", 2], ["05 Feb", 0]] },
+						{ "label":"Email", "data":[["20 Nov", 1], ["27 Nov", 1], ["04 Dec", 0], ["11 Dec", 1], ["18 Dec", 1], ["25 Dec", 0], ["01 Jan", 0], ["08 Jan", 2], ["15 Jan", 1], ["22 Jan", 1], ["29 Jan", 1], ["05 Feb", 2]] }
+						]}'
+						style="width:100%;height:250px">&nbsp;</div>
+					</div>
+					<!-- /DIRECT ENQUIRY REPORT -->
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- /trading-post-roi [Page 2] -->
+	
+	<table class="print-table break trading-post-roi">
+		<tbody>
+			<tr>
+				<td>
+					<!-- Header -->
+					<table class="print-header">
+						<tr>
+							<td>
+								<img src="/images/tp/tp-logo-white.png" alt="Trading Post" />
+							</td>
+							<td align="right">
+								<h1>ADVERTISING PERFORMANCE REPORT</h1>
+							</td>
+						</tr>
+					</table>
+					<!-- /Header -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<!-- Company Name -->
+					<div class="print-company">
+						<header><h2>Benstead Car Co - 47281</h2></header>
+						<span>3386 Pasific Highway</span>
+						<em>Last 12 weeks Performance</em>
+					</div>
+					<!-- /Company Name -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<br />
+					<h2 class="center">Advertising Performance</h2>
+					<!-- WEEKLY AVERAGE INVENTORY -->
+					<div class="well">
+						<h3>WEEKLY AVERAGE INVENTORY</h3>
+						<div id="chart-weekly-average-inventory" 
+						data-plot-category='{ "tableLabel": true,
+						"data":[ 
+						{ "label":"0 Photos", "data":[["20 Nov", 2], ["27 Nov", 7], ["04 Dec", 15], ["11 Dec", 27], ["18 Dec", 33], ["25 Dec", 27], ["01 Jan", 23], ["08 Jan", 18], ["15 Jan", 18], ["22 Jan", 22], ["29 Jan", 20], ["05 Feb", 18]] }, 
+						{ "label":"+3 Photos", "data":[["20 Nov", 72], ["27 Nov", 69], ["04 Dec", 58], ["11 Dec", 53], ["18 Dec", 54], ["25 Dec", 63], ["01 Jan", 63], ["08 Jan", 62], ["15 Jan", 71], ["22 Jan", 66], ["29 Jan", 63], ["05 Feb", 61]] }
+						]}'
+						style="width:100%;height:120px">&nbsp;</div>
+					</div>
+					<!-- /WEEKLY AVERAGE INVENTORY -->
+					
+					<!-- ADS PRESENTED IN SEARCH RESULTS -->
+					<div class="well">
+						<h3>ADS PRESENTED IN SEARCH RESULTS</h3>
+						<div id="chart-ads-presented-in-search-results" 
+						data-plot-category='{ "tableLabel": true, "data":[[ ["20 Nov", 13878], ["27 Nov", 14099], ["04 Dec", 11404], ["11 Dec", 9774], ["18 Dec", 8933], ["25 Dec", 8408], ["01 Jan", 10530], ["08 Jan", 13937], ["15 Jan", 16384], ["22 Jan", 18933], ["29 Jan", 17228], ["05 Feb", 12309] ]]}'
+						style="width:100%;height:120px">&nbsp;</div>
+					</div>
+					<!-- /ADS PRESENTED IN SEARCH RESULTS -->
+					
+					<!-- ADS VIEW REPORT -->
+					<div class="well">
+						<h3>ADS VIEW REPORT</h3>
+						<div id="chart-ads-view-report" 
+						data-plot-category='{ "tableLabel": true,
+						"data":[ 
+						{ "label":"Mobile", "data":[["20 Nov", 263], ["27 Nov", 318], ["04 Dec", 219], ["11 Dec", 204], ["18 Dec", 236], ["25 Dec", 236], ["01 Jan", 236], ["08 Jan", 224], ["15 Jan", 199], ["22 Jan", 255], ["29 Jan", 226], ["05 Feb", 0]] }, 
+						{ "label":"Online", "data":[["20 Nov", 312], ["27 Nov", 292], ["04 Dec", 250], ["11 Dec", 257], ["18 Dec", 173], ["25 Dec", 205], ["01 Jan", 205], ["08 Jan", 210], ["15 Jan", 296], ["22 Jan", 323], ["29 Jan", 299], ["05 Feb", 286]] }
+						]}'
+						style="width:100%;height:250px">&nbsp;</div>
+					</div>
+					<!-- /ADS VIEW REPORT -->
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- /trading-post-roi [Page 3] -->
+	
+	<table class="print-table break trading-post-roi">
+		<tbody>
+			<tr>
+				<td>
+					<!-- Header -->
+					<table class="print-header">
+						<tr>
+							<td>
+								<img src="/images/tp/tp-logo-white.png" alt="Trading Post" />
+							</td>
+							<td align="right">
+								<h1>ADVERTISING PERFORMANCE REPORT</h1>
+							</td>
+						</tr>
+					</table>
+					<!-- /Header -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<!-- Company Name -->
+					<div class="print-company">
+						<header><h2>Benstead Car Co - 47281</h2></header>
+						<span>3386 Pasific Highway</span>
+						<em>Last 12 weeks Performance</em>
+					</div>
+					<!-- /Company Name -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<br />
+					<h2 class="center">Advertising Performance</h2>
+					<!-- SLIDESHOW IMAGES VIEW REPORT -->
+					<div class="well">
+						<h3>SLIDESHOW IMAGES VIEW REPORT</h3>
+						<div id="chart-slideshow-images-view-report" 
+						data-plot-category='{ "tableLabel": true, "data":[[ ["20 Nov", 2586], ["27 Nov", 1301], ["04 Dec", 1663], ["11 Dec", 1111], ["18 Dec", 1093], ["25 Dec", 694], ["01 Jan", 853], ["08 Jan", 1000], ["15 Jan", 1106], ["22 Jan", 1695], ["29 Jan", 1761], ["05 Feb", 1347] ]]}'
+						style="width:100%;height:120px">&nbsp;</div>
+					</div>
+					<!-- /SLIDESHOW IMAGES VIEW REPORT -->
+					
+					<!-- LOCATION REQUEST REPORT -->
+					<div class="well">
+						<h3>ADS VIEW REPORT</h3>
+						<div id="chart-location-request-report" 
+						data-plot-category='{ "tableLabel": true,
+						"data":[ 
+						{ "label":"Print Map", "data":[["20 Nov", 0], ["27 Nov", 0], ["04 Dec", 0], ["11 Dec", 0], ["18 Dec", 0], ["25 Dec", 0], ["01 Jan", 0], ["08 Jan", 0], ["15 Jan", 1], ["22 Jan", 5], ["29 Jan", 0], ["05 Feb", 2]] }, 
+						{ "label":"View Addr", "data":[["20 Nov", 0], ["27 Nov", 0], ["04 Dec", 0], ["11 Dec", 0], ["18 Dec", 0], ["25 Dec", 0], ["01 Jan", 0], ["08 Jan", 0], ["15 Jan", 2], ["22 Jan", 9], ["29 Jan", 3], ["05 Feb", 3]] },
+						{ "label":"View Map", "data":[["20 Nov", 0], ["27 Nov", 0], ["04 Dec", 0], ["11 Dec", 0], ["18 Dec", 0], ["25 Dec", 0], ["01 Jan", 0], ["08 Jan", 0], ["15 Jan", 7], ["22 Jan", 37], ["29 Jan", 5], ["05 Feb", 7]] }
+						]}'
+						style="width:100%;height:250px">&nbsp;</div>
+					</div>
+					<!-- /LOCATION REQUEST REPORT -->
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- /trading-post-roi [Page 4] -->
+	
+	<table class="print-table break trading-post-roi">
+		<tbody>
+			<tr>
+				<td>
+					<!-- Header -->
+					<table class="print-header">
+						<tr>
+							<td>
+								<img src="/images/tp/tp-logo-white.png" alt="Trading Post" />
+							</td>
+							<td align="right">
+								<h1>ADVERTISING PERFORMANCE REPORT</h1>
+							</td>
+						</tr>
+					</table>
+					<!-- /Header -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<!-- Company Name -->
+					<div class="print-company">
+						<header><h2>Benstead Car Co - 47281</h2></header>
+						<span>3386 Pasific Highway</span>
+						<em>Last 12 weeks Performance</em>
+					</div>
+					<!-- /Company Name -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<br />
+					<h2 class="center">Advertising Performance</h2>
+					<!-- CLICK THROUGH RATE REPORT -->
+					<div class="well">
+						<h3>CLICK THROUGH RATE REPORT<sup>2</sup> (PER ADS %)</h3>
+						<div id="chart-click-through-rate-report" 
+						data-plot-category='{ "tableLabel": true, "data":[[ ["20 Nov", 4.14], ["27 Nov", 4.33], ["04 Dec", 4.11], ["11 Dec", 4.62], ["18 Dec", 5.16], ["25 Dec", 4.86], ["01 Jan", 4.19], ["08 Jan", 3.11], ["15 Jan", 3.02], ["22 Jan", 3.05], ["29 Jan", 3.05], ["05 Feb", 2.32] ]]}'
+						style="width:100%;height:120px">&nbsp;</div>
+					</div>
+					<!-- /CLICK THROUGH RATE REPORT -->
+					
+					<!-- LEAD CONVERSION RATE REPORT -->
+					<div class="well">
+						<h3>LEAD CONVERSION RATE REPORT<sup>3</sup> (PER ADS %)</h3>
+						<div id="chart-lead-conversion-rate-report" 
+						data-plot-category='{ "tableLabel": true, "data":[[ ["20 Nov", 0.35], ["27 Nov", 0.82], ["04 Dec", 0.21], ["11 Dec", 0.66], ["18 Dec", 0.22], ["25 Dec", 1.22], ["01 Jan", 0.68], ["08 Jan", 1.61], ["15 Jan", 2.83], ["22 Jan", 11.76], ["29 Jan", 2.10], ["05 Feb", 5.24] ]]}'
+						style="width:100%;height:120px">&nbsp;</div>
+					</div>
+					<!-- /LEAD CONVERSION RATE REPORT -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="well note" style="margin-top:200px;">
+						<ol>
+							<li>This figure represents the estimated number of people who saw your ads on the tradingpost.com.au and walked in to your dealership but did not generate a recordable lead. Trading post research shows that 77% of buyers who find an car online do not contact the dealer before walking in. This is supported by similar studies overseas. Please ask your account representative for details.</li>
+							<li>This figure represents the ratio of ad views to items returned in the search results, and demonstrates the effectiveness of attracting buyers to your ads.</li>
+							<li>This figure represents the ratio of leads to ad views, and shows the proportion of buyers who called your 1300 number, sent an email lead,visited your website or requested your location once they had viewed the ad.</li>
+						</ol>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- /trading-post-roi [Page 5] -->
+	
+	<table class="print-table break trading-post-roi">
+		<tbody>
+			<tr>
+				<td>
+					<!-- Header -->
+					<table class="print-header">
+						<tr>
+							<td>
+								<img src="/images/tp/tp-logo-white.png" alt="Trading Post" />
+							</td>
+							<td align="right">
+								<h1>CLASSIFIEDS DISPLAY PERFORMANCE REPORT</h1>
+							</td>
+						</tr>
+					</table>
+					<!-- /Header -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<!-- Company Name -->
+					<div class="print-company">
+						<header><h2>Benstead Car Co - 47281</h2></header>
+						<span>3386 Pasific Highway</span>
+					</div>
+					<!-- /Company Name -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<br />
+					<!-- Campaign Performance Table -->
+					<table id="compaign-performance" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Campaign Name</th>
+								<th>Campaign Start Date</th>
+								<th>Campaign End Date</th>
+								<th>Total Clicks</th>
+								<th>Impr. To Date</th>
+								<th>Click Ratio</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Benstead Car Company Mobile Oct11-Jan12</td>
+								<td>06/10/2011</td>
+								<td>18/01/2012</td>
+								<td>1,188</td>
+								<td>325,014</td>
+								<td>0.37%</td>
+							</tr>
+							<tr>
+								<td>Benstead Car Company ST Jun-Jul11</td>
+								<td>16/06/2011</td>
+								<td>13/07/2011</td>
+								<td>80</td>
+								<td>74,524</td>
+								<td>0.11%</td>
+							</tr>
+							<tr>
+								<td>Benstead Car Company ST Sept-Oct11</td>
+								<td>05/09/2011</td>
+								<td>02/10/2011</td>
+								<td>131</td>
+								<td>96,322</td>
+								<td>0.14%</td>
+							</tr>
+							<tr>
+								<td>Benstead Car Company Finance ST Jan-Feb12</td>
+								<td>19/01/2012</td>
+								<td>12/03/2012</td>
+								<td>0</td>
+								<td>1,093</td>
+								<td>0.00%</td>
+							</tr>
+							<tr>
+								<td>Benstead Car Company ST Apr-Jul11</td>
+								<td>19/04/2011</td>
+								<td>17/07/2011</td>
+								<td>230</td>
+								<td>204,673</td>
+								<td>0.11%</td>
+							</tr>
+							<tr>
+								<td>Benstead Car Company ST Oct-Nov11</td>
+								<td>30/10/2011</td>
+								<td>26/11/2011</td>
+								<td>0</td>
+								<td>0</td>
+								<td>0.00%</td>
+							</tr>
+							<tr>
+								<td>Benstead Car Company Mobile Jul-Oct11</td>
+								<td>15/07/2011</td>
+								<td>05/10/2011</td>
+								<td>981</td>
+								<td>299,968</td>
+								<td>0.33%</td>
+							</tr>
+							<tr>
+								<td>Benstead Car Company Mobile Apr-Jul11</td>
+								<td>21/04/2011</td>
+								<td>13/07/2011</td>
+								<td>1,672</td>
+								<td>300,066</td>
+								<td>0.56%</td>
+							</tr>
+							<tr>
+								<td>Benstead Car Company ST Jul-Oct11</td>
+								<td>18/07/2011</td>
+								<td>16/10/2011</td>
+								<td>260</td>
+								<td>205,480</td>
+								<td>0.13%</td>
+							</tr>
+							<tr>
+								<td>Benstead Car Company ST Oct11</td>
+								<td>04/10/2011</td>
+								<td>19/10/2011</td>
+								<td>54</td>
+								<td>46,011</td>
+								<td>0.12%</td>
+							</tr>
+							<tr>
+								<td>Benstead Car Company ST-Used Cars Dec11-Jan12</td>
+								<td>09/12/2011</td>
+								<td>19/01/2012</td>
+								<td>633</td>
+								<td>1,021,747</td>
+								<td>0.06%</td>
+							</tr>
+							<tr>
+								<td>Benstead Car Company ST-Used Cars Oct11-Jan12</td>
+								<td>20/10/2011</td>
+								<td>18/01/2012</td>
+								<td>1,326</td>
+								<td>1,397,047</td>
+								<td>0.09%</td>
+							</tr>
+							<tr>
+								<td>Benstead Car Company Carbuying ST Jan-Feb12</td>
+								<td>20/01/2012</td>
+								<td>12/03/2012</td>
+								<td>0</td>
+								<td>0</td>
+								<td>0.00%</td>
+							</tr>
+							<tr>
+								<td>Benstead Car Company Mobile Jan-Feb12</td>
+								<td>06/10/2011</td>
+								<td>12/03/2012</td>
+								<td>1,188</td>
+								<td>325,014</td>
+								<td>0.37%</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- /Campaign Performance Table -->
+					
+					<!-- IMPRESSION - CLICKS PERFORMANCE -->
+					<div class="well">
+						<div id="chart-impression-clicks-performance" 
+						data-plot-custom-campaign='{
+						"data":[ 
+						{ "label":"Impression", "data":[["20 Nov", 100000], ["27 Nov", 180000], ["04 Dec", 300000], ["11 Dec", 150000], ["18 Dec", 120000], ["25 Dec", 115000], ["01 Jan", 100000], ["08 Jan", 125000], ["15 Jan", 210000], ["22 Jan", 300000], ["29 Jan", 200000], ["05 Feb", 100000]] }, 
+						{ "label":"Clicks", "data":[["20 Nov", 312], ["27 Nov", 292], ["04 Dec", 250], ["11 Dec", 257], ["18 Dec", 173], ["25 Dec", 205], ["01 Jan", 205], ["08 Jan", 210], ["15 Jan", 296], ["22 Jan", 323], ["29 Jan", 299], ["05 Feb", 286]] }
+						]}'
+						style="width:100%;height:250px">&nbsp;</div>
+					</div>
+					<!-- /IMPRESSION - CLICKS PERFORMANCE -->
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- /trading-post-roi [Page 6] -->
+	
+	<table class="print-table break trading-post-roi">
+		<tbody>
+			<tr>
+				<td>
+					<!-- Header -->
+					<table class="print-header">
+						<tr>
+							<td>
+								<img src="/images/tp/tp-logo-white.png" alt="Trading Post" />
+							</td>
+							<td align="right">
+								<h1>CLASSIFIEDS DISPLAY PERFORMANCE REPORT</h1>
+							</td>
+						</tr>
+					</table>
+					<!-- /Header -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<!-- Company Name -->
+					<div class="print-company">
+						<header><h2>Benstead Car Co - 47281</h2></header>
+						<span>3386 Pasific Highway</span>
+					</div>
+					<!-- /Company Name -->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<br />
+					<!-- Campaign Impression - Click Performance Table -->
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Campaign Name</th>
+								<th>Target Note</th>
+								<th>Size</th>
+								<th>Impression</th>
+								<th>Clicks</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th class="title" colspan="5">Mobile Display</th>
+							</tr>
+							<tr>
+								<th>Benstead Car Company Mobile Oct11-Jan12</th>
+								<td style="font-weight:bold;text-align:left">Mobile: Home Page, Auto Browse &amp; Auto Search Results - QLD</td>
+								<td>9x9</td>
+								<td style="font-weight:bold;">325,014</td>
+								<td style="font-weight:bold;">1,188</td>
+							</tr>
+							<tr>
+								<th>Benstead Car Company Mobile Jul-Oct11</th>
+								<td style="font-weight:bold;text-align:left">Mobile: Home Page, Auto Browse &amp; Auto Search Results - QLD</td>
+								<td>9x9</td>
+								<td style="font-weight:bold;">325,014</td>
+								<td style="font-weight:bold;">1,188</td>
+							</tr>
+							<tr>
+								<th>Benstead Car Company Mobile Apr-Jul11</th>
+								<td style="font-weight:bold;text-align:left">Mobile: Home Page, Auto Browse &amp; Auto Search Results - QLD</td>
+								<td>9x9</td>
+								<td style="font-weight:bold;">325,223</td>
+								<td style="font-weight:bold;">1,815</td>
+							</tr>
+							<tr>
+								<td class="total" colspan="3">Total</td>
+								<td class="total">950,205</td>
+								<td class="total">3,984</td>
+							</tr>
+							<tr>
+								<th class="title" colspan="5">Seller Tile</th>
+							</tr>
+							<tr>
+								<th>Benstead Car Company ST Apr-Jul11</th>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: Ford Falcon - Position 1 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">71,693</td>
+								<td style="font-weight:bold">99</td>
+							</tr>
+							<tr>
+								<th>Benstead Car Company ST Apr-Jul11</th>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: Holden Commodore - Position 2 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">132,980</td>
+								<td style="font-weight:bold">131</td>
+							</tr>
+							<tr>
+								<th rowspan="2">Benstead Car Company ST Jul-Oct11</th>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: Holden Commodore - Position 2 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">130,017</td>
+								<td style="font-weight:bold">171</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold">Used Cars Model: Ford Falcon - Position 1 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">75,463</td>
+								<td style="font-weight:bold">89</td>
+							</tr>
+							<tr>
+								<th rowspan="4">Benstead Car Company ST Jul-Oct11</th>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: Mitsubishi Pajero - Position 1 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">11,501</td>
+								<td style="font-weight:bold">19</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: Holden Astra - Position 2 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">3,278</td>
+								<td style="font-weight:bold">7</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: Nissan Navara - Position 2 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">12,513</td>
+								<td style="font-weight:bold">10</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: Toyota Hilux - Position 2 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">47,232</td>
+								<td style="font-weight:bold">44</td>
+							</tr>
+							<tr>
+								<th rowspan="3">Benstead Car Company ST Sept-Oct11</th>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: Holden Rodeo - Position 2 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">11,133</td>
+								<td style="font-weight:bold">11</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: NIssan Patrol - Position 2 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">26,123</td>
+								<td style="font-weight:bold">42</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: Toyota Landcruiser - Position 2 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">59,066</td>
+								<td style="font-weight:bold">78</td>
+							</tr>
+							<tr>
+								<th rowspan="4">Benstead Car Company ST Oct11</th>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: Mitsubishi Pajero - Position 1 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">6,219</td>
+								<td style="font-weight:bold">7</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: Toyota Hilux - Position 1 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">24,579</td>
+								<td style="font-weight:bold">29</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: NIssan Navara - Position 1 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">6,808</td>
+								<td style="font-weight:bold">14</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: Holden Astra - Position 1 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">2,163</td>
+								<td style="font-weight:bold">0</td>
+							</tr>
+							<tr>
+								<th rowspan="2">Benstead Car Company Finance ST Jan-Feb12</th>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: Ford Falcon - Position 3 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">440</td>
+								<td style="font-weight:bold">7</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold;text-align:left">Used Cars Model: Holden Commodore - Position 3 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">653</td>
+								<td style="font-weight:bold">7</td>
+							</tr>
+							<tr>
+								<th>Benstead Car Company ST-Used Cars Dec11-Jan12</th>
+								<td style="font-weight:bold;text-align:left">Search Results Pages Auro - Used Cars - Position 3 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">1,021,747</td>
+								<td style="font-weight:bold">633</td>
+							</tr>
+							<tr>
+								<th>Benstead Car Company ST-Used Cars Oct11-Jan12</th>
+								<td style="font-weight:bold;text-align:left">Search Results Pages Auto - Used Cars - Position 3 - QLD</td>
+								<td>206x125</td>
+								<td style="font-weight:bold">1,397,047</td>
+								<td style="font-weight:bold">1,326</td>
+							</tr>
+							<tr>
+								<td class="total" colspan="3">Total</td>
+								<td class="total">3,040,655</td>
+								<td class="total">2,710</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th class="total" colspan="3">Total</th>
+								<th class="total">3,040,655</th>
+								<th class="total">2,710</th>
+							</tr>
+						</tfoot>
+					</table>
+					<!-- Campaign Impression - Click Performance Table -->
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- /trading-post-roi [Page 7] -->
+</asp:content>
+
+<asp:Content ContentPlaceHolderId="pageFooter" runat="server">
+	<!-- Insert "pageFooter" markup here -->
+</asp:Content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="plugins/jquery.flot,plugins/jquery.flot.categories,plugins/jquery.flot.labels,plugins/jquery.flot.pie,plugins/jquery.flot.stack,plugins/jquery.flot.time,plugins/jquery.flot.tickrotor,plugins/jquery.flot.axislabels" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script type="text/javascript">
+		
+		function addCommas(nStr)
+		{
+			nStr += '';
+			x = nStr.split('.');
+			x1 = x[0];
+			x2 = x.length > 1 ? '.' + x[1] : '';
+			var rgx = /(\d+)(\d{3})/;
+			while (rgx.test(x1)) {
+				x1 = x1.replace(rgx, '$1' + ',' + '$2');
+			}
+			return x1 + x2;
+		}
+		
+		// Plot Data Category Chart ====================
+		$('[data-plot-category]').each(function(){
+			// Get Plot Data
+			var s = $(this).attr('data-plot-category');
+			var obj = $.parseJSON(s);
+			
+			if(obj === null) return false;
+			
+			// Plot Options
+			var options = $.extend({
+				series: {
+					stack: true,
+					bars: { show: true, barWidth: 0.8, lineWidth:0, align:"center", fill:true, fillColor: { colors: [  { opacity: 1}, {opacity: 1 } ] } }
+				},
+				xaxis: {
+					mode: "categories",
+					autoscaleMargin: 0.04,
+					font: { size:10, color: "#333" }
+				},
+				yaxis: {
+					autoscaleMargin: 0.02,
+					font: { size:10, color: "#333" }
+				},
+				legend: { 
+					show: true,
+					position: "nw",
+					noColumns: 5
+				},
+				colors: ["#f9a200","#aed7fa","#33cc66","#ff6666","#cc99cc"]
+			}, obj.options);
+			
+			// Plot Core
+			var p = $.plot($(this), obj.data, options);
+			
+			// Data Inline Labels
+			if(obj.inLabel){
+				var o = $('.flot-x-axis div',p.getPlaceholder());
+				$.each(p.getData()[0].data, function(i, el){
+					$('<div class="data-point-label">' + addCommas(el[1]) + '</div>').css( {
+						position: 'absolute',
+						left: parseInt($(o[i]).css('left'),10) + 3,
+						bottom: 20
+					}).appendTo(p.getPlaceholder());
+				});
+			}
+			
+			// Data Table Labels
+			if(obj.tableLabel){
+				var m = p.getPlaceholder();
+				var o = $('.flot-x-axis div',p.getPlaceholder());
+				var h = 0;
+				var s = 6;
+				var $table = $(m).append('<div class="data-table-label clearfix"></div>').children('.data-table-label');
+				$.each(p.getData(), function(i, row){
+					$.each(row.data, function(i, cell){
+						$table.append('<div style="background:'+ row.color +
+									  ';position:absolute;top:'+h+'px;left:'+ (parseInt($(o[i]).css('left'),10)-(s/2)) + 'px;' +
+							'width:'+ ($(o[i]).outerWidth()+s) + 'px' +
+								'">'+ addCommas(cell[1]) +'</div>');
+					});
+					h += parseInt($('div:last-child',$table).css('height'),10);
+				});
+				$table.css({ height: h+"px" });
+				$(m).css({ height: "+=" + ($table.outerHeight()) + "px" });
+			}
+		});
+		// Plot Data Category Chart ====================
+		
+		// Plot Data Pie Chart ====================
+		$('[data-plot-pie]').each(function(){
+			// Get Plot Data
+			var s = $(this).attr('data-plot-pie');
+			var obj = $.parseJSON(s);
+			
+			if(obj === null) return false;
+			
+			// Plot Options
+			var options = $.extend({
+				series: {
+					pie: { 
+						show: true, 
+						radius:1, 
+						tilt: 0.5,
+						offset: {
+							top:-20
+						},
+						label: {
+							show: true,
+							radius:0.8,
+							formatter: labelPieFormatter,
+							background:{ opacity:0 }
+						}
+					}
+				},
+				legend: { 
+					show: true,
+					position: "sw",
+					noColumns: 5
+				},
+				colors: ["#f9a200","#aed7fa","#33cc66","#ff6666","#cc99cc"]
+			}, obj.options);
+			
+			// Plot Core
+			var p = $.plot($(this), obj.data, options);
+		});
+		function labelPieFormatter(label, series) {
+			return "<div style='font-size:12px; font-weight:bold; text-align:center; text-shadow:none; padding:2px;'>" + Math.round(series.data[0][1]) + "</div>";
+		}
+		// Plot Data Pie Chart ====================
+		
+		// Plot Data Custom Campaign Chart ====================
+		$('[data-plot-custom-campaign]').each(function(){
+			var s = $(this).attr('data-plot-custom-campaign');
+			var obj = $.parseJSON(s);
+			
+			if(obj === null) return false;
+			
+			// Plot Options
+			var options = $.extend({
+				series: {
+					bars: { barWidth: 0.8, lineWidth:0, align:"center", fill:true, fillColor: { colors: [  { opacity: 1}, {opacity: 1 } ] } },
+				},
+				xaxis: {
+					mode: "categories",
+					autoscaleMargin: 0.04,
+					font: { size:0, color: "#333" },
+					rotateTicks: 45,
+					rotateTicksFont: { size:0, color: "#333" }
+				},
+				yaxis: {
+					autoscaleMargin: 0.02,
+					font: { size:10, color: "#333" }
+				},
+				xaxes: [{
+					axisLabel: "ROI Week Ending Date",
+					axisLabelPadding: 10
+				}],
+				yaxes: [ { 
+					axisLabel: "Impression",
+					axisLabelPadding: 10
+				}, {
+					axisLabel: "Clicks",
+					axisLabelPadding: 10,
+					alignTicksWithAxis: 1,
+					position: "right"
+				}],
+				legend: { 
+					show: true,
+					position: "se",
+					noColumns: 5
+				},
+				colors: ["#f9a200","#aed7fa","#33cc66","#ff6666","#cc99cc"]
+			}, obj.options);
+			
+			// Pre Plot Options
+			obj.data[0] = $.extend({ bars: { show:true }}, obj.data[0]);
+			obj.data[1] = $.extend({ yaxis: 2}, obj.data[1]);
+			
+			// Plot Core
+			var p = $.plot($(this), obj.data, options);
+			
+		});
+		// Plot Data Custom Campaign Chart ====================
+		
+	</script>
+</asp:content>

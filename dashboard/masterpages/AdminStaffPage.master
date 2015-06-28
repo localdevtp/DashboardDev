@@ -1,0 +1,64 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+	
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/staff"><i class="icon-users"></i> Staff</a></li>
+	</ul>
+	
+	<!--
+	<ul class="nav nav-pills">
+		<li><a href="/staff/create"><i class="icon-user-add">&nbsp;</i>Add New User</a></li>
+		<li class="active"><a href="/staff"><i class="icon-users">&nbsp;</i>Manage Users</a></li>
+	</ul>
+	-->
+	
+	<umbraco:Macro Alias="EasyListStaffManagePage" runat="server"></umbraco:Macro>
+
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script type="text/javascript">
+		function updateError(parent){
+			var error = $('label.error', parent).remove();
+			if(error) { $(parent).append(error); }
+		}
+		/*
+		function updateActionBar(){
+			var wa = $('.widget-action');
+			if($('[name="account-action"]:checked').length > 0 ){
+				$(wa).removeClass('widget-action-close').addClass('widget-action-open');
+			} else if($(wa).hasClass('widget-action-open')) {
+				$(wa).removeClass('widget-action-open').addClass('widget-action-close');
+			}
+		}
+		$(function(){
+			$('.footable').footable();
+			$('.check-all').on('change',function(){
+				if($(this).is(':checked')) {
+					$('[name="account-action"]').prop('checked',true);
+				} else {
+					$('[name="account-action"]').prop('checked',false);
+				}
+				updateActionBar();
+			});
+			$('[name="account-action"]').on('change',function(){
+				updateActionBar();
+			});
+			updateActionBar();
+		});
+		*/
+		$(function(){
+			$('.footable').footable();
+		});
+	</script>
+</asp:content>

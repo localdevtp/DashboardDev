@@ -1,0 +1,127 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li class="active"><i class="icon-paperplane"></i> Messaging</li>
+	</ul>
+	
+	<umbraco:Macro Alias="EasyListMessagingTemplate" runat="server"></umbraco:Macro>
+
+</asp:content>
+	
+
+<asp:Content ContentPlaceHolderId="scripts" runat="server">
+	<script>
+		$(function(){
+			
+			$(document).ajaxStart(function () {
+				$('#loading-bg').show();
+				$("#loading").show();
+			});
+	
+			$(document).ajaxComplete(function () {
+				$('#loading-bg').hide();
+				$("#loading").hide();
+			});
+			
+			$('#Email').addClass('active');
+			
+			// Toggle search / filter / sort button
+			//$('.toolbars .btn[data-toggle="collapse"]').on('click',function(){
+			//	$(this).toggleClass('active');
+			//});
+
+			InitialiseTabs();
+			InitialiseFootable();
+			
+			//LoadContents();
+		});
+		
+		function InitialiseFootable(){
+			$('.active .footable').footable({
+				paging: {
+					callbacks: {
+						init: function(){
+							$('#loading-bg').show();
+							$('#loading').show();
+						},
+						start: function(){
+							$('#loading-bg').show();
+							$('#loading').show();
+						},
+						end: function(){
+							$('#loading-bg').hide();
+							$('#loading').hide();
+							if($('html').hasClass('lt-ie9')){
+								replaceIcons();
+							}
+						}
+					}
+				}
+			});
+		}
+		
+		function InitialiseTabs(){
+			$('.tab-pane').not('.active').remove();
+			$('[data-toggle="tab"]').on('click',function(e){
+				var t = $(this).attr('href');
+				$(".tab-content").load(
+					"/messaging/templates " + t, 
+					{type: t.replace('#', '')},
+					function (responseText, textStatus, XMLHttpRequest) {
+						if (textStatus == "success") {
+							// all good!
+							$(t).addClass('active');
+							
+							if ($('#ListResult').length == 0) {
+								window.location = "/login?go=/messaging/templates";
+							}
+							
+							InitialiseFootable();
+						}
+						if (textStatus == "error") {
+							 // oh noes!
+						}					
+					});
+				e.preventDefault();
+			});
+		}
+		
+		function LoadContents() {
+			var t = $('[data-toggle="tab"]').attr('href');
+			$(".tab-content").load(
+				"/messaging/templates " + t, 
+				{type: t.replace('#', '')},
+				function (responseText, textStatus, XMLHttpRequest) {
+					if (textStatus == "success") {
+						// all good!
+						$(t).addClass('active');
+						
+						if ($('#ListResult').length == 0) {
+							window.location = "/login?go=/messaging/templates";
+						}
+							
+						InitialiseFootable();
+					}
+					if (textStatus == "error") {
+						 // oh noes!
+					}					
+				}
+			);
+		}
+		
+		function getURLParam(name) {
+			name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+			var regexS = "[\\?&]" + name + "=([^&#]*)";
+			var regex = new RegExp(regexS);
+			var results = regex.exec(window.location.href);
+			if (results == null)
+				return "";
+			else
+				return results[1];
+    	}
+		
+	</script>
+</asp:Content>

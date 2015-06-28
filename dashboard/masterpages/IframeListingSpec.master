@@ -1,0 +1,38 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/IframeMaster.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	<style>
+		.widget-box { border:0 !important; margin:0 !important; height:100%; }
+		.widget-box:before, .widget-box:after { display:none; }
+		.widget-content { margin-top:-10px; padding-bottom:60px !important; }
+		.widget-content .tab-submit { position:fixed; bottom:0; left:0; right:0; padding:10px 0; box-shadow:-2px 0 10px rgba(0,0,0,.1); border-color:#CCC; }
+		.widget-content .tab-submit .btn { margin:0; }
+		.widget-content .label-header { display:inline-block; text-align:center; font-weight:bold; width:226px; }
+		.widget-content .label-header:first-child { margin-right:5px; }
+
+		#AutomotiveListingEdit .controls { position:relative; }
+		#AutomotiveListingEdit input[type=text][disabled] { margin-right:5px !important; }
+		#AutomotiveListingEdit .controls:after { position:absolute; display:block; content: "▸"; top:10px; left:228px; }
+
+		@media only screen and (max-width: 700px) {
+			#AutomotiveListingEdit input[type=text][disabled] { margin-right:0 !important; margin-bottom:10px; }
+			#AutomotiveListingEdit .controls:after { content: "▾"; top:33px; left:110px; }
+		}
+	</style>
+</asp:content>
+
+<asp:Content ContentPlaceHolderID="content" runat="server">
+	
+	<!-- Styles -->
+	<umbraco:Macro files="bootstrap,bootstrap-responsive,icons,main,colors-tp" local="1" Alias="CSSLoader" runat="server"></umbraco:Macro>
+	
+	<umbraco:Macro Alias="EasyListListingSpec" runat="server"></umbraco:Macro>
+</asp:Content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="jquery.validate,bbq,jquery.form.wizard,easylist.glasses.edit,forms,easylist.listingspec" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	
+	<script type="text/javascript">
+		
+	</script>
+</asp:content>

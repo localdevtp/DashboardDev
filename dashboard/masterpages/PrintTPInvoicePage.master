@@ -1,0 +1,458 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/PrintMaster.master" AutoEventWireup="true" %>
+
+
+<asp:Content ContentPlaceHolderId="pageHeader" runat="server">
+	<!-- Insert "pageHeader" markup here -->
+	<style type="text/css">
+		
+		#print {
+			letter-spacing: 100%;
+			width: 940px;
+		}
+		/*
+		.print-company img.uw {
+					max-height: 80px;
+				}
+		.print-company img.tp {
+					margin-right: 0;
+					margin-top: 24px;
+					margin-bottom: 10px;
+				}
+		*/
+	</style>
+</asp:Content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+
+	<umbraco:Macro Alias="TradingpostInvoice" runat="server"></umbraco:Macro>
+	
+	<!--
+	<table class="print-table trading-post">
+		<tbody>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td style="vertical-align:top;">
+
+						
+								<table class="print-company">
+									<tr>
+										<td>
+											<img src="/images/uw/unique-websites-logo.png" alt="Trading Post" /><br />
+											<small>Unique Websites&nbsp;&nbsp;-&nbsp;&nbsp;ABN 49 136 905 381</small>
+										</td>
+									</tr>
+								</table>
+							
+
+								<br /><br />
+								<strong>Tax Invoice Issue Date 1/8/2013</strong>
+
+						
+								<table class="print-detail print-bill-to">
+									<tr>
+										<td>
+											CHERYLS TEST CUSTOMER<br />
+											16 COONIL STREET<br />
+											OAKLEIGH SOUTH VICTORIA AU 3167
+										</td>
+									</tr>
+								</table>
+						
+							</td>
+							<td align="right" rowspan="2">
+
+								<table class="print-company">
+									<tr>
+										<td align="right">
+											<img src="/images/tp/tp-logo-2x.png" alt="Trading Post" /><br />
+											<small>A division of Unique Websites</small>
+										</td>
+									</tr>
+								</table>
+
+								<br /><br />
+
+						
+								<table class="print-tax-invoice">
+									<caption>TAX INVOICE</caption>
+									<tr>
+										<th><div>Account Number</div></th>
+										<td><div>200875223</div></td>
+									</tr>
+									<tr>
+										<th><div>Reference Number</div></th>
+										<td><div>1010006800005</div></td>
+									</tr>
+									<tr>
+										<th><div>Invoice Number</div></th>
+										<td><div>INV00311823</div></td>
+									</tr>
+								</table>
+						
+
+								<br />
+
+								<div class="print-enquiries">
+									<header>Enquiries</header>
+									<dl>
+										<dt>Area Sales Manager</dt>
+										<dd>TBA</dd>
+										<dt>Direct Line</dt>
+										<dd>1800 797 155</dd>
+										<dt>Account Enquiries</dt>
+										<dd>accounts@tradingpost.com.au</dd>
+										<dt>Customer Service</dt>
+										<dd>customerservice@tradingpost.com.au</dd>
+									</dl>
+									<footer>www.tradingpost.com.au</footer>
+								</div>
+								<table class="print-enquiries hidden">
+									<tr>
+										<td>Enquiries</td>
+									</tr>
+									<tr>
+										<td>
+											<table style="font-size:12px;">
+												<tr>
+													<td style="text-align:right;color:maroon;">Area Sales Manager</td>
+													<td style="text-align:left">TBA</td>
+												</tr>
+												<tr>
+													<td style="text-align:right;color:maroon;">Direct Line</td>
+													<td style="text-align:left">1800 797 155</td>
+												</tr>
+												<tr>
+													<td style="text-align:right;color:maroon;">Account Enquiries</td>
+													<td style="text-align:left">accounts@tradingpost.com.au</td>
+												</tr>
+												<tr>
+													<td style="text-align:right;color:maroon;">Customer Service</td>
+													<td style="text-align:left">customerservice@tradingpost.com.au</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											www.tradingpost.com.au
+										</td>
+									</tr>
+								</table>
+							
+
+							</td>
+						</tr>
+						<tr>
+							<td style="vertical-align:bottom">
+
+ 								<div class="print-notice bg-important radius" style="margin-right:20px;">
+									Important! Do not pay Telstra for this invoice! This invoice is from Unique Websites, the new operators of Tradingpost.com.au and is for your (service month) service.
+								</div>
+							
+
+							</td>
+						</tr>
+					</table>
+					
+
+				</td>
+			</tr>
+			<tr>
+				<td style="height:560px;vertical-align:top;">
+					
+					<table class="print-detail">
+						<tr class="print-detail-header">
+							<th>Account Activity</th>
+						</tr>
+						<tr>
+							<td>
+
+								<table>
+									<tr>
+										<td style="width:50%;padding-top:10px;vertical-align:top;">
+
+											
+											<table class="print-receipt">
+												<tr>
+													<td>Previous Balance</td>
+													<td align="right">$ 0.00</td>
+												</tr>
+												<tr>
+													<td>Payments Received</td>
+													<td align="right">$ 0.00</td>
+												</tr>
+												<tr>
+													<td>Adjustments<br /><small>(See over for breakdown)</small></td>
+													<td align="right" style="vertical-align:top;">$ 0.00</td>
+												</tr>
+												<tr>
+													<td colspan="2">
+														<div class="seperator">&nbsp;</div>
+													</td>
+												</tr>
+												<tr>
+													<td>Balance</td>
+													<td align="right">$ 554.86</td>
+												</tr>
+												<tr>
+													<td>New Charges<br /><small>(See over for breakdown)</small></td>
+													<td align="right" style="vertical-align:top;">$ 554.86</td>
+												</tr>
+												<tr>
+													<td>&nbsp;</td>
+													<td>&nbsp;</td>
+												</tr>
+												<tr class="total">
+													<td>Total</td>
+													<td align="right">$ 554.86</td>
+												</tr>
+												<tr>
+													<td align="right">GST included in new charges</td>
+													<td align="right">$ 50.44</td>
+												</tr>
+											</table>
+											
+
+										</td>
+										<td align="right" style="width:50%;">
+
+											<br />
+
+										
+											<div class="print-total-border">
+												<table class="print-total">
+													<tr>
+														<td>Total</td>
+														<td>$ 554.86</td>
+													</tr>
+													<tr>
+														<td>Pay By</td>
+														<td>14/8/2013</td>
+													</tr>
+													<tr>
+														<td>Automatic Payment Date</td>
+														<td>1/8/2013</td>
+													</tr>
+												</table>
+											</div>
+										
+
+											<br />
+
+									
+											
+											<div class="print-total-notice radius bg-success hidden"> 
+												Your account will be automatically paid using the saved payment method you have on file with us.
+												Please ensure that you have sufficient funds available prior to the automatic payment date to prevent
+												any service interruption.
+												<br /><br />
+												This payment will appear on your financial institution statement as being from Unique Websites.
+											</div>
+
+											<div class="print-total-notice radius bg-success">
+												Your account does not appear to have a valid automatic payment method associated with it.
+												Please ensure you make payment via BPay prior to the
+												Pay By date to avoid service interruption and any recovery action.
+												<br /><br />
+												Biller Code: 218628<br/>
+												Ref: 1010006800005
+											</div>
+										
+
+										</td>
+									</tr>
+								</table>
+
+							</td>
+						</tr>
+					</table>
+
+					<table class="trading-post print-table-footer">
+						<tr>
+							<td colspan="2"><h3>How To Pay</h3></td>
+						</tr>
+						<tr>
+							<td width="35%">
+								<div class="bpay-box">
+									<div class="bpay-billercode">218628</div>
+									<div class="bpay-ref">1010006800005</div>
+								</div>
+							</td>
+							<td width="65%">
+								<div class="cc-box">
+									<header>
+										<img src="/images/payments/credit.png" />Credit Card
+									</header>
+									<p>
+										Pay by credit card online by logging into your account at<br>
+										<strong>https://dashboard.easylist.com.au</strong>
+									</p>
+								</div>
+							</td>
+						</tr>
+					</table>
+				
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<table class="print-table break trading-post">
+		<tbody>
+			<tr>
+				<td>
+
+					<br />
+					<br />
+
+					
+					<table align="left" style="margin-bottom:20px;width:50%;font-weight:bold;">
+						<tr>
+							<td>Issue Date</td>
+							<td>1/8/2013</td>
+						</tr>
+						<tr>
+							<td>Billing Period</td>
+							<td>01/7/2013 - 31/7/2013</td>
+						</tr>
+					</table>
+
+				
+					<table class="print-detail">
+						<tr class="print-detail-header">
+							<th>New Charges Breakdown</th>
+						</tr>
+						<tr>
+							<td style="padding:10px 0;">
+								<table style="width:50%;">
+							
+									<tr>
+										<td>Customer Account:</td>
+										<td>[CUSTOMER ACCOUNT]</td>
+									</tr>
+									<tr>
+										<td>Customer Name:</td>
+										<td>[CUSTOMER NAME]</td>
+									</tr>-
+									<tr>
+										<td>Sales Order:</td>
+										<td>ABC12345678</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								
+								<table class="print-new-charges">
+									<thead>
+										<tr>
+											<th>Product</th>
+											<th width="150">Weekly Price</th>
+											<th width="50">Days</th>
+											<th width="150">Total (Incl. GST)*</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>One off Booking Fee (Set up fee)</td>
+											<td></td>
+											<td></td>
+											<td>$ 100.00</td>
+										</tr>
+										<tr>
+											<th colspan="4">Promote Me - NSW - Used Cars</th>
+										</tr>
+										<tr>
+											<td class="subs">50 Items<br /><small class="reduce">Normal Price $370.00</small></td>
+											<td>$ 23.00</td>
+											<td>14</td>
+											<td>$ 352.00</td>
+										</tr>
+										<tr>
+											<td class="subs">1300-to-Mobile<br /><small class="reduce">Normal Price $50.00</small></td>
+											<td>$ 176.00</td>
+											<td>14</td>
+											<td>$ 46.00</td>
+										</tr>
+										<tr>
+											<th colspan="4">Promote Me - NSW - Used Cars</th>
+										</tr>
+										<tr>
+											<td class="subs">50 Items</td>
+											<td>$ 176.00</td>
+											<td>2</td>
+											<td>$ 50.26</td>
+										</tr>
+										<tr>
+											<td class="subs">1300-to-Mobile</td>
+											<td>$ 23.00</td>
+											<td>2</td>
+											<td>$ 6.57</td>
+										</tr>
+										<tr class="subtotal">
+											<th>Total</th>
+											<th colspan="3">$ 554.86</th>
+										</tr>
+										<tr>
+											<td colspan="4">
+												<div class="total">
+													<table>
+														<tr>
+															<td>Total New Charges Inc. GST</td>
+															<td>$ 554.86</td>
+														</tr>
+													</table>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							
+							</td>
+						</tr>
+					</table>
+		
+					<table class="print-detail">
+						<tr class="print-detail-header">
+							<th>Payment Breakdown</th>
+						</tr>
+						<tr>
+							<table class="print-payments">
+								<thead>
+									<tr>
+										<th>Payment Date</th>
+										<th>Payment Method</th>
+										<th>Amount</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>18/06/2013</td>
+										<td>Bpay</td>
+										<td>-$ 1,054.44</td>
+									</tr>
+									<tr class="total">
+										<th>&nbsp;</th>
+										<th>Total Payments</th>
+										<th>-$ 1,054.44</th>
+									</tr>
+								</tbody>
+							</table>
+						</tr>
+					</table>
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	-->
+
+</asp:content>
+
+<asp:Content ContentPlaceHolderId="pageFooter" runat="server">
+	<!-- Insert "pageFooter" markup here -->
+</asp:Content>

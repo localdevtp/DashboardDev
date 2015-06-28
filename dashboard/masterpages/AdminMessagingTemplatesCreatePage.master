@@ -1,0 +1,101 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	<link rel="stylesheet" type="text/css" href="/css/codemirror.css" />
+</asp:content>
+	
+<asp:content ContentPlaceHolderId="content" runat="server">
+
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li class="active"><i class="icon-paperplane"></i> Messaging</li>
+	</ul>
+	
+	<umbraco:Macro Alias="EasyListMessagingTemplateCreate" runat="server"></umbraco:Macro>
+
+</asp:content>
+	
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script>
+		$(function(){
+			//$.metadata.setType('attr', 'data-validate');
+			//var validate = $('.form-horizontal').validate();
+			
+			$('#send-preview-sms').on('click', function(e){
+				e.preventDefault();
+				
+				validate.form();
+				
+				if(validate.valid()){
+					promptModal('Enter your phone number to receive the sms preview:', 'SMS Preview', function(){
+						// Action after user enter the prompt
+						var value = $('.modal-input').val();
+						sendSMSPreview(value);
+					});
+				}
+			});
+			
+			$('#send-preview-email').on('click', function(e){
+				e.preventDefault();
+				
+				validate.form();
+				
+				if(validate.valid()){
+					promptModal('Enter your email to receive the email preview:', 'Email Preview', function(){
+						// Action after user enter the prompt
+						var value = $('.modal-input').val();
+						sendEmailPreview(value);
+					});
+				}
+			});
+			
+			TriggerScrollToProcessResult();
+			InitializeSubmitButton();
+		});
+		
+		function TriggerScrollToProcessResult() {
+			try {
+				$target = $('#process-result').parent();
+		
+				$('html, body').stop().animate({
+					'scrollTop': $target.offset().top
+				}, 900, 'swing');
+			} catch (err) { }
+		}
+		
+		function InitializeSubmitButton() {
+			$("#template-form").submit(
+				function() {
+					//showProgress();
+					
+					var $messageTemplate = $('#template-form [name="message-template"]');
+					$messageTemplate.val(HtmlEncode($messageTemplate.val()));
+					
+					var $messageTemplateHtml = $('#template-form [name="message-template-html"]');
+					$messageTemplateHtml.val(HtmlEncode($messageTemplateHtml.val()));
+					
+					var $messageTemplatePlaintext = $('#template-form [name="message-template-plaintext"]');
+					$messageTemplatePlaintext.val(HtmlEncode($messageTemplatePlaintext.val()));						
+				}
+			);
+		}
+		
+		function showProgress() {
+			$('#loading').show();
+			$('#loading-bg').show();
+		}
+		
+		function HtmlEncode(value){
+			return $('<div/>').text(value).html();
+		}
+		
+		function UpdateCharCount(e) {
+			if (e.value.length == 0) {
+				$('#char-count').text("");
+			} else {
+				$('#char-count').text("  " + e.value.length + " characters");
+			}
+		}
+	</script>
+</asp:content>	

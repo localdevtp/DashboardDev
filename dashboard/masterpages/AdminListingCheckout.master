@@ -1,0 +1,170 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/listings/create"><i class="icon-list-2"></i> New Listing</a></li>
+	</ul>
+	
+	<umbraco:Macro Alias="EasyListListingCheckout" runat="server"></umbraco:Macro>
+	
+	<div id="loading-wrap" class="mfp-hide">
+		<div id="loading" class="loading-dialog">
+			<img class="retina" src="/images/spinner.png" />
+			<h2>Processing Transaction...</h2>
+			<p>
+				Processing your payment will take a moment. 
+				Please don't click the back button or navigate away from this page.
+			</p>
+		</div>
+	</div>
+	
+	<div id="loading-wrap-free" class="mfp-hide">
+		<div id="loading" class="loading-dialog">
+			<img class="retina" src="/images/spinner.png" />
+			<h2>Submitting Your Ad...</h2>
+			<p>
+				Creating your new ad will take a moment. 
+				Please don't click the back button or navigate away from this page.
+			</p>
+		</div>
+	</div>
+</asp:content>
+	
+
+<asp:Content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script>
+		$(function(){
+			
+			// Hide hidden fields from validator
+			$('#form-checkout .hidden input').addClass('ignore');
+			
+			// New Member or current?
+			$('#form-checkout [name="member"]').on('change',function(){
+				$('#member-login, #member-register').addClass('hidden');
+				$('#form-checkout .hidden input').addClass('ignore');
+				
+				if($(this).val() === 'true') {
+					$('#form-checkout #member-login').removeClass('hidden');
+					$('#form-checkout #member-login input').removeClass('ignore');
+				} else {
+					$('#form-checkout #member-register').removeClass('hidden');
+					$('#form-checkout #member-register input').removeClass('ignore');
+				}
+			});
+			
+			// Package changes
+			$('#form-checkout [name="package"]').on('change',function(){
+				var LstPostAmt = $('#ListingPostAmount').val();
+				var PackagePrice = $(this).parent('.packagebox').data('price');
+				var TotalAmount = parseFloat(LstPostAmt) + parseFloat(PackagePrice);
+				
+				$('#form-checkout .packagebox').removeClass('active');
+				$(this).parent('.packagebox').addClass('active');
+				
+				$('#TotalCost').val(TotalAmount +'.00');
+				$('.total-cost strong').text('$'+ TotalAmount +'.00');
+			
+				// Have payment?
+				if(TotalAmount > 0) {
+					$('#form-checkout #cc-check').removeClass('hidden');
+					$('#form-checkout #cc-check input').removeClass('ignore');
+				} else {
+					$('#form-checkout #cc-check').addClass('hidden');
+					$('#form-checkout #cc-check input').addClass('ignore');
+				}
+			});
+			
+			// Select Package 1
+			$('#p1').parent('.packagebox').trigger('click');
+			
+			CCCheck();
+			
+			// IE8 support for package change
+			$('.lt-ie9 #form-checkout .packagebox').on('click',function(){
+				$('input',this).prop('checked',true);
+				$('input',this).trigger('change');
+			});
+			
+			// Validation
+			$.metadata.setType('attr', 'data-validate');
+			$('#form-checkout').validate({
+				ignore: '.ignore'
+			});
+			
+			// Check if coupon is enter
+			$('#coupon').on('keyup',function(){
+				if($(this).val() != '') {
+					$('#form-checkout #cc-check input').addClass('ignore');
+				} else {
+					$('#form-checkout #cc-check input').removeClass('ignore');
+				}
+			});
+			
+			// Payment Submission
+			$('#form-checkout').on('submit',function(e){
+
+				// Popup loading
+				if($(this).valid()) {
+					if ($('#coupon').val() != '')
+					{
+						$.magnificPopup.open({
+							items: {
+								src: $("#loading-wrap-free"),
+								type: 'inline'
+							},
+							inline: {
+								markup: ''
+							},
+							callbacks: {
+								open: function(){
+									$('.mfp-wrap').off('click.mfp');
+								}
+							}
+						});
+					}
+					else
+					{
+						$.magnificPopup.open({
+							items: {
+								src: $("#loading-wrap"),
+								type: 'inline'
+							},
+							inline: {
+								markup: ''
+							},
+							callbacks: {
+								open: function(){
+									$('.mfp-wrap').off('click.mfp');
+								}
+							}
+						});
+						
+						// Delay the form submission to load the preloader
+						//setTimeout('500',function(){
+						//	$('#form-checkout').submit() 
+						//});
+					}
+				}
+			});
+			
+			
+		});
+		
+		function CCCheck(){
+			var LstPostAmt = $('#ListingPostAmount').val();
+			var PackagePrice = $('.packagebox.active').data('price');
+			var TotalAmount = parseFloat(LstPostAmt) + parseFloat(PackagePrice);
+			
+			if(TotalAmount > 0) {
+				$('#form-checkout #cc-check').removeClass('hidden');
+				$('#form-checkout #cc-check input').removeClass('ignore');
+			} else {
+				$('#form-checkout #cc-check').addClass('hidden');
+				$('#form-checkout #cc-check input').addClass('ignore');
+			}
+		}
+	</script>
+</asp:Content>

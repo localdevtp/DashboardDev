@@ -1,0 +1,76 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/leads"><i class="icon-bar"></i> Leads</a></li>
+	</ul>
+	
+	<umbraco:Macro Alias="EasyListLeadCreate" runat="server"></umbraco:Macro>
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script>
+		$(function(){
+			$.metadata.setType('attr', 'data-validate');
+			$('#new-lead').validate();	
+			$("#listing-price").maskMoney();
+			
+			// setup location typeahead
+			$('#listing-location').typeahead({
+	
+				source: function (query, process) {
+					
+					// Add load status
+					var $self = this.$element;
+					$self.css({
+						background:'url(/media/1111/ajax-loader.gif) no-repeat 95% center'
+					});
+					
+					// Remove load status on blur
+					$self.on('blur.load-status',function(){ $(this).css('background','none'); });
+					
+					// Data source
+					return $.getJSON(
+						'/api?api=LocSearch&query=' + query,
+						function (data) {
+							if (data.State == 1)
+							{
+								$self.css('background','none');
+								var LocInfo = jQuery.parseJSON(data.Result);
+								return process(LocInfo);
+							}
+							
+						});
+				},
+				
+				// Highlight typed in result
+				highlighter: function (item) {
+					var regex = new RegExp( '(' + this.query + ')', 'gi' );
+					return item.replace( regex, "<strong>$1</strong>" );
+				}
+			});
+			
+			// setup form functions - Listing condition logic
+			$(".listing-condition").change(function(e){
+				if ($('.listing-condition option:selected').val() == 'New' || $('.listing-condition option:selected').val() == '' )
+				{
+					$(".listing-condition-desc").hide();
+					$(".listing-condition-desc").removeClass("required");
+				}else
+				{
+					$(".listing-condition-desc").show();
+					$(".listing-condition-desc").addClass("required");
+				}
+			});
+			
+			// setup buyer user-agent
+			//if($('input[name="buyer-user-agent"]').empty()){
+			//	$('input[name="buyer-user-agent"]').val(navigator.userAgent);
+			//}
+
+		});
+	</script>
+</asp:content>

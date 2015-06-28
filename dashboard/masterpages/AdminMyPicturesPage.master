@@ -1,0 +1,36 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/bulk-upload"><i class="icon-stack-1"></i> Bulk Upload</a></li>
+		<li><a href="/bulk-upload/my-pictures"><i class="icon-photo"></i> My Pictures</a></li>
+	</ul>
+	
+	<ul class="nav nav-pills">
+		<li><a href="/bulk-upload"><i class="icon-stack-1"></i> Bulk Upload</a></li>
+		<li class="active"><a href="/bulk-upload/my-pictures"><i class="icon-photo"></i> My Pictures</a></li>
+	</ul>
+	
+	<umbraco:Macro Alias="EasyListMyPictures" runat="server"></umbraco:Macro>
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="easylist.uploadimages-bulk,easylist.editimages-bulk,forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script>
+		$(function(){
+			$.metadata.setType('attr', 'data-validate');
+			$('.form-horizontal').validate();	
+		});	
+	</script>
+</asp:content>

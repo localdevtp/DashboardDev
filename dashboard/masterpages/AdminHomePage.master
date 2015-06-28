@@ -1,0 +1,100 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li class="active"><i class="icon-dashboard"></i> Dashboard</li>
+	</ul>
+	<umbraco:Macro Alias="ListingsSummary" runat="server" />
+	
+</asp:content>
+	
+	
+	<asp:content ContentPlaceHolderId="scripts" runat="server">
+		
+		<umbraco:Macro Alias="AdStatsJS" runat="server"></umbraco:Macro>
+		
+		<script type="text/javascript" src="/scripts/jquery.peity.min.js"></script>
+		
+		<!-- MessagingSummary -->
+		<!-- <script>
+			$(function(){
+				InitialiseModal();
+			});
+			
+			function InitialiseModal() {
+				$('a[href="#emailContentModal"]').click(function(e){
+					e.preventDefault();
+					$('#emailContentModal .modal-body #content').text($(this).attr('data-content'));
+					$('#emailContentModal').modal({show: true});
+				});
+			}
+		</script>
+		-->
+		<!-- /MessagingSummary -->
+		
+		<script type="text/javascript">
+			
+			function InitPopover(){
+				if(Modernizr.touch) {
+					// Support for touch?
+				} else {
+					$('.label-image').popover({
+						html: true,
+						placement: 'right',
+						trigger: 'hover',
+						content: function(){
+							var thumbnail = $(this).parents('tr').attr('data-thumbnail');
+							return '<img src="'+ thumbnail +'" style="width:auto;height:80px;" />';
+						}
+					});
+				}
+			}
+			
+			$(document).ready(function(){
+				
+				$('.footable').footable({
+					sortcallbacks: {
+						end: InitPopover
+					}
+				});
+								
+				$.getJSON('/api?api=ListingStat', function (data) {
+					if (data.State == 1)
+					{	
+						var ListingStats = jQuery.parseJSON(data.Result)
+						//alert(data.Result);
+						$('#TotalActiveListing').text(ListingStats.TotalActiveListing);
+						$('#TotalActiveMissingPhoto').text(ListingStats.TotalActiveMissingPhoto);
+						$('#TotalActiveMissingVideo').text(ListingStats.TotalActiveMissingVideo);
+						$('#TotalActiveNoPrice').text(ListingStats.TotalActiveNoPrice);
+						$('#TotalActivePendingReview').text(ListingStats.TotalActivePendingReview);
+						$('#TotalInActiveListing').text(ListingStats.TotalInActiveListing);
+						$('#TotalInActiveDraft').text(ListingStats.TotalInActiveDraft);
+						$('#TotalInActivePendingReview').text(ListingStats.TotalInActivePendingReview);
+						
+						if (ListingStats.TotalActivePendingReview + ListingStats.TotalInActivePendingReview > 0)
+						{
+							$('#PendingReviewMessage').show();
+							$('#TotalPendingReviewMessage').text(ListingStats.TotalActivePendingReview + ListingStats.TotalInActivePendingReview);
+						}
+					}
+					else
+					{
+						 
+					}
+				});
+			});	
+		</script>
+	</asp:content>
+	
+	

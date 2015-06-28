@@ -1,0 +1,98 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server">
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Temporary Maintenance</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Loading Main UI -->
+  <link href="https://dashboard.easylist.com.au/css/bootstrap.css" rel="stylesheet">
+  <link href="https://dashboard.easylist.com.au/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="https://dashboard.easylist.com.au/css/icons.css" rel="stylesheet">
+  <link href="https://dashboard.easylist.com.au/css/main.css" rel="stylesheet">
+  <link href="https://dashboard.easylist.com.au/css/colors-tp.css" rel="stylesheet">
+  <link rel="shortcut icon" href="https://dashboard.easylist.com.au/images/favicon.ico">
+
+  <!-- Loading Modernizr -->
+  <script src="https://dashboard.easylist.com.au/scripts/modernizr.js"></script>
+  <style>
+    @-webkit-keyframes fixer {
+      0% {
+        -webkit-transform: rotate(-60deg);
+      }
+      50% {
+        -webkit-transform: rotate(-20deg);
+      }
+      100% {
+        -webkit-transform: rotate(-60deg);
+      }
+    }
+    .cssanimations .icon-wrench {
+      display:block; position: relative;
+      top:20px; left:20px;
+      width:80px; height:80px; margin:auto;
+      -webkit-animation-name: fixer;
+      -webkit-animation-duration: 1s;
+      -webkit-transition-timing-function: linear;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-transform-origin: 10% 10%;
+      -moz-animation-name: fixer;
+      -moz-animation-duration: 1s;
+      -moz-transition-timing-function: linear;
+      -moz-animation-iteration-count: infinite;
+      -moz-transform-origin: 10% 10%;
+      animation-name: fixer;
+      animation-duration: 1s;
+      transition-timing-function: linear;
+      animation-iteration-count: infinite;
+      transform-origin: 10% 10%;
+    }
+  </style>
+</head>
+<body>
+  <!--[if lt IE 7]>
+    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+  <![endif]-->
+
+  <div id="wrap" style="background:white">
+
+    <div id="header">
+      <h1><a href="/" class="brand image"><img src='https://dashboard.easylist.com.au/images/tp/tp-logo.png' class="retina" alt="Unique Websites" /></a></h1>
+    </div>
+
+    <div id="page-error">
+      <header>
+        <h2>
+          Temporary Down For Maintenance
+        </h2>
+        <div class="error-code">
+          <i class="icon-wrench"></i>
+          <div style="font-size:38px;text-align:center;">KEEP</div>
+          <div style="font-size:38px;text-align:center;">CALM</div>
+          <div style="font-size:20px;text-align:center;">WE'RE</div>
+          <div style="font-size:38px;text-align:center;">PERFORMING</div>
+          <div style="font-size:38px;text-align:center;">MAINTENANCE</div>
+        </div>
+        <br />
+        <p style="max-width:400px;margin:0 auto;">
+          We expect to be back in a couple of minutes. Thanks for patience.
+        </p>
+        <br />
+        <a href="/" class="btn btn-large btn-primary">
+          <i class="icon-loop">&nbsp;</i> Check if its back online
+        </a>
+      </header>
+    </div>
+
+  </div>
+</body>
+</html>
+</asp:Content>

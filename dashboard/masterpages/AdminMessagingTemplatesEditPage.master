@@ -1,0 +1,120 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+	
+<asp:content ContentPlaceHolderId="content" runat="server">
+
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li class="active"><i class="icon-paperplane"></i> Messaging</li>
+	</ul>	
+	
+	<umbraco:Macro Alias="EasyListMessagingTemplateEdit" runat="server"></umbraco:Macro>
+
+</asp:content>
+	
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script>
+		$(function(){	
+			
+			// Delete button
+			$("#delete-template-btn").click(function(e) {
+				$("#update-template").val("false");
+				$("#delete-template").val("true");
+				
+				$('#myModal').modal();
+				e.preventDefault();
+			});
+			
+			// Save button
+			$("#save-template-btn").click(function(e) {
+				e.preventDefault();
+				
+				$("#update-template").val("true");
+				$("#delete-template").val("false");
+				
+				//showProgress();
+				
+				var $messageTemplate = $('#template-form [name="message-template"]');
+				$messageTemplate.val(HtmlEncode($messageTemplate.val()));
+				
+				var $messageTemplateHtml = $('#template-form [name="message-template-html"]');
+				$messageTemplateHtml.val(HtmlEncode($messageTemplateHtml.val()));
+				
+				var $messageTemplatePlaintext = $('#template-form [name="message-template-plaintext"]');
+				$messageTemplatePlaintext.val(HtmlEncode($messageTemplatePlaintext.val()));
+				
+				$('#template-form').submit();
+			});
+			
+			// Delete modal confirmation OK button
+			$('#confirm-delete-template').click(function(e) {
+				e.preventDefault();
+				
+				$("#update-template").val("false");
+				$("#delete-template").val("true");
+				
+				$('#template-form').submit();
+			});
+			
+			$('#send-preview-btn').click(function(e) {
+				$('#sendPreviewModal').modal();
+				e.preventDefault();
+			});
+			
+			// Send preview modal confirmation OK button
+			$('#send-preview-confirm').click(function(e) {
+				e.preventDefault();
+				
+				if ($("#send-preview-to-input").val().length == 0) {
+					alert("Please key in a send to");
+					return;
+				}
+				
+				$("#update-template").val("false");
+				$("#delete-template").val("false");
+				$("#send-preview").val("true");
+				$("#send-preview-to").val($("#send-preview-to-input").val());
+				
+				var $messageTemplate = $('#template-form [name="message-template"]');
+				$messageTemplate.val(HtmlEncode($messageTemplate.val()));
+				
+				var $messageTemplateHtml = $('#template-form [name="message-template-html"]');
+				$messageTemplateHtml.val(HtmlEncode($messageTemplateHtml.val()));
+				
+				var $messageTemplatePlaintext = $('#template-form [name="message-template-plaintext"]');
+				$messageTemplatePlaintext.val(HtmlEncode($messageTemplatePlaintext.val()));
+				
+				$('#template-form').submit();
+			});
+			
+			TriggerScrollToProcessResult();
+		});
+		
+		function TriggerScrollToProcessResult() {
+			try {
+				$target = $('#process-result').parent();
+		
+				$('html, body').stop().animate({
+					'scrollTop': $target.offset().top
+				}, 900, 'swing');
+			} catch (err) { }
+		}
+		
+		function showProgress() {
+			$('#loading').show();
+			$('#loading-bg').show();
+		}
+		
+		function HtmlEncode(value){
+			return $('<div/>').text(value).html();
+		}
+		
+		function UpdateCharCount(e) {
+			if (e.value.length == 0) {
+				$('#char-count').text("");
+			} else {
+				$('#char-count').text("  " + e.value.length + " characters");
+			}
+		}
+	</script>
+</asp:content>

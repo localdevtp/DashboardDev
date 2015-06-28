@@ -1,0 +1,17 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/PrintMaster.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	
+	<div class="alerts">
+		<h2>Alert Test</h2>
+		<a href="#" class="btn" onclick="javascript:alertModal('Test Content');return false;">Alert Model (Basic)</a>
+		<a href="#" class="btn" onclick="javascript:alertModal('Test Content','Title','error',false);return false;">Alert Model (Error, Full, No Footer)</a>
+		<a href="#" class="btn" onclick="javascript:alertModal('Test Content','Title','info');return false;">Alert Model (Info, Full)</a>
+		<br><br>
+		<a href="#" class="btn" onclick="javascript:alertModal('Test Content','Title','warning');return false;">Alert Model (Warning, Full)</a>
+		<a href="#" class="btn" onclick="javascript:alertModal('Test Content','Title','success');return false;">Alert Model (Success, Full)</a>
+		<a href="#" class="btn" onclick="javascript:confirmModal('Test Content','Title', function(){ alert('Old fashion la'); });return false;">Confirm Model</a>
+	</div>
+	
+	<umbraco:Macro Alias="EasyListAccountingInvoice" runat="server" />
+</asp:content>

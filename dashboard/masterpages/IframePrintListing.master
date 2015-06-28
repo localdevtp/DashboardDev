@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/IframeMaster.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	<style type="text/css" media="print">
+		@page { size: landscape; }
+		
+		body {
+			font-size:12px;
+		}
+		table {width:100%}
+		table thead tr td {font-weight:bold;font-size:14px;}
+		td {padding:3px}
+		
+		div.print {display:none;}
+	</style>
+	<style type="text/css">
+		body {font-size:12px;}
+		table {width:100%}
+		table thead tr td {font-weight:bold;font-size:14px;padding:1px}
+		td {padding:3px}
+		div.print {position:absolute;top:10px;right:10px;}
+	</style>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<img src="/images/tp/tp-logo.png" />
+	<div class="print">
+		<a id="print" href="javascript:void(0)">print</a>
+	</div>
+	<umbraco:Macro Alias="EasyListListingPrint" runat="server"></umbraco:Macro>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<script>
+		$(function(){
+			$("#print").click(function(){
+				window.print();
+				
+			});
+		})
+	</script>
+</asp:content>

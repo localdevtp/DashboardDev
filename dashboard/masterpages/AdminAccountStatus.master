@@ -1,0 +1,109 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/account"><i class="icon-notebook"></i> Account</a></li>
+	</ul>
+	
+	<ul class="nav nav-pills">
+		<li class="active"><a href="/account/status"><i class="icon-calculate">&nbsp;</i> Account Status</a></li>
+		<li><a href="/account/details"><i class="icon-paragraph-justify">&nbsp;</i> Account Details</a></li>
+		<li><a href="/account/payment-method"><i class="icon-credit">&nbsp;</i> Payment Method</a></li>
+		<li><a href="/account/safety-and-privacy"><i class="icon-eye-blocked">&nbsp;</i> Safety and Privacy</a></li>
+		<!--<li><a href="/account/view-invoices"><i class="icon-file-powerpoint">&nbsp;</i> View Invoices</a></li>
+		<li><a href="/account/view-payments"><i class="icon-account">&nbsp;</i> View Payments</a></li>
+	--></ul>
+	
+	<div id="AccStatus">
+		<umbraco:Macro Alias="EasyListAccountStatus" runat="server" />
+		
+		<div id="loading-wrap" class="mfp-hide">
+			<div id="loading" class="loading-dialog">
+				<img class="retina" src="/images/spinner.png" />
+				<h2>Processing Transaction...</h2>
+				<p>
+					Processing your payment will take a moment. 
+					Please don't click the back button or navigate away from this page.
+				</p>
+			</div>
+		</div>
+	</div>
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script type="text/javascript">
+		function updateError(parent){
+			var error = $('label.error', parent).remove();
+			if(error) { $(parent).append(error); }
+		}
+		$(function(){
+			$('.footable').footable();
+			$('#confirm-payment-form form').validate();
+			$('#confirm-payment-form form').on('submit',function(e){
+				updateError($('input[type="checkbox"].error',this).parent());
+				
+				// Popup loading
+				if($(this).valid()) {
+					$.magnificPopup.open({
+						items: {
+							src: $("#loading-wrap"),
+							type: 'inline'
+						},
+						inline: {
+							markup: ''
+						},
+						callbacks: {
+							open: function(){
+								$('.mfp-wrap').off('click.mfp');
+								//$('.mfp-close').on('click.mfp', function(){ $.magnificPopup.instance.close(); });
+							}
+						}
+					});
+					
+					// Delay the form submission to load the preloader
+					windows.setTimeout('500',function(){
+						$('#confirm-payment-form form').submit() 
+					});
+				}
+				e.preventDefault();
+			});
+			$('#AccStatus').on('click','#confirm-payment',function(e){
+				if($('#OutstandingBalance').val() <= 0)
+				{
+					alertModal("You have no outstanding balance.","","success");
+					e.preventDefault();
+					return false;
+				}
+				
+				if($('#CCInfoExists').val() == 'False')
+				{
+					alertModal("No payment method maintained. Please add payment method.");
+					e.preventDefault();
+					return false;
+				}
+				
+				$('#account-status').hide();
+				$('#confirm-payment-form').show();
+				e.preventDefault();
+				return false;
+			});
+			$('#AccStatus').on('click','#cancel-confirm-payment',function(e){
+				$('#account-status').show();
+				$('#confirm-payment-form').hide();
+				e.preventDefault();
+				return false;
+			});
+		});
+	</script>
+</asp:content>

@@ -1,0 +1,112 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/listings?ListingType=Car"><i class="icon-list-2"></i> Listings</a></li>
+	</ul>	
+	
+	<ul class="nav nav-pills">
+		<li>
+			<a href="/listings?ListingType=Car"><i class="icon-list-2">&nbsp;</i> Listings</a>
+		</li>
+		<% if(Session["easylist-IsRetailUser"] != "true") { %>
+		<li>
+			<a href="/bulk-upload"><i class="icon-stack-1">&nbsp;</i> Bulk Upload</a>
+		</li>
+		<li class="active">
+			<a href="/distribution-feed-in"><i class="icon-tree">&nbsp;</i> Distribution</a>
+		</li>
+		<li>
+			<a href="/download"><i class="icon-download-2">&nbsp;</i> Download Photo Management App</a>
+		</li>
+		<% } %>
+	</ul>
+
+	<asp:Panel ID="SuccessPanel" runat="server" visible="false">
+		<div class="alert alert-success">
+			<strong>Success!</strong>
+			<asp:Label ID="SuccessUploadStatusMessage" runat="server"></asp:Label>
+		</div>
+	</asp:Panel>
+	<asp:Panel ID="FailPanel" runat="server" visible="false">
+		<div class="alert alert-error">
+			<strong>Fail!</strong>
+			<asp:Label ID="FailUploadStatusMessage" runat="server"></asp:Label>
+		</div>
+	</asp:Panel>
+	
+	<div class="widget-box">
+		<div class="widget-title">
+			<ul data-tabs="tabs" class="nav nav-tabs" id="tabs">
+				<li class="active"><a  href="/distribution-feed-in.aspx" id="DistributionFeedIn"><i class="icon-chevron-down"></i> Feed In History</a></li>
+				<li><a  href="/distribution-feed-out.aspx" id="DistributionFeedOut"><i class="icon-chevron-up"></i> Feed Out History</a></li>
+			</ul>
+		</div>
+		<div class="tab-content widget-content">
+			<div class="tab-pane active" id="DistributionFeedIn">
+			<form id="formDistributionIn" class="form-horizontal" runat="server">
+				<umbraco:Macro Alias="EasyListIsAuthorized" runat="server" UserGroup="Manager,Editor"></umbraco:Macro>
+				<umbraco:Macro Alias="EasyListDistributionFeedIn" runat="server"></umbraco:Macro>
+			
+			</form>
+			</div>
+		</div>
+	</div>
+</asp:content>
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script>
+		$(function(){
+			$.metadata.setType('attr', 'data-validate');
+			$('.form-horizontal').validate();
+		});	
+
+        var prm;
+
+        $(document).ready(function () {
+            prm = Sys.WebForms.PageRequestManager.getInstance();
+            prm.add_initializeRequest(InitializeRequest);
+            prm.add_endRequest(EndRequest);
+            $('.errMsg').toggleClass('alert alert-info');
+			$('.errMsg').css('display','block');
+			  // Toggle search / filter / sort button
+	        $('.toolbars .btn[data-toggle="collapse"]').on('click', function () {
+	            $(this).toggleClass('active');
+	        });
+	       
+	        $('#loading-bg').hide();
+	        $("#loading").hide();
+        });
+
+
+
+        function InitializeRequest(sender, args) {
+            if (prm.get_isInAsyncPostBack()) {
+                args.set_cancel(true)
+            }			
+			$('#loading-bg').show();
+			$("#loading").show();
+        }
+
+
+
+        function EndRequest(sender, args) {
+			$('#loading-bg').hide();
+	        $("#loading").hide();
+	        $('.toolbars .btn[data-toggle="collapse"]').trigger("click");
+			$('.errMsg').toggleClass('alert alert-info');
+			$('.errMsg').css('display','block');
+        }
+		
+	</script>
+</asp:content>

@@ -1,0 +1,153 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ID="Content1" ContentPlaceHolderId="content" runat="server">
+
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/leads"><i class="icon-bar"></i> Leads</a></li>
+	</ul>
+	
+	<umbraco:Macro Alias="EasyListLeads" runat="server"></umbraco:Macro>
+	
+</asp:content>
+	
+
+<asp:Content ID="Content2" ContentPlaceHolderId="scripts" runat="server">
+	<script>
+	    $(function () {
+
+	        $(document).ajaxStart(function () {
+	            $('#loading-bg').show();
+	            $("#loading").show();
+	        });
+
+	        $(document).ajaxComplete(function () {
+	            $('#loading-bg').hide();
+	            $("#loading").hide();
+	        });
+
+	        // Toggle search / filter / sort button
+	        $('.toolbars .btn[data-toggle="collapse"]').on('click', function () {
+	            $(this).toggleClass('active');
+	        });
+
+	        InitialiseFootable();
+	        InitialisePaging();
+	        InitializeSubmitButton();
+
+	        $('#loading-bg').hide();
+	        $("#loading").hide();
+	       // $('.toolbars .btn-info').trigger('click');
+	    });
+
+	    function RandomParam() {
+	        return "&random=" + Math.random() + "_" + (new Date()).getTime();
+	    }
+
+	    function InitializeSubmitButton() {
+	        $('.form-horizontal #search').on('click', function (e) {
+
+	            e.preventDefault();
+
+	            var t = $('#placeholder');
+
+	            $.ajax({
+	                type: "GET",
+	                url: '/leads',
+	                data: $('.form-horizontal').serialize() + RandomParam(),
+	                success: function (data) {
+
+	                    $('#search-result').remove();
+	                    $('#easylist-pagination').remove();
+
+	                    var searchResult = $(data).find('#search-result');
+
+	                    if (searchResult.length == 0) {
+	                        window.location = "/login?go=/leads/";
+	                    }
+
+	                    searchResult.appendTo(t);
+
+	                    $(data).find('#easylist-pagination').appendTo('#detail-panel');
+
+	                    InitialiseFootable();
+	                    InitialisePaging();
+
+	                    $('#search').resetbtnload();
+
+	                },
+	                dataType: 'html'
+	            });
+	        });
+	    }
+
+
+	    function InitialiseFootable() {
+	        $('.footable').footable({
+	            paging: {
+	                callbacks: {
+	                    init: function () {
+	                        $('#loading-bg').show();
+	                        $('#loading').show();
+	                    },
+	                    start: function () {
+	                        $('#loading-bg').show();
+	                        $('#loading').show();
+	                    },
+	                    end: function () {
+	                        $('#loading-bg').hide();
+	                        $('#loading').hide();
+	                        if ($('html').hasClass('lt-ie9')) {
+	                            replaceIcons();
+	                        }
+	                    }
+	                }
+	            }
+	        });
+	    }
+
+	    function InitialisePaging() {
+	        $('#easylist-pagination a').on('click', function (e) {
+	            e.preventDefault();
+
+	            var t = $('#placeholder');
+
+	            $.ajax({
+	                type: "GET",
+	                url: '/leads',
+	                data: $(this).attr('href') + "&" + $('.form-horizontal').serialize() + RandomParam(),
+	                success: function (data) {
+
+	                    $('#search-result').remove();
+	                    $('#easylist-pagination').remove();
+
+	                    var searchResult = $(data).find('#search-result');
+
+	                    if (searchResult.length == 0) {
+	                        window.location = "/login?go=/leads/";
+	                    }
+
+	                    searchResult.appendTo(t);
+	                    $(data).find('#easylist-pagination').appendTo('#detail-panel');
+
+	                    InitialiseFootable();
+	                    InitialisePaging();
+	                },
+	                dataType: 'html'
+	            });
+	        });
+	    }
+
+	    function getURLParam(name) {
+	        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+	        var regexS = "[\\?&]" + name + "=([^&#]*)";
+	        var regex = new RegExp(regexS);
+	        var results = regex.exec(window.location.href);
+	        if (results == null)
+	            return "";
+	        else
+	            return results[1];
+	    }
+		
+	</script>
+</asp:Content>

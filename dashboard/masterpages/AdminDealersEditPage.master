@@ -1,0 +1,396 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/dealers"><i class="icon-user-3"></i> Customers</a> <i class="icon-dot"></i></li>
+		<li class="active"><i class="icon-pencil"></i> Edit Customer</li>
+	</ul>
+	
+	
+		<form id="DealerForm" class="form-horizontal break-desktop-large" autocomplete="off" method="post" runat="server">
+			<asp:ScriptManager ID="ScriptManager1" runat="server">
+			</asp:ScriptManager>
+			
+			<umbraco:Macro Alias="EasyListDealersEditPage" runat="server"></umbraco:Macro>
+
+			<div id ="DisplayAdd">
+				<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+					<ContentTemplate>
+						<umbraco:Macro Alias="EasyListCountrySelectionDisplayAdd" runat="server"></umbraco:Macro>
+					</ContentTemplate>
+				</asp:UpdatePanel>
+			</div>	
+			<div id ="BillingAdd">
+				<asp:UpdatePanel ID="UpdatePanel2" runat="server">
+					<ContentTemplate>
+						<umbraco:Macro Alias="EasyListCountrySelectionBilling" runat="server"></umbraco:Macro>
+					</ContentTemplate>
+				</asp:UpdatePanel>
+			</div>	
+		</form>
+	
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script type="text/javascript">
+		$(function(){
+			
+			$('#DisplayAdd').appendTo('#DisplayCountrySelection');
+			$('#BillingAdd').appendTo('#BillingCountrySelection');
+			
+			$('input[name="payment-method"]').on('change',function(){
+				if($(this).val() === 'CC') { $('.cc-fields-reset,.billing-preference').fadeIn(); }
+				else { $('.cc-fields-reset,.billing-preference').fadeOut(); }
+			});
+			
+			$('#ResetCC').on('change',function(){
+				if($(this).is(':checked')) {
+					$('.cc-fields').fadeOut();
+					$('.cc-fields-reset').fadeIn();
+					
+					$('input[name="ccNo"]').rules('add', { required: true });
+					$('input[name="ccName"]').rules('add', { required: true });
+					$('input[name="ccCvv2"]').rules('add', { required: true });
+					//$('input[name="accountNewPassword2"]').rules('add', { equalTo: "accountNewPassword" });
+				} else {
+					$('.cc-fields').fadeIn();
+					$('.cc-fields-reset').fadeOut();
+					
+					$('input[name="ccNo"]').rules('remove');
+					$('input[name="ccName"]').rules('remove');
+					$('input[name="ccCvv2"]').rules('remove');
+					//$('input[name="accountNewPassword2"]').rules('remove');
+				}
+			});
+			
+			$('#SearchCustomer').typeahead({
+				source: function (query, process) {
+					
+					// Add load status
+					var $self = this.$element;
+					$self.css({
+						background:'url(/media/1111/ajax-loader.gif) no-repeat 95% center'
+					});
+					
+					// Remove load status on blur
+					$self.on('blur.load-status',function(){ 
+						$(this).css('background','none'); 
+					});
+					
+					query = query.replace("&","%26");
+					
+					// Data source
+					return $.getJSON(
+						'/api?api=ELCustomers&query=' + query,
+						function (data) {
+							if (data.State == 1) {
+								$self.css('background','none');
+								var LocInfo = jQuery.parseJSON(data.Result);
+								//console.log(LocInfo);
+								return process(LocInfo);
+							}	
+						});
+				},
+				
+				// Highlight typed in result
+				highlighter: function (item) {
+					var regex = new RegExp( '(' + this.query + ')', 'gi' );
+					return item.replace( regex, "<strong>$1</strong>" );
+				}
+			});
+			
+			//----------------------------------------------------------------------
+			// Customer group
+			//----------------------------------------------------------------------
+			$('#AddNewCustChild').live("click", function() {
+				
+				var CustChildValue = $('#SearchCustomer').val();
+				
+				if (CustChildValue == undefined || CustChildValue == "") return;
+				
+				var CustChildIDValue = CustChildValue.split(',')[0];
+				var CustChildNameValue = CustChildValue.split(',')[1];
+				
+				var NoOfControl = $('.CustomerChildList input:hidden').length ;
+				var NewControl = NoOfControl + 1;
+				$('.CustomerChildList').append(
+						'<div class="control-group CustomerChildDiv'+ NewControl + '">' + 
+						'<label class="control-label">'+
+						'<button type="button" id="RemoveCustChild'+ NewControl + '" onclick = $(".CustomerChildDiv'+ NewControl + '").remove(); class="btn btn-danger btn-small"><i class="icon-minus">&nbsp;</i>&nbsp;Remove</button></label>' + 
+						'<div class="controls">' + 
+						'<input type="text" id="CustChild'+ NewControl + '" value="'+ CustChildValue + '" name="CustomerChildName" class="input-xlarge CustomerChildName" readonly="readonly"/>'+
+						'<input type="hidden" name="CustomerChild" value ="'+ CustChildIDValue + '" /> '+
+						'<input type="hidden" name="CustomerChildSource" value ="'+ CustChildValue.replace(",","|") + '" /> '+
+						'</div>' +
+						'</div>'
+					);
+				
+				$('#SearchCustomer').val('');
+				
+			});
+			
+			//----------------------------------------------------------------------
+			// New Email Lead
+			//----------------------------------------------------------------------
+			
+			// Hide email add if there is 6 email already
+			if($('.LeadsEmailSet input').length == 6) {
+				$('#email-leads-add').hide();
+			}
+			
+			$('#AddNewEmailLead').live("click", function() {
+				var NoOfControl = $('.LeadsEmailSet input').length ;
+				
+				if (NoOfControl < 6 )
+				{
+					var NewControl = NoOfControl + 1;
+					//$('.LeadsEmailSet').append('<p>' +$('#LeadsEmail' + NoOfControl).val() + ' ' + $('.LeadsEmailSet input').length +'</p>');
+					$('.LeadsEmailSet').append(
+						'<div class="control-group LeadsEmailDiv'+ NewControl + '">' + 
+						'<label class="control-label">'+
+						'<button type="button" id="RemoveEmailLead'+ NewControl + '" class="btn btn-danger btn-small"><i class="icon-minus">&nbsp;</i>&nbsp;Remove</button>&nbsp;' +
+						'&nbsp;and:</label>' + 
+						'<div class="controls"><input type="text" id="LeadsEmail'+ NewControl + '" name="LeadsEmail" class="input-xlarge email" /></div>' +
+						'</div>'
+					);
+					
+					if($('html').hasClass('lt-ie9')){
+						$('.LeadsEmailSet div:last-child .icon-minus').each(function(){
+							addIcon($(this).get(0), '&#xe07d;');
+							Cufon.replace($(this).get(0));
+						});
+					}
+					
+					if(NoOfControl > 4) {
+						$('#email-leads-add').hide();
+					} else {
+						$('#email-leads-add').show();
+					}
+					
+				}
+				else
+				{
+					//alertModal('You could only add up to 6 email leads.','Fail','error',false);
+					return false;
+				}
+				
+			});
+			
+			$('#RemoveEmailLead3').live("click", function() {
+				$('.LeadsEmailDiv3').remove();
+				$('#email-leads-add').show();
+			});
+			$('#RemoveEmailLead4').live("click", function() {
+				$('.LeadsEmailDiv4').remove();
+				$('#email-leads-add').show();
+			});
+			$('#RemoveEmailLead5').live("click", function() {
+				$('.LeadsEmailDiv5').remove();
+				$('#email-leads-add').show();
+			});
+			$('#RemoveEmailLead6').live("click", function() {
+				$('.LeadsEmailDiv6').remove();
+				$('#email-leads-add').show();
+			});
+			
+			
+			//----------------------------------------------------------------------
+			
+			$.metadata.setType('attr', 'data-validate');
+			$('#DealerForm').validate();
+			
+			//----------------------------------------------------------------------
+			// Country selection
+			//----------------------------------------------------------------------
+			
+			$("#UpdateDealer").click(
+				function(e){
+					$('#update-account').val('true');
+					$('#activate-account').val('false');
+					
+					$(".CustomerChildName").replace(",", "|");
+					
+					UpdateCountryInfo();
+				}
+			);
+			
+			$("#ActivateAcc").click(
+				function(e){
+					e.preventDefault();
+					confirmModal('Please make sure dealer email and mobile no is correct for account activation!','Confirmation', function(){ 
+						$('#update-account').val('false');
+						$('#activate-account').val('true');
+						
+						UpdateCountryInfo();
+						
+						$('#DealerForm').submit();
+					});
+				}
+			);
+			//----------------------------------------------------------------------
+		});
+		
+		function UpdateCountryInfo()
+		{
+			//----------------------------------------------------------------------
+			// Billing Info
+			//----------------------------------------------------------------------
+			
+			$('#BillingCountryCode').val($(".add-billing-country").val());
+			
+			if ($(".add-billing-region").length && $(".add-billing-region").is(":visible"))
+				{
+					$('#BillingRegionID').val($(".add-billing-region").val()); 
+					$('#BillingRegionName').val($('.add-billing-region option:selected').first().text()); 
+				}else
+				{
+					$('#BillingRegionID').val("");
+					$('#BillingRegionName').val("");
+				}
+			
+			// Postal Code
+			if ($(".add-billing-postalcode").length && $(".add-billing-postalcode").is(":visible"))
+				{
+					$('#BillingPostalCode').val($(".add-billing-postalcode").val());
+				}
+			else
+			{
+				$('#BillingPostalCode').val("");
+			}
+			
+			// District
+			if ($(".add-billing-district-dropdown").length && $(".add-billing-district-dropdown").is(":visible"))
+				{
+					$('#BillingDistrict').val($('.add-billing-district-dropdown option:selected').first().text());
+				}else
+				{
+					$('#BillingDistrict').val($(".add-billing-district").val());
+				}
+			
+			$('#BillingAddressLine1').val($.trim($('#BillingAddressLine1').val()));
+			$('#BillingAddressLine2').val($.trim($('#BillingAddressLine2').val()));
+			
+			//----------------------------------------------------------------------
+			// Display Add Info
+			//----------------------------------------------------------------------
+			
+			$('#DisplayCountryCode').val($(".add-display-country").val());
+			
+			if ($(".add-display-region").length && $(".add-display-region").is(":visible"))
+				{
+					$('#DisplayRegionID').val($(".add-display-region").val()); 
+					$('#DisplayRegionName').val($('.add-display-region option:selected').first().text()); 
+				}else
+				{
+					$('#DisplayRegionID').val("");
+					$('#DisplayRegionName').val("");
+				}
+			
+			// Postal Code
+			if ($(".add-display-postalcode").length && $(".add-display-postalcode").is(":visible"))
+				{
+					$('#DisplayPostalCode').val($(".add-display-postalcode").val());
+				}
+			else
+			{
+				$('#DisplayPostalCode').val("");
+			}
+			
+			// District
+			if ($(".add-display-district-dropdown").length && $(".add-display-district-dropdown").is(":visible"))
+				{
+					$('#DisplayDistrict').val($('.add-display-district-dropdown option:selected').first().text());
+				}else
+				{
+					$('#DisplayDistrict').val($(".add-display-district").val());
+				}
+			
+			$('#DisplayAddressLine1').val($.trim($('#DisplayAddressLine1').val()));
+			$('#DisplayAddressLine2').val($.trim($('#DisplayAddressLine2').val()));
+
+		}
+		
+		
+		//----------------------------------------------------------------------
+		// Billing Preference (Introductory EasyList Bonus)
+		//----------------------------------------------------------------------
+		function toggleWellControls(w, enable) {
+			//$('input',w).prop('checked',false);
+			$('input',w).parent().removeAttr('style');
+			
+			if(enable) {
+				$(w).removeClass('disabled').show();
+				//$('input',w).prop('disabled',false);
+			} else {
+				$(w).addClass('disabled').hide();
+				//$('input',w).prop('disabled',true);
+			}
+		}
+		
+		// Enable bonus options according to selection
+		$('.billing-preference-controls [name="billing-preference"]').on('change',function(){
+			toggleWellControls($('.billing-preference-controls .well'), false);
+			toggleWellControls($(this).closest('label').next('.well'), true);
+		});
+		
+		// Hide all bonus options first load
+		$('.billing-preference-controls .well').addClass('disabled').hide();
+		
+		// Show bonus if there is settings
+		$('.billing-preference-controls [name="billing-preference"]:checked').each(function(){
+			$(this).closest('label').next('.well').removeClass('disabled').show()
+		});
+		
+		//----------------------------------------------------------------------
+		// Billing Preference (Introductory EasyList Bonus)
+		//----------------------------------------------------------------------
+		/*function toggleWellControls(w, enable) {
+			$('input',w).prop('checked',false);
+			$('input',w).parent().removeAttr('style');
+			
+			if(enable) {
+				$(w).removeClass('disabled').show();
+				$('input',w).prop('disabled',false);
+			} else {
+				$(w).addClass('disabled').hide();
+				$('input',w).prop('disabled',true);
+			}
+		}
+		
+		// Disable all bonus options first load
+		//toggleWellControls($('.billing-preference-controls .well'), false);
+		// Enable bonus options according to selection
+		$('.billing-preference-controls [name="billing-preference"]').on('change',function(){
+			toggleWellControls($('.billing-preference-controls .well'), false);
+			toggleWellControls($(this).closest('label').next('.well'), true);
+		});
+		*/
+		/*
+		// (NOT ACTIVE) Two bonus checkbox selection logic (Disabled 3rd control when there is 2 selected)
+		$('.billing-preference-controls [name="billing-preference-promotion-2"]').on('change',function(){
+			var l = $('.billing-preference-controls [name="billing-preference-promotion-2"]:checked').length;
+			if(l >= 2){
+				$('.billing-preference-controls [name="billing-preference-promotion-2"]')
+					.not(':checked')
+					.prop('disabled', true)
+					.parent().css({ color: '#999' });
+			} else {
+				$('.billing-preference-controls [name="billing-preference-promotion-2"]')
+					.prop('disabled', false)
+					.parent().removeAttr('style');
+			}
+});*/
+	</script>
+</asp:content>

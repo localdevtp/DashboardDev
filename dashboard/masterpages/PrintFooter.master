@@ -1,0 +1,52 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/PrintMaster.master" AutoEventWireup="true" %>
+
+
+<asp:Content ContentPlaceHolderId="pageHeader" runat="server">
+	<!-- Insert "pageHeader" markup here -->
+</asp:Content>
+	
+<asp:content ContentPlaceHolderId="content" runat="server">
+	
+	<table class="trading-post print-table-footer">
+		<tr>
+			<td colspan="2"><h3>How To Pay</h3></td>
+		</tr>
+		<tr>
+			<td width="50%">
+				<table>
+					<tr>
+						<td width="50px"><img src="http://10.0.1.149/images/payments/bpay-print.png" style="width:50px" /></td>
+						<td>
+							Payment via Internet or phone banking from cheque or savings account
+							<table>
+								<tr>
+									<th>Biller Code:&nbsp;&nbsp;</th>
+									<td>443820</td>
+								</tr>
+								<tr>
+									<th>Ref:</th>
+									<td>0099002000473643</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td width="50%">
+				<table>
+					<tr>
+						<td width="50px"><i class="icon-credit" style="font-size:48px;top: -4px;position: relative;color: #333"></i></td>
+						<td>
+							Pay by credit card online by logging into your account at https://dashboard.easylist.com.au
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+</asp:content>
+
+<asp:Content ContentPlaceHolderId="pageFooter" runat="server">
+	<!-- Insert "pageFooter" markup here -->
+</asp:Content>

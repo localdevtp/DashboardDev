@@ -1,0 +1,15 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+
+
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server">
+	
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="refresh" content="100">
+</head>
+	
+<body>
+</body>
+	
+</asp:content>

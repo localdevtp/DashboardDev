@@ -1,0 +1,44 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+	
+<asp:content ContentPlaceHolderId="content" runat="server">
+
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li class="active"><i class="icon-paperplane"></i> Messaging</li>
+	</ul>	
+	
+	<umbraco:Macro Alias="EasyListMessagingAPIEdit" runat="server"></umbraco:Macro>
+
+</asp:content>
+	
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script>
+		$(function(){
+			$.metadata.setType('attr', 'data-validate');
+			$('.form-horizontal').validate();
+			
+			$("#delete-api-btn").click(function(e) {
+				$("#update-api").val("false");
+				$("#delete-api").val("true");
+				
+				$('#myModal').modal();
+				e.preventDefault();
+			});
+					
+			$("#update-api-btn").click(function() {
+				$("#update-api").val("true");
+				$("#delete-api").val("false");
+				
+				$('form#editing-form').submit();
+			});
+			
+			$('#confirm-delete-api').click(function() {
+				$("#update-api").val("false");
+				$("#delete-api").val("true");
+				
+				$('form#editing-form').submit();
+			});
+		});
+	</script>
+</asp:content>

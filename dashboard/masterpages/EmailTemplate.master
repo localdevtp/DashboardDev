@@ -1,0 +1,285 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/EmailMaster.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderId="EmailContents" runat="server">
+	
+	<div style="font-weight: bold; font-size: 18px; line-height: 24px; text-align:center; color: #f7a116">
+		Title 1
+	</div><br />
+	
+	<div style="font-weight: bold; font-size: 18px; line-height: 24px; text-align:center; color: #007dc3">
+		Title 1
+	</div><br />
+	
+	<div style="font-weight: bold; font-size:16px; line-height:22px;">
+		Hi Rashmi,
+	</div>
+	<br />
+	
+	Your ad for the following item now has been removed from Trading Post:
+	<br /><br />
+	
+	<!-- Table (List) -->
+	<table border="0" cellpadding="0" cellspacing="0" width="100%" class="table-list" bgcolor="#ffffff" style="font-size: 12px; line-height: 18px; font-family: Helvetica, sans-serif;">
+		<tr>
+			<td bgcolor="#ffffff" width="120" style="border-left:2px solid #f7a116; padding:5px;"><strong style="font-weight:bold;">Ad number:</strong></td>
+			<td bgcolor="#ffffff" style="border-right:2px solid #f7a116; padding:5px;">TP005962085</td>
+		</tr>
+		<tr>
+			<td bgcolor="#ffffff" width="120" style="border-left:2px solid #f7a116; padding:5px;"><strong style="font-weight:bold;">Title:</strong></td>
+			<td bgcolor="#ffffff" style="border-right:2px solid #f7a116; padding:5px;">2011 BMW 6 50I E63 09 UPGRADE 2D CONVERTIBLE</td>
+		</tr>
+		<tr>
+			<td bgcolor="#ffffff" width="120" style="border-left:2px solid #f7a116; padding:5px;"><strong style="font-weight:bold;">Selling Price:</strong></td>
+			<td bgcolor="#ffffff" style="border-right:2px solid #f7a116; padding:5px;">$234,567.00</td>
+		</tr>
+		<tr>
+			<td bgcolor="#ffffff" width="120" style="border-left:2px solid #f7a116; padding:5px;"><strong style="font-weight:bold;">Ad package:</strong></td>
+			<td bgcolor="#ffffff" style="border-right:2px solid #f7a116; padding:5px;">Standard</td>
+		</tr>
+		<tr>
+			<td bgcolor="#ffffff" width="120" style="border-left:2px solid #f7a116; padding:5px;"><strong style="font-weight:bold;">Category:</strong></td>
+			<td bgcolor="#ffffff" style="border-right:2px solid #f7a116; padding:5px; font-size:11px;"><em style="font-style:italic;">Automotive &gt; Used Cars &gt; Small, Medium, Family &amp; Prestige Cars</em></td>
+		</tr>
+		<tr>
+			<td bgcolor="#ffffff" width="120" style="border-left:2px solid #f7a116; padding:5px;"><strong style="font-weight:bold;">Ad expires:</strong></td>
+			<td bgcolor="#ffffff" style="border-right:2px solid #f7a116; padding:5px;">16 January 2014</td>
+		</tr>
+		<tr>
+			<td bgcolor="#ffffff" width="120" style="border-left:2px solid #f7a116; padding:5px;"><strong style="font-weight:bold;">Cost of ad:</strong></td>
+			<td bgcolor="#ffffff" style="border-right:2px solid #f7a116; padding:5px;">$ 39.95</td>
+		</tr>
+	</table>
+	<!-- /Table (List) -->
+	
+	<br />
+	
+	<!-- Table (Orange) -->
+	<table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff" style="font-size: 12px; line-height: 18px; font-family: Helvetica, sans-serif;" >
+		<tr>
+			<td bgcolor="#f7a116" style="padding:5px; border:1px solid #f7a116; border-bottom:0; background: #f7a116; color: #ffffff; font-weight:bold; font-size:14px; line-height:20px;">
+				1986 FORD F100 XLT UTILITY
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table border="0" cellpadding="0" cellspacing="0" width="100%" class="table-list" bgcolor="#ffffff" style="border-bottom:2px solid #f7a116; font-size: 12px; line-height: 18px; font-family: Helvetica, sans-serif;">
+					<tr>
+						<td bgcolor="#ffffff" width="120" style="border-left:2px solid #f7a116; padding:5px;"><strong style="font-weight:bold;">Item No.:</strong></td>
+						<td bgcolor="#ffffff" style="border-right:2px solid #f7a116; padding:5px;">TP005962085</td>
+					</tr>
+					<tr>
+						<td bgcolor="#fbedd8" width="120" style="border-left:2px solid #f7a116; padding:5px;"><strong style="font-weight:bold;">Selling method:</strong></td>
+						<td bgcolor="#fbedd8" style="border-right:2px solid #f7a116; padding:5px;">Classified</td>
+					</tr>
+					<tr>
+						<td bgcolor="#ffffff" width="120" style="border-left:2px solid #f7a116; padding:5px;"><strong style="font-weight:bold;">Package:</strong></td>
+						<td bgcolor="#ffffff" style="border-right:2px solid #f7a116; padding:5px;">Get Noticed</td>
+					</tr>
+					<tr>
+						<td bgcolor="#fbedd8" width="120" style="border-left:2px solid #f7a116; padding:5px;"><strong style="font-weight:bold;">Selling price:</strong></td>
+						<td bgcolor="#fbedd8" style="border-right:2px solid #f7a116; padding:5px;">$9,998.00</td>
+					</tr>
+					<tr>
+						<td bgcolor="#ffffff" width="120" style="border-left:2px solid #f7a116; padding:5px;"><strong style="font-weight:bold;">Expires:</strong></td>
+						<td bgcolor="#ffffff" style="border-right:2px solid #f7a116; padding:5px;">19 January 2014, 03:35 pm</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<!-- Table (Orange) -->
+	
+	<br />
+	
+	<!-- Table (Blue) -->
+	<table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff" style="font-size: 12px; line-height: 18px; font-family: Helvetica, sans-serif;">
+		<tr>
+			<td bgcolor="#78aad6" style="padding:5px; border:1px solid #78aad6; border-bottom:0; background: #78aad6; color: #ffffff; font-weight:bold; font-size:14px; line-height:20px;">
+				Renew your online ad now
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor="#ffffff" style="background: #ffffff; border:2px solid #eeeeee; border-top:0; padding:10px">
+				Be quick and do it before it expires. All you have to do is this:
+				<br />
+				<ol>
+					<li>
+						Go to <strong style="font-weight:bold;">Trading Post<sup>&reg;</sup></strong> 
+						and sign in to <strong style="font-weight:bold;">Ad Tools</strong><br />
+						<a href="http://www.tradingposit.com.au/">www.tradingpost.com.au</a>
+						<br /><br />
+					</li>
+					<li>
+						Under Selling select <strong style="font-weight:bold;">Classified ad awaiting renewal</strong>.
+						<br /><br />
+					</li>
+					<li>
+						Select the item you want to renew, hit <strong style="font-weight:bold;">Renew</strong> and follow
+						the easy steps to edit your ad details.
+					</li>
+				</ol>
+				<br />
+				It's a great opportunity to fine tune your ad and help improve your chances of making a sale.
+			</td>
+		</tr>
+	</table>
+	<!-- /Table (Blue) -->
+	
+	<br />
+	
+	<!-- Table Split -->
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td align="left" class="force-col" style="padding-right:18px; vertical-align:top;">
+				
+				<table border="0" cellpadding="0" cellspacing="0" width="235" align="left" bgcolor="#ffffff" class="col-2" style="font-size: 12px; line-height: 18px; font-family: Helvetica, sans-serif;">
+					<tr>
+						<td bgcolor="#f7a116" style="padding:5px; border:1px solid #f7a116; border-bottom:0; background: #f7a116; color: #ffffff; font-weight:bold; font-size:14px; line-height:20px;">
+							Now you can
+						</td>
+					</tr>
+					<tr>
+						<td bgcolor="#ffffff" style="background: #ffffff; border:2px solid #eeeeee; border-top:0; padding:10px;">
+							<a href="#">Start selling</a> items you don't want or use anymore.
+							<br /><br />
+							<a href="#">Browse</a> thousands of items of sale.
+							<br /><br />
+							<a href="#">Update</a> your account details.
+						</td>
+					</tr>
+				</table>
+				
+			</td>
+			<td align="right" class="force-col" style="vertical-align:top;">
+				
+				<table border="0" cellpadding="0" cellspacing="0" width="235" align="right" class="col-2" bgcolor="#ffffff" style="font-size: 12px; line-height: 18px; font-family: Helvetica, sans-serif;">
+					<tr>
+						<td align="left" bgcolor="#f7a116" style="padding:10px; background: #f7a116;">
+							<div style="color:#333333; font-size:16px; line-height:22px;">
+								Join our social network
+							</div>
+							<div style="color:#ffffff; font-size:14px; line-height:20px;">
+								Be the first to receive out latest news and special offers.
+							</div>
+							<div style="text-align:center; margin-top:14px;">
+								<a href="#" style="text-decocation:none"><img src="https://dashboard.easylist.com.au/images/facebook.jpg" border="0" hspace="0" vspace="0" style="vertical-align:top;"/></a>
+								<a href="#" style="text-decocation:none"><img src="https://dashboard.easylist.com.au/images/twitter.jpg" border="0" hspace="0" vspace="0" style="vertical-align:top;" /></a>
+								<a href="#" style="text-decocation:none"><img src="https://dashboard.easylist.com.au/images/youtube.jpg" border="0" hspace="0" vspace="0" style="vertical-align:top;" /></a>
+							</div>
+						</td>
+					</tr>
+				</table>
+				
+			</td>
+		</tr>
+		
+	</table>
+	<!-- /Table Split -->
+	
+	<br />
+	
+	<!-- Table 3 Col -->
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td align="left" class="force-col" style="padding-right:4px; vertical-align:top;">
+				<table border="0" cellpadding="0" cellspacing="0" width="160" align="left" bgcolor="#ffffff" class="col-3" style="font-size: 10px; line-height: 14px; font-family: Helvetica, sans-serif;">
+					<tr>
+						<td bgcolor="#ffffff" style="background: #ffffff; border:2px solid #eeeeee; padding:10px; text-align:center;">
+							<img src="http://www.tradingpost.com.au/is-bin/intershop.static/WFS/Telstra-TradingPost-Site/Telstra-TradingPost/en_AU/UserImages/IMPEX_IMAGES_NDS/nds_4628/D462802475759/Resized/Resized105x79_D462802475759_A.jpg" style="max-width:100%" />
+							<br />
+							<a href="#">HONDA CRV (4x4) SPORT 2005 UPGRADE 4D WAGON</a>
+							<br /><br />
+							2006, 4WD, BLACK, 4D WAGON, 2354cc, 4cyl, 118kW, UNLEADED PETROL, 5 SP MANUAL, 188000kms, Dual Airbag Package, Anti-lock Braking, Air Conditioning ..
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td align="left" class="force-col" style="padding-right:4px; vertical-align:top;">
+				<table border="0" cellpadding="0" cellspacing="0" width="160" align="left" bgcolor="#ffffff" class="col-3" style="font-size: 10px; line-height: 14px; font-family: Helvetica, sans-serif;">
+					<tr>
+						<td bgcolor="#ffffff" style="background: #ffffff; border:2px solid #eeeeee; padding:10px; text-align:center;">
+							<img src="http://www.tradingpost.com.au/is-bin/intershop.static/WFS/Telstra-TradingPost-Site/Telstra-TradingPost/en_AU/UserImages/IMPEX_IMAGES_NDS/nds_4628/D462802475759/Resized/Resized105x79_D462802475759_A.jpg" style="max-width:100%" />
+							<br />
+							<a href="#">HONDA CRV (4x4) SPORT 2005 UPGRADE 4D WAGON</a>
+							<br /><br />
+							2006, 4WD, BLACK, 4D WAGON, 2354cc, 4cyl, 118kW, UNLEADED PETROL, 5 SP MANUAL, 188000kms, Dual Airbag Package, Anti-lock Braking, Air Conditioning ..
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td align="right" class="force-col" style="vertical-align:top;">
+				<table border="0" cellpadding="0" cellspacing="0" width="160" align="left" bgcolor="#ffffff" class="col-3" style="font-size: 10px; line-height: 14px; font-family: Helvetica, sans-serif;">
+					<tr>
+						<td bgcolor="#ffffff" style="background: #ffffff; border:2px solid #eeeeee; padding:10px; text-align:center;">
+							<img src="http://www.tradingpost.com.au/is-bin/intershop.static/WFS/Telstra-TradingPost-Site/Telstra-TradingPost/en_AU/UserImages/IMPEX_IMAGES_NDS/nds_4628/D462802475759/Resized/Resized105x79_D462802475759_A.jpg" style="max-width:100%" />
+							<br />
+							<a href="#">HONDA CRV (4x4) SPORT 2005 UPGRADE 4D WAGON</a>
+							<br /><br />
+							2006, 4WD, BLACK, 4D WAGON, 2354cc, 4cyl, 118kW, UNLEADED PETROL, 5 SP MANUAL, 188000kms, Dual Airbag Package, Anti-lock Braking, Air Conditioning ..
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<!-- /Table 4 Col -->
+	
+	<br />
+	
+	<!-- Full size ads banner -->
+	<table border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff" class="full-width" style="font-size: 12px; line-height: 18px; font-family: Helvetica, sans-serif; margin-left:-30px; margin-right:-30px;">
+		<tr>
+			<td bgcolor="#ffffff" style="background: #ffffff; text-align:center;">
+				<img src="http://placehold.it/550x300" style="max-width:100%" />
+			</td>
+		</tr>
+	</table>
+	<!-- /Full size ads banner -->
+	
+	<br />
+	
+	<!-- Button -->
+	<table border="0" cellpadding="0" cellspacing="0" align="center">
+		<tr>
+			<td align="center" width="200" bgcolor="#f7a116" style="background: #f7a116; padding-top: 12px; padding-bottom: 12px; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; color: #ffffff; font-size:16px; font-weight: bold; text-decoration: none; font-family: Helvetica, Arial, sans-serif;">
+				<a href="" style="color: #ffffff; text-decoration: none;">Button Test #1</a>
+			</td>
+		</tr>
+	</table>
+	<!-- /Button -->
+	
+	<br />
+	
+	<div style="font-weight: bold; font-size:14px; line-height:20px;">
+		MANAGE YOUR AD
+	</div><br />
+	
+	Want to see what others see? <a href="#">View my ad</a>
+	<br /><br />
+	
+	Need to update your ad? <a href="#">Edit my ad</a>
+	<br /><br />
+	
+	Want to find your ad on Trading Post? Enter ad number <strong style="font-weight:bold;">TP005962984</strong> into search box
+	on <a href="http://www.tradingpost.com.au/">Trading Post homepage</a> and click the Search button. Please note: It may take
+	up to and hour for your ad to be visible in the search result. If your can't find your ad after an hour, call us on
+	<strong style="font-weight:bold;">13 26 26</strong>.
+	<br /><br /><br />
+	
+	<div style="font-weight: bold; font-size:14px; line-height:20px;">
+		IMPORTANT INFORMATION - SELLING SAFELY ONLINE
+	</div><br />
+	
+	Whilst the vast majority of buyers using Trading Post are honest people, please remember
+	that if an offer sounds too good to be true, it probably is. You may receive SMS and email
+	messages from fraudsters posing as genuine buyers. Here are some tips to remember when deling
+	with buyers:
+	<br />
+	<ul>
+		<li>Be wary of overseas buyers</li>
+		<li>Never send money via Western Union</li>
+		<li>Speak to the buyer directly and always ask</li>
+	</ul>
+	<br />	
+	
+</asp:Content>

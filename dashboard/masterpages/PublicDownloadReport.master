@@ -1,0 +1,85 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/PublicMaster.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="pageHeader" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<%	
+	// Check for active user session variables
+			if (Session["easylist-username"] == null
+                || Session["easylist-usercode"] == null
+                || Session["SessionInfo"] == null
+                || string.IsNullOrEmpty(Session["easylist-username"].ToString())
+                || string.IsNullOrEmpty(Session["easylist-usercode"].ToString())
+                )
+            {
+                // Build the redirect URL
+                string url = "/403.html";
+                Response.Redirect(url);
+            }
+            else
+            {
+                try
+                {
+                    Response.Buffer = true;
+                    Response.Clear();
+                    Response.ClearHeaders();
+                    string fileName = Request["FileName"];
+                    string userCode = Request["UserCode"];
+                    if (string.IsNullOrEmpty(fileName) || string.IsNullOrEmpty(userCode)) { throw new Exception(""); }
+                    string url = string.Format("http://reporting.api.easylist.com.au/api.aspx?action=pdf&file={0}&usercode={1}", fileName, userCode);
+
+                    System.Net.WebRequest request = System.Net.WebRequest.Create(url);
+
+                    // Get the response
+                    using (System.Net.WebResponse response = request.GetResponse())
+                    {
+                        // Get the input stream
+                        using (System.IO.Stream inStream = response.GetResponseStream())
+                        {
+                            Response.AddHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+                            Response.ContentType = "application/pdf";
+                            Response.AddHeader("Content-Length", response.ContentLength.ToString());
+
+                            // Inititialize the read buffer and counters
+                            int bufferSize = 1024;
+                            byte[] buffer = new byte[bufferSize];
+                            int bytesRead = 0;
+                            int totalRead = 0;
+
+                            // Read from the input stream
+                            while ((bytesRead = inStream.Read(buffer, 0, bufferSize)) > 0)
+                            {
+                                // Write to the output stream
+                                Response.OutputStream.Write(buffer, 0, bytesRead);
+                                totalRead += bytesRead;
+
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                    string url = "/403.html";
+                    Response.Redirect(url);
+                }
+            }
+	%>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="pageFooter" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+
+</asp:content>

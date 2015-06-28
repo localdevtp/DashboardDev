@@ -1,0 +1,420 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+<%@ Assembly Name="Componax.ExtensionMethods" %>
+<%@ Assembly Name="EasyList.Common.Helpers" %>
+<%@ Assembly Name="EasyList.Data.DAL.Repository.Entity" %>
+<%@ Import Namespace="System.IO" %>
+<%@ Import Namespace="EasyList.Common.Helpers" %>
+<%@ Import Namespace="EasyList.Common.Helpers.Web.REST" %>
+<%@ Import Namespace="EasyList.Data.DAL.Repository.Entity.Helpers" %>
+	
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server">
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Classic Uploader</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  
+  	<!-- Load Queue widget CSS and jQuery -->
+		
+	<link type="text/css" href = "/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" rel="Stylesheet">
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+	
+	<!-- production -->
+	<script type="text/javascript" src="/plupload/js/plupload.full.min.js"></script>
+	<script type="text/javascript" src="/plupload/js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
+	
+<link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/ui-lightness/jquery-ui.css" type="text/css" rel="Stylesheet" class="ui-theme">	
+	
+<script type="text/javascript">
+    // Convert divs to queue widgets when the DOM is ready
+    $(function () {
+        $("#uploader").plupload({
+            // General settings
+			//runtimes: 'html5,flash,gears,silverlight,browserplus,html4',
+			runtimes: 'html4,flash',
+			//url: '/pluploader.aspx',
+			url: '/listings/ListingImageHandler.ashx',
+            chunk_size: '1mb',
+            unique_names: false,
+            
+			headers: {'x-ListingID': $('.txtListingID').val(), 
+					  'x-UserID': $('.txtUserID').val(),
+					  'x-UserCode': $('.txtUserCode').val(),
+            		  'x-UserSign': $('.txtUserSign').val(),
+            		  'x-UserSignDT': $('.txtUserSignDT').val(),
+					  'x-UserTempKey': $('.txtUserTempKey').val()
+					 },
+			
+            // Resize images on clientside if we can
+            resize: { width: 640, height: 480, quality: 90 },
+			
+			filters : {
+				max_file_size : '10mb',
+	
+				// Specify what files to browse for
+				mime_types: [
+					{title : "Image files", extensions : "jpg,gif,png"}
+				]
+			},
+			
+			// Enable ability to drag'n'drop files onto the widget (currently only HTML5 supports that)
+			//dragdrop: true,
+			
+			
+            // Flash settings
+			flash_swf_url : '/plupload/js/Moxie.swf',
+	
+			// Silverlight settings
+			silverlight_xap_url : '/plupload/js/Moxie.xap',
+		
+			// PreInit events, bound before any internal events
+			preinit : {
+				Init: function(up, info) {
+					//log('[Init]', 'Info:', info, 'Features:', up.features);
+				},
+	
+				UploadFile: function(up, file) {
+					//log('[UploadFile]', file);
+	
+					// You can override settings before the file is uploaded
+					// up.setOption('url', 'upload.php?id=' + file.id);
+					// up.setOption('multipart_params', {param1 : 'value1', param2 : 'value2'});
+				}
+			},
+
+			// Post init events, bound after the internal events
+			init : {
+				PostInit: function() {
+					// Called after initialization is finished and internal event handlers bound
+					//log('[PostInit]');
+					
+					//document.getElementById('uploadfiles').onclick = function() {
+					//	uploader.start();
+					//	return false;
+					//};
+				},
+	
+				Browse: function(up) {
+					// Called when file picker is clicked
+					log('[Browse]');
+				},
+	
+				Refresh: function(up) {
+					// Called when the position or dimensions of the picker change
+					//log('[Refresh]');
+				},
+	 
+				StateChanged: function(up) {
+					// Called when the state of the queue is changed
+					//log('[StateChanged]', up.state == plupload.STARTED ? "STARTED" : "STOPPED");
+				},
+	 
+				QueueChanged: function(up) {
+					// Called when queue is changed by adding or removing files
+					//log('[QueueChanged]');
+				},
+	
+				OptionChanged: function(up, name, value, oldValue) {
+					// Called when one of the configuration options is changed
+					//log('[OptionChanged]', 'Option Name: ', name, 'Value: ', value, 'Old Value: ', oldValue);
+				},
+	
+				BeforeUpload: function(up, file) {
+					// Called right before the upload for a given file starts, can be used to cancel it if required
+					//log('[BeforeUpload]', 'File: ', file);
+				},
+	 
+				UploadProgress: function(up, file) {
+					// Called while file is being uploaded
+					//log('[UploadProgress]', 'File:', file, "Total:", up.total);
+				},
+	
+				FileFiltered: function(up, file) {
+					// Called when file successfully files all the filters
+					//log('[FileFiltered]', 'File:', file);
+				},
+	 
+				FilesAdded: function(up, files) {
+					// Called when files are added to queue
+					//log('[FilesAdded]');
+	 
+					plupload.each(files, function(file) {
+						//log('  File:', file);
+					});
+				},
+	 
+				FilesRemoved: function(up, files) {
+					// Called when files are removed from queue
+					//log('[FilesRemoved]');
+	 
+					plupload.each(files, function(file) {
+						//log('  File:', file);
+					});
+				},
+	 
+				FileUploaded: function(up, file, info) {
+					// Called when file has finished uploading
+					//log('[FileUploaded] File:', file, "Info:", info);
+				},
+	 
+				ChunkUploaded: function(up, file, info) {
+					// Called when file chunk has finished uploading
+					//log('[ChunkUploaded] File:', file, "Info:", info);
+				},
+	
+				UploadComplete: function(up, files) {
+					// Called when all files are either uploaded or failed
+					//log('[UploadComplete]');
+				},
+	
+				Destroy: function(up) {
+					// Called when uploader is destroyed
+					//log('[Destroy] ');
+				},
+	 
+				Error: function(up, args) {
+					// Called when error occurs
+					//log('[Error] ', args);
+				}
+			}
+			
+			
+        });
+		
+		
+		// Handle the case when form was submitted before uploading has finished
+		$('#form').submit(function(e) {
+			// Files in queue upload them first
+			if ($('#uploader').plupload('getFiles').length > 0) {
+	
+				// When all files are uploaded submit form
+				$('#uploader').on('complete', function() {
+					$('#form')[0].submit();
+				});
+	
+				$('#uploader').plupload('start');
+			} else {
+				alert("You must have at least one file in the queue.");
+			}
+			return false; // Keep the form from submitting
+		});
+				
+        $('#UploadMore').click(function (e) {
+            location.reload();
+        });
+    });
+</script>
+	  
+</head>
+
+<body>
+	 <form>
+	    <div id="uploader">
+		    <p>You browser doesn't have Flash, Silverlight, Gears, BrowserPlus or HTML5 support.</p>
+	    </div>
+		 <div class="ui-state-default ui-widget-header plupload_header">
+		 <div class="plupload_header_content">
+         	<!--<a href="#" class="plupload_button" id="UploadMore" style="display:none">Upload more photos</a>
+			<a href="#" class="plupload_button" style="position: fixed; right:10px" id="uploader_close" onclick="window.parent.$('.mfp-close').trigger('click');">Close</a>
+			 -->
+			 <a class="plupload_button plupload_stop plupload_hidden ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-state-hover" id="uploader_close" role="button" aria-disabled="false" style="position: fixed; right:10px" onclick="window.parent.$('.mfp-close').trigger('click');">
+				 <span class="ui-button-icon-primary ui-icon ui-icon-circle-close"></span>
+				 <span class="ui-button-text">Close</span>
+			 </a>
+		 </div>
+		 </div>
+    </form>
+	<input id="txtListingID" style="display:none" class="txtListingID" runat="server"  type="text" />
+	<input id="txtUserID" style="display:none" class="txtUserID" runat="server"  type="text" />
+    <input id="txtUserCode" style="display:none" class="txtUserCode" runat="server"  type="text" />
+    <input id="txtUserSign" style="display:none" class="txtUserSign" runat="server"  type="text" />
+    <input id="txtUserSignDT" style="display:none" class="txtUserSignDT" runat="server"  type="text" />
+    <input id="txtUserTempKey" style="display:none" class="txtUserTempKey" runat="server"  type="text" />
+</body>
+</html>
+</asp:Content>
+	
+<script runat="server">
+
+	/// <summary>
+	/// Specifies the method to be used when resizing an image
+	/// </summary>
+	public enum ResizeMethod
+	{
+		// Crops the image to fit wholly within the bounds
+		CropToFit,
+				
+		/// <summary>
+		/// Scales the image to a constant size, applying a white background for any aspect mismatch
+		/// </summary>
+		ConstantSize,
+				
+		/// <summary>
+		/// Scales the image to fit withing the bounds, with a variable aspect ratio
+		/// </summary>
+		ScaleToFit
+	}
+	
+	 protected void Page_Load(object sender, EventArgs e)
+		 {
+			 try
+			{
+				Guid ImgFileGUID = Guid.NewGuid();
+				var ImgUploadFolder = @"C:\ImageTemp";
+				var RESTURL = "http://general.api.easylist.com.au/";
+				
+				if (!Directory.Exists(ImgUploadFolder))
+                {
+                     Directory.CreateDirectory(ImgUploadFolder);
+                }
+				
+				#region Get info from session for REST API Call
+				string ListingID = "";
+				//ListingID = "2M9S8Z";
+				//Response.Write(ListingID);
+				string UserID = ""; string UserCode = ""; string UserSign = ""; string UserSignDT = ""; string UserTempKey = "";
+				if (Request.Files.Count > 0)
+				{
+					
+				}
+				else
+				{				
+					if (HttpContext.Current.Session != null)
+            		{
+						if (HttpContext.Current.Request.QueryString["ListingID"] != null)
+                		{
+                    		txtListingID.Value = HttpContext.Current.Request.QueryString["ListingID"].ToString();
+							AddCookie("x-ListingID", txtListingID.Value, 60);
+                		}
+						
+                		if (HttpContext.Current.Session["easylist-username"] != null)
+                		{
+                    		txtUserID.Value = HttpContext.Current.Session["easylist-username"].ToString();
+							AddCookie("x-UserID", txtUserID.Value, 60);
+                		}
+						if (HttpContext.Current.Session["easylist-usercode"] != null)
+						{
+							txtUserCode.Value = HttpContext.Current.Session["easylist-usercode"].ToString();
+							AddCookie("x-UserCode", txtUserCode.Value, 60);
+						}
+						if (HttpContext.Current.Session["easylist-userSignature"] != null)
+						{
+							txtUserSign.Value = HttpContext.Current.Session["easylist-userSignature"].ToString();
+							AddCookie("x-UserSign", txtUserSign.Value, 60);
+						}
+						if (HttpContext.Current.Session["easylist-userSignatureDT"] != null)
+						{
+							txtUserSignDT.Value = HttpContext.Current.Session["easylist-userSignatureDT"].ToString();
+							AddCookie("x-UserSignDT", txtUserSignDT.Value, 60);
+						}
+						if (HttpContext.Current.Session["easylist-userTempKey"] != null)
+						{
+							txtUserTempKey.Value = HttpContext.Current.Session["easylist-userTempKey"].ToString();
+							AddCookie("x-UserTempKey", txtUserTempKey.Value, 60);
+						}
+					}
+				}
+				#endregion Get info from session for REST API Call
+				
+					
+			    // Call ListingImageHandler.ashx
+					
+				/***
+				EasyListRestClient rc = new EasyListRestClient();
+				RESTStatus rs = new RESTStatus();
+				
+				string TempImageFileName = "";
+				string TempImagePath = "";
+				#region Check to see whether there are uploaded files to process them
+				if (Request.Files.Count > 0)
+				{
+					int chunk = Request["chunk"] != null ? int.Parse(Request["chunk"]) : 0;
+					string fileName = Request["name"] != null ? Request["name"] : string.Empty;
+					
+					TempImageFileName = string.Format("{0}-{1}-{2}", ListingID, ImgFileGUID.ToString(), fileName);
+						
+					HttpPostedFile fileUpload = Request.Files[0];
+	
+					//var uploadPath = Server.MapPath("~/plupload/Uploaded");
+					
+					TempImagePath = Path.Combine(ImgUploadFolder, TempImageFileName);
+					using (var fs = new FileStream(TempImagePath, chunk == 0 ? FileMode.Create : FileMode.Append))
+					{
+						var buffer = new byte[fileUpload.InputStream.Length];
+						fileUpload.InputStream.Read(buffer, 0, buffer.Length);
+	
+						fs.Write(buffer, 0, buffer.Length);
+					}
+					
+					#endregion Check to see whether there are uploaded files to process them
+					Response.Write(TempImagePath);
+					// POST to REST API Server
+					bool IsNewListing = false;
+	
+					Guid UserTempKeyGuid = Guid.NewGuid();
+					// Use user sign and user code session variable to flag user as guest account
+					if (UserCode =="Guest")
+					{
+						IsNewListing = true;
+					}
+					if ((!string.IsNullOrEmpty(UserTempKey) && Guid.TryParse(UserTempKey, out UserTempKeyGuid)))
+					{
+					   IsNewListing = true;
+					}
+					if (!string.IsNullOrEmpty(ListingID))
+					{
+					   IsNewListing = false;
+					}
+					
+					Response.Write(TempImagePath);
+					if (!string.IsNullOrEmpty(TempImagePath))
+					{
+						rc = new EasyListRestClient("MyEasyListAppID", "MyEasyListSecretKey", EasyListRestClient.HttpMethod.POST.ToString(), UserID, UserCode, UserSign, UserSignDT);
+						rc.URL = RESTURL + "Image/" + ListingID;
+						rc.RequestMethod = EasyListRestClient.HttpMethod.POST;
+						rc.RequestType = "multipart/form-data;";
+						rc.ResponseType = "application/json";
+						rc.DataByte = Parser.FileToMultipartParser(TempImagePath);
+						rs = new RESTStatus();
+						rs = rc.SendRequest();
+						
+						if (rs.State == RESTState.Success)
+						{
+							throw new Exception("Success!!");
+	
+						}
+						else
+						{
+							throw new Exception("Failed!!");
+						}
+					}
+
+				}
+*/
+			}
+			catch (Exception ex)
+			{
+				Response.Write(ex);
+			}
+		 }
+	
+	    public void AddCookie(string Key, string Value, int Min)
+        {
+            HttpCookie MyCookie = new HttpCookie(Key);
+            DateTime now = DateTime.Now;
+            MyCookie.Value = Value;
+            MyCookie.Expires = now.AddMinutes(Min);
+            HttpContext.Current.Response.Cookies.Add(MyCookie);
+        }
+
+
+</script>

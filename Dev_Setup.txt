@@ -1,0 +1,22 @@
+Purpose - to allow easy setup for dashboard so dev can do local developer and debugging. 
+Hopefully this is faster, and also to provide source control for Dashboard - atleast on xslt level.
+
+- #1 Setup Dashboard on the ROOT for IIS - easiest would be to copy to C:\inetpub\wwwroot folder
+
+- #2 Create new site to host general.api.easylist.com.au 
+
+
+Pre-requisite 
+
+#1 You already setup your Mssql server
+#2 You already setup your MongoDB 
+
+
+Please have the following settings in your etc/host file. 
+
+127.0.0.1 sql-server
+
+127.0.0.1 general.api.easylist.com.au
+
+216.12.192.114 mongodb1.el.staging.easylist.com.au
+

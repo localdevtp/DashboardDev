@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/EmailMaster.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderID="EmailContents" runat="server">
+
+	<div style="font-weight: bold; font-size: 14px; line-height: 20px; text-align:left; color: #007dc3">
+		Test Account
+	</div><br />
+	
+	Hi Test,
+	<br /><br />
+	
+	Thank you for confirming your account details for the new Tradingpost.com.au system powered by EasyList.
+	<br /><br />
+	
+	The new Tradingpost website will be going live later this month, at which time you will need to start using the EasyList system to manage your ads - until then, please continue to manage your ads in the way you have been.
+	<br /><br />
+	
+	Please note that you may see a $1.00 pre-authorisation on your next credit card statement - this is a temporary validity test and will be automatically removed in the next few days.
+	<br /><br />
+	
+	Once the new Tradingpost website goes live, please use the following link to access EasyList and manage your ads and account:	
+	<br /><br />
+	
+	<!-- Button -->
+	<table border="0" cellpadding="0" cellspacing="0" align="center">
+		<tr>
+			<td align="center" width="200" bgcolor="#f7a116" style="background: #f7a116; padding-top: 12px; padding-bottom: 12px; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; color: #ffffff; font-size:16px; font-weight: bold; text-decoration: none; font-family: Helvetica, Arial, sans-serif;">
+				<a href="https://dashboard.easylist.com.au/login" style="color: #ffffff; text-decoration: none;">Access EasyList</a>
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" cellspacing="0" align="center">
+		<tr>
+			<td align="center">
+				<small style="font-size:10px;line-height:18px;">(please click this button and bookmark the EasyList link)</small>
+			</td>
+		</tr>
+	</table>
+	<!-- /Button -->
+	
+	<br />
+	
+	We'll be in touch with you again soon to let you know when the new tradingpost.com.au website is due to go live. In the meantime should you have any questions, please contact your account manager.
+	<br /><br />
+	
+</asp:Content>

@@ -1,0 +1,281 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/listings?ListingType=Car"><i class="icon-list-2"></i> Listings</a></li>
+	</ul>	
+	
+	<ul class="nav nav-pills">
+		<li class="active">
+			<a href="/listings?ListingType=Car"><i class="icon-list-2">&nbsp;</i> Listings</a>
+		</li>
+		<% if(Session["easylist-IsRetailUser"] != "true") { %>
+			<li>
+				<a href="/bulk-upload"><i class="icon-stack-1">&nbsp;</i> Bulk Upload</a>
+			</li>
+			<li>
+				<a href="/distribution-feed-in"><i class="icon-tree">&nbsp;</i> Distribution</a>
+			</li>
+			<li>
+				<a href="/download"><i class="icon-download-2">&nbsp;</i> Download Photo Management App</a>
+			</li>
+		<% } %>
+		
+	</ul>
+				
+	<umbraco:Macro Alias="EasyListEditAllListings" runat="server"></umbraco:Macro>
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="easylist.searchform" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+  	<script type="text/javascript">
+		
+		$(function() {
+			Initialise();			
+		});
+		
+		function Initialise()
+		{				
+			$('.toolbars .btn[data-toggle="collapse"]').on('click',function(){
+				$(this).toggleClass('active');
+			});
+			
+			$(document).ajaxStart(function () {
+				$('#loading-bg').show();
+				$("#loading").show();
+			});
+	
+			$(document).ajaxComplete(function () {
+				$('#loading-bg').hide();
+				$("#loading").hide();
+			});
+			
+			$("#VehicleTab").click(function(e){
+				SwitchTab('Car','', '', 'Active');
+				e.preventDefault();
+			});
+			
+			$("#MotorTab").click(function(e){
+				SwitchTab('Motorcycle','', '', 'Active');
+				e.preventDefault();
+			});
+			
+			$("#GeneralItemsTab").click(function(e){
+				SwitchTab('General','', '', 'Active');
+				e.preventDefault();
+			});
+			
+			$("#AllItemsTab").click(function(e){
+				SwitchTab('All','', '','Active');
+				e.preventDefault();
+			});
+			
+			$("#ExceptionItemsTab").click(function(e){
+				SwitchTab('All','true', '', 'Active');
+				e.preventDefault();
+			});
+
+			$("#PendingModerationItemsTab").click(function(e){
+				SwitchTab('All','', 'true', '', 'All');
+				e.preventDefault();
+			});
+			
+			
+			if (getURLParam("GeneralSearch") == "1")
+			{
+				$("#ListingType").val('All');
+				
+				$("#Keywords").val(getURLParam("q"));
+				
+				$("#tabs .active").removeClass('active')
+				$("#AllItemsTab").parent().addClass('active');
+			}
+			
+			InitialiseFootable();
+			InitialisePaging();
+			InitialiseSearch();
+			
+		}
+		
+		function SwitchTab(LstType, HasExp, PendingModeration, LstStatus)
+		{
+			$("#ListingType").val(LstType);
+			
+			if (LstStatus == '' || LstStatus == undefined)
+			{
+				LstStatus = getURLParam("Status");
+			}
+			if (LstStatus == undefined) LstStatus = '';
+						
+			// window.location.href = "/listings?ListingType=" + LstType + "&HasException=" + HasExp + "&PendingModeration=" + PendingModeration;
+			window.location.href = "/listings?ListingType=" + LstType + "&HasException=" + HasExp + "&PendingModeration=" + PendingModeration +  "&Status=" + LstStatus ;
+			
+			/*
+			$("#EasyListDashboardListing").load("/listings?ListingType=" + LstType + "&HasException=" + HasExp + " #EasyListDashboardListing", 
+					function (responseText, textStatus, XMLHttpRequest) {
+						if (textStatus == "success") {
+							// all good!
+							
+							// remove duplicated container
+							$("#EasyListDashboardListing",this).unwrap();
+							
+							InitialiseFootable();
+							InitialisePaging();
+							InitialiseSearch();
+							LoadMakesModels();
+						}
+						if (textStatus == "error") {
+							 // oh noes!
+						}					
+			});*/
+		}
+		
+		function InitialiseFootable(){
+			$('#EasyListDashboardListingTable').footable({
+				paging: {
+					callbacks: {
+						init: function(){
+							$('#loading-bg').show();
+							$('#loading').show();
+						},
+						start: function(){
+							$('#loading-bg').show();
+							$('#loading').show();
+						},
+						end: function(){
+							$('#loading-bg').hide();
+							$('#loading').hide();
+							if($('html').hasClass('lt-ie9')){
+								replaceIcons();
+							}
+						}
+					}
+				}
+			});
+		}
+		
+		
+		function InitialiseSearch()
+		{
+			$("#ListingSearch").click(function(e){
+				var DealerIDs = "";
+				var StockNumber = "";
+				var PriceMin = "";
+				var PriceMax = "";
+				var Condition = "";
+				var Makes = "";
+				var Models = "";
+				var ListingType = "";
+				var Keywords = "";
+				var Sort = "";
+				var Status = "";
+				var CatalogID = "";
+				var HasException = "";
+				var ExceptionTypeDesc = "";
+				var MissingImage = "false";
+				var MissingVideo = "false";
+				var NoPrice = "false";
+				var PendingModeration = "";
+				
+				/*if ($("#ListingType").val()) ListingType = encodeURIComponent($("#ListingType").val());
+				if ($("#HasException").val()) HasException = $("#HasException").val();*/
+				
+				ListingType = getURLParam('ListingType');
+				HasException = getURLParam('HasException');
+				PendingModeration = getURLParam('PendingModeration');
+				ExceptionTypeDesc = getURLParam('ExceptionTypeDesc');
+				
+				/*if ($("#listing-usercode option:selected").val()) encodeURIComponent(DealerIDs = $("#listing-usercode option:selected").val());*/
+				
+				$('#listing-usercode :selected').each(function(i, selected){ 
+					if (DealerIDs !="") DealerIDs += ",";
+					DealerIDs += $(selected).val(); 
+				});
+				
+				if ($("#StockNumber").val()) StockNumber = encodeURIComponent($("#StockNumber").val());
+				if ($("#price-min").val()) PriceMin = $("#price-min").val();
+				if ($("#price-max").val()) PriceMax = $("#price-max").val();
+				if ($("#condition option:selected").text()) encodeURIComponent(Condition = $("#condition option:selected").text());
+				if ($("#Makes option:selected").val()) Makes =  encodeURIComponent($("#Makes option:selected").val());
+				if ($("#Models option:selected").val()) Models = encodeURIComponent($("#Models option:selected").val());
+				if ($("#Keywords").val()) Keywords = encodeURIComponent($("#Keywords").val());
+				if ($("#sort").val()) Sort = encodeURIComponent($("#sort").val());
+				if ($("#Status option:selected").text()) encodeURIComponent(Status = $("#Status option:selected").text());
+				if ($("#listing-catalog option:selected").val()) CatalogID =  encodeURIComponent($("#listing-catalog option:selected").val());
+				if ($("#ExceptionTypeDesc").val()) ExceptionTypeDesc = $("#ExceptionTypeDesc").val();
+				if ($("#MissingImage").is(":checked")) MissingImage = "true";
+				if ($("#MissingVideo").is(":checked")) MissingVideo = "true";
+				if ($("#NoPrice").is(":checked")) NoPrice = "true";
+												
+				var URL = "/listings?ListingType=" + ListingType + "&IsSearch=1&DealerIDs=" + DealerIDs + "&q=" + Keywords + "&StockNumber=" + StockNumber + "&condition=" + Condition + "&price-min=" + PriceMin + "&price-max=" + PriceMax + "&Makes=" + Makes + "&Models=" + Models + "&sort=" + Sort + "&Status=" + Status + "&CatalogID=" + CatalogID + "&HasException=" + HasException + "&ExceptionTypeDesc=" + ExceptionTypeDesc + "&MissingImage=" + MissingImage + "&PendingModeration=" + PendingModeration + "&MissingVideo=" + MissingVideo + "&NoPrice=" + NoPrice;				
+				//var URL = "/listings?ListingType=" + ListingType + "&q=" + Keywords + "&StockNumber=" + StockNumber + "&condition=" + Condition + "&price-min=" + PriceMin + "&price-max=" + PriceMax + "&Makes=" + Makes + "&Models=" + Models + "&sort=" + Sort + "&Status=" + Status + "&CatalogID=" + CatalogID + "&HasException=" + HasException + "&ExceptionTypeDesc=" + ExceptionTypeDesc + "&MissingImage=" + MissingImage + "&PendingModeration=" + PendingModeration + "&MissingVideo=" + MissingVideo + "&NoPrice=" + NoPrice;
+
+				//window.location.href = URL;
+				console.log(URL);
+				$("#EasyListSearchResult").load(URL + " #EasyListSearchResult", 
+					function (responseText, textStatus, XMLHttpRequest) {
+						if (textStatus == "success") {
+							 // all good!
+							InitialiseFootable();
+							InitialisePaging();
+							//alert('Success!');
+						}
+						if (textStatus == "error") {
+							 // oh noes!
+							//alert('Error!');
+						}					
+					});
+
+				e.preventDefault();
+			});
+		}
+		
+		function InitialisePaging()
+		{
+			$('#easylist-pagination a').on('click', function(e){
+
+				var URL = $(this).attr('href').replace(/\s/g,"%20");
+				
+				$("#EasyListSearchResult").load(URL + " #EasyListSearchResult", 
+					function (responseText, textStatus, XMLHttpRequest) {
+						if (textStatus == "success") {
+							 // all good!
+							InitialiseFootable();
+							InitialisePaging();
+							//alert('Success!');
+						}
+						if (textStatus == "error") {
+							 // oh noes!
+							//alert('Error!');
+						}					
+					});
+				
+				e.preventDefault();
+			});
+		}
+				
+		function getURLParam(name) {
+			name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+			var regexS = "[\\?&]" + name + "=([^&#]*)";
+			var regex = new RegExp(regexS);
+			var results = regex.exec(window.location.href);
+			if (results == null)
+				return "";
+			else
+				return results[1];
+    	}
+		
+		
+  	</script>
+</asp:content>

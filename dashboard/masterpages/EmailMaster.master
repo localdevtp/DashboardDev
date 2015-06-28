@@ -1,0 +1,196 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+<script runat="server">
+    bool includeFooter = true;
+
+    void Page_Load(object sender, System.EventArgs ea)
+    {
+        try
+        {
+            if (umbraco.presentation.nodeFactory.Node.GetCurrent().GetProperty("footer").Value == "1")
+                includeFooter = false;
+        }
+        catch (System.NullReferenceException) { }
+        catch (System.ArgumentException) { }
+    }
+</script>
+  
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">    <!-- So that mobile webkit will display zoomed in -->
+    <meta name="format-detection" content="telephone=no"> <!-- disable auto telephone linking in iOS -->
+
+    <title>Trading Post - Dashboard Activation</title>
+  
+  <link rel="shortcut icon" href="https://dashboard.easylist.com.au/images/tp/favicon.ico">
+    <style type="text/css">
+
+        /*            
+           Orange  = #f7a116
+           LOrange = #fbedd8
+           LBlue   = #78aad6
+           Link    = #007dc3
+           Hover   = #eb6b2c
+        */
+
+
+        /* Resets */
+        .ReadMsgBody { width: 100%; background-color: #ebebeb;}
+        .ExternalClass {width: 100%; background-color: #ebebeb;}
+        .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height:100%;}
+        body {-webkit-text-size-adjust:none; -ms-text-size-adjust:none;}
+        body {margin:0; padding:0;}
+        table {border-spacing:0;}
+        table td {border-collapse:collapse;}
+        .yshortcuts a {border-bottom: none !important;}
+
+        /* Header and Footer Images */
+        table.header img, table.footer img { max-width:100%; }
+
+        /* Link color */
+        a{color:#007dc3;}
+        a:hover,a:focus{color:#eb6b2c;}
+
+        /* Constrain email width for small screens */
+        @media screen and (max-width: 550px) {
+            table[class="container"],
+            table[class="header"],
+            table[class="footer"],
+            table[class="bigpond"] {
+                width: 95% !important;
+            }
+
+            table[class="table-list"] td:first-child { width: 100px; }
+        }
+
+        /* Give content more room on mobile */
+        @media screen and (max-width: 480px) {
+            td[class="container-padding"] {
+                padding-left: 12px !important;
+                padding-right: 12px !important;
+            }
+            table[class="full-width"] {
+                margin-left:-12px !important;
+                margin-right:-12px !important;
+            }
+         }
+
+        @media only screen and (max-width : 550px) {
+
+            /* force container columns to (horizontal) blocks */
+            td[class="force-col"] {
+                display: block !important;
+                padding-right: 0 !important;
+                width:auto !important;
+                margin-bottom:18px;
+            }
+            table[class="col-2"],
+            table[class="col-3"] {
+                /* unset table align="left/right" */
+                float: none !important;
+                width: 100% !important;
+            }
+
+        }
+
+    </style>
+</head>
+<body style="margin:0; padding:10px 0;" bgcolor="#ffffff" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+<br />
+
+<!-- 100% wrapper (white background) -->
+<table border="0" width="100%" height="100%" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+  <tr>
+    <td align="center" valign="top" bgcolor="#ffffff" style="background-color: #ffffff;">
+
+      <!-- 550px header -->
+      <table border="0" width="550" cellpadding="0" cellspacing="0" class="header">
+        <tr>
+          <td align="center">
+            <img src="https://dashboard.easylist.com.au/images/topbar.gif" alt="TRADINGPOST.COM.AU" border="0" hspace="0" vspace="0" style="vertical-align:top;" class="header-img" />
+          </td>
+        </tr>
+      </table>
+      <!-- /550px header -->
+
+      <!-- 550px container (grey background) -->
+      <table border="0" width="550" cellpadding="0" cellspacing="0" class="container" bgcolor="#fbfbfb">
+        <tr>
+          <td align="left" class="container-padding" bgcolor="#fbfbfb" style="background-color: #fbfbfb; border-left:1px solid #dddddd; border-right:1px solid #dddddd; padding-left: 30px; padding-right: 30px; font-size: 12px; line-height: 18px; font-family: Helvetica, sans-serif; color: #333333;">
+            <br />
+            <em style="font-style:normal; font-size: 9px; line-height: 14px; color: #aaaaaa;">
+              Note: This email has been automatically generated by Trading Post<sup>&reg;</sup>. Please do not respond to this email address.
+            </em>
+            <br /><br />
+
+            <!-- BEGIN CONTENT -->
+        
+        
+            <asp:ContentPlaceHolder Id="EmailContents" runat="server">
+              <!-- Insert default "EmailContents" markup here -->
+            </asp:ContentPlaceHolder>
+        
+            <br /><br />
+
+            <% if(includeFooter) { %>
+            <asp:ContentPlaceHolder Id="EmailFooter" runat="server">
+            Please read our <a href="http://www.tradingpost.com.au/TrustAndSafety/LandingPage">latest information about online safety</a>. 
+            If you receive a suspicious email or SMS, contact us at <strong>investigations@tradingpost.com.au</strong>
+            or on <strong style="font-weight:bold;">13 26 26</strong>.
+            <br /><br />
+
+            Thanks for using Trading Post.
+            <br /><br />
+
+            The Trading Post Team<br />
+            <a href="http://www.tradingpost.com.au">tradingpost.com.au</a>
+            <br /><br />
+
+            <em style="font-style:normal; font-size: 10px; line-height: 14px;">
+              Any questions about this message? Please contact our customer service team via 
+              <strong>websupport@tradingpost.com.au</strong> and keep this email for reference.
+              <br /><br />
+              <a href="http://www.tradingpost.com.au/TrustAndSafety/LandingPage">Read our latest information about online safety</a>.
+            </em>
+            <br /><br />
+
+            </asp:ContentPlaceHolder>
+            <% } %>
+      
+            <em style="font-style:normal; font-size: 9px; line-height: 14px; color: #aaaaaa;">
+              Note: This email has been automatically generated by Trading Post<sup>&reg;</sup>. Please do not respond to this email address.
+            </em>
+            <br /><br />        
+        
+            <!-- END CONTENT -->
+
+          </td>
+        </tr>
+      </table>
+      <!--/550px container -->
+
+      <!-- 550px bottombar -->
+      <table border="0" width="550" cellpadding="0" cellspacing="0" class="footer">
+        <tr>
+          <td align="center">
+            <img src="https://dashboard.easylist.com.au/images/bottombar.gif" alt="" />
+          </td>
+        </tr>
+      </table>
+      <!-- /550px bottombar -->
+
+    </td>
+  </tr>
+</table>
+<!--/100% wrapper-->
+<br />
+<br />
+</body>
+</html>
+
+</asp:Content>

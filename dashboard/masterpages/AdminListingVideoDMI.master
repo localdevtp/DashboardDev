@@ -1,0 +1,5 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server">
+	<umbraco:Macro dealerID="[$easylistDealerID]" videoWidth="720" videoHeight="540" cacheDuration="[$cacheDuration]" Alias="EasyListDMIVideo" runat="server"></umbraco:Macro>
+</asp:Content>

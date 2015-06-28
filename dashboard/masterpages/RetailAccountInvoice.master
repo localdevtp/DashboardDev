@@ -1,0 +1,30 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/account"><i class="icon-notebook"></i> Account</a> <i class="icon-dot"></i></li>
+	</ul>
+	
+	<ul	class="nav nav-pills">
+		<li><a href="/account/retail-view-invoices"><i class="icon-file-powerpoint">&nbsp;</i> View Invoices</a></li>
+		<li><a href="/account/retail-view-payments"><i class="icon-account">&nbsp;</i> View Payments</a></li>
+		<li><a href="/account/retail-safety-and-privacy"><i class="icon-eye-blocked">&nbsp;</i> Safety and Privacy</a></li>
+	</ul>
+	
+	<div id="invoice">
+		<umbraco:Macro Alias="EasyListAccountInvoice" runat="server" />
+	</div>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+
+</asp:content>

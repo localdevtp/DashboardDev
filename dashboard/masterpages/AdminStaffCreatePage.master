@@ -1,0 +1,231 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+	
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/staff"><i class="icon-users"></i> Staff</a></li>
+	</ul>
+	
+	<!--
+	<ul class="nav nav-pills">
+		<li class="active"><a href="/staff/create"><i class="icon-user-add">&nbsp;</i>Add New User</a></li>
+		<li><a href="/staff"><i class="icon-users">&nbsp;</i>Manage Users</a></li>
+	</ul>
+	-->
+	
+	<div id="accounts">
+		<umbraco:Macro Alias="EasyListStaffCreatePage" runat="server"></umbraco:Macro>
+	</div>
+	
+	<div id = "CountrySelection" style="display:none">
+		<form runat="server">
+			<asp:ScriptManager ID="ScriptManager1" runat="server">
+			</asp:ScriptManager>
+			<div>
+				<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+					<ContentTemplate>
+						<umbraco:Macro Alias="EasyListCountrySelection" runat="server"></umbraco:Macro>
+					</ContentTemplate>
+				</asp:UpdatePanel>
+			</div>	
+		</form>
+	</div>
+	
+	<div id="roles-table" class="hidden">
+		<table class="table center-td">
+			<thead class="center-th">
+				<tr>
+					<th></th>
+					<th>Listing</th>
+					<th>Accounting</th>
+					<th>Staff</th>
+					<th>Report</th>
+					<th>Lead</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>Manager</th>
+					<td><i class="icon-checkmark-circle success"></i></td>
+					<td><i class="icon-checkmark-circle success"></i></td>
+					<td><i class="icon-checkmark-circle success"></i></td>
+					<td><i class="icon-checkmark-circle success"></i></td>
+					<td><i class="icon-checkmark-circle success"></i></td>
+				</tr>
+				<tr>
+					<th>Account</th>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-checkmark-circle success"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+				</tr>
+				<tr>
+					<th>Editor</th>
+					<td><i class="icon-checkmark-circle success"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+				</tr>
+				<tr>
+					<th>Sales</th>
+					<td><i class="icon-checkmark-circle success"></i><br/><small>(View only)</small></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-checkmark-circle success"></i></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script type="text/javascript">
+		
+		function updateError(parent){
+			var error = $('label.error', parent).remove();
+			if(error) { $(parent).append(error); }
+		}
+		function updateActionBar(){
+			var wa = $('.widget-action');
+			if($('[name="account-action"]:checked').length > 0 ){
+				$(wa).removeClass('widget-action-close').addClass('widget-action-open');
+			} else if($(wa).hasClass('widget-action-open')) {
+				$(wa).removeClass('widget-action-open').addClass('widget-action-close');
+			}
+		}
+		$(function(){
+			
+			$('.footable').footable();
+			
+			$.metadata.setType('attr', 'data-validate');
+			$('#NewAccountForm').validate();
+			
+			//----------------------------------------------------------------------
+			// Update validate() error placement
+			//----------------------------------------------------------------------
+			$('.check-all').on('change',function(){
+				if($(this).is(':checked')) {
+					$('[name="account-action"]').prop('checked',true);
+				} else {
+					$('[name="account-action"]').prop('checked',false);
+				}
+				updateActionBar();
+			});
+			$('[name="account-action"]').on('change',function(){
+				updateActionBar();
+			});
+			updateActionBar();
+			//----------------------------------------------------------------------
+			
+			//----------------------------------------------------------------------
+			// Country selection
+			//----------------------------------------------------------------------
+			$('#CountrySelection').hide();
+			$('#CountrySelection').clone(true).appendTo('#MyCountrySelectHere');
+			$('#CountrySelection').show();
+			
+			if ($('#address-country-code').val() == "")
+			{
+				$('#address-country-code').val($(".add-country").val());
+			}
+			
+			if ($('#HasError').val() == "True")
+			{
+				$(".add-country").val($('#address-country-code').val());
+				$('.add-country').change();
+				
+				$(".add-region").val($('#address-region-id').val());
+				$('.add-region').change();
+				
+				$(".add-postalcode").val($('#address-postalcode').val());
+				
+				if ($(".add-district-dropdown").length != 0)
+				{
+					$(".add-district-dropdown").val($('#address-district').val());
+					$('.add-district-dropdown').change();
+				}else
+				{
+					$(".add-district").val($('#address-district').val());
+				}
+			}
+			
+						
+			$("#add-account").click(
+				function(e){
+					$('#address-country-code').val($(".add-country").val());
+					
+					if ($(".add-region").length && $(".add-region").is(":visible"))
+					{
+						$('#address-region-id').val($(".add-region").val()); 
+						$('#address-region-name').val($('.add-region option:selected').first().text()); 
+					}else
+					{
+						$('#address-region-id').val("");
+						$('#address-region-name').val("");
+					}
+					
+					// Postal Code
+					if ($(".add-postalcode").length && $(".add-postalcode").is(":visible"))
+					{
+						$('#address-postalcode').val($(".add-postalcode").val());
+					}
+					else
+					{
+						$('#address-postalcode').val("");
+					}
+					
+					// District
+					if ($(".add-district-dropdown").length && $(".add-district-dropdown").is(":visible"))
+					{
+						$('#address-district').val($('.add-district-dropdown option:selected').first().text());
+					}else
+					{
+						$('#address-district').val($(".add-district").val());
+					}
+					
+					$('#AddressLine1').val($.trim($('#AddressLine1').val()));
+					$('#AddressLine2').val($.trim($('#AddressLine2').val()));
+				
+					//e.preventDefault();
+				}
+			);
+			
+			//----------------------------------------------------------------------
+			if(Modernizr.touch) {
+				$('#roles-help').on('click', function(){
+					alertModal($('#roles-table').html(),'Roles Access','normal',false);
+				});
+			} else {
+				$('#roles-help').popover({
+					html: true,
+					placement: 'top',
+					title: 'Roles Access',
+					trigger: 'hover',
+					content: $('#roles-table').html()
+				});
+			}
+			
+			// Some nice UX touch - add user first name when enter to submit button
+			$('#FirstName').on('blur',function(){
+				if($(this).val() !== '') {
+					$('#add-account').html('<i class="icon-plus">&nbsp;</i> Add '+$(this).val());
+				} else {
+					$('#add-account').html('<i class="icon-plus">&nbsp;</i> Add New User');
+				}
+			});
+		});
+	</script>
+</asp:content>

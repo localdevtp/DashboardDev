@@ -1,0 +1,75 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminMaster.master" AutoEventWireup="true" %>
+
+	<asp:content ContentPlaceHolderId="metaTags" runat="server" />
+
+	<asp:content ContentPlaceHolderId="headItems" runat="server" />
+	
+	<asp:content ContentPlaceHolderId="pageHeader" runat="server">
+		<div id="header"></div>
+	</asp:content>
+
+	<asp:content ContentPlaceHolderId="content" runat="server">
+		
+		<div class="login">
+			<div class="login-screen">
+				<div class="login-icon">
+					<img src='/images/tp/tp-logo.png' class="retina" style="width:200px" alt="" />
+				</div>
+
+				<umbraco:Macro landingPage="1097" Alias="EasyListUserLogin" runat="server"></umbraco:Macro>
+
+			</div>
+		</div>
+		
+	</asp:content>
+	
+	<asp:content ContentPlaceHolderId="pageFooter" runat="server" />
+
+	<asp:content ContentPlaceHolderId="scripts" runat="server">
+		<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+		<script>
+			if(!$('html').hasClass('lt-ie9')) {
+				$.metadata.setType('attr', 'data-validate');
+				$('.login form').validate();
+			}
+			function shakeMe() {
+				$('.login-form')
+					.clearQueue()
+					.transition({ x:10 },100)
+					.transition({ x:-10 },100)
+					.transition({ x:10 },100)
+					.transition({ x:0 },50);
+			}
+			if($('html').hasClass('lt-ie9')) {
+				$('.login form').on('keyup', function(e){
+					if(e.keyCode == 13) {
+						$('.btn[type="submit"]').trigger('click');
+					}
+				});
+			}
+			$('.login form').on('submit',function(e){
+				if($(this).valid()) {
+					if($('html').hasClass('lt-ie9')) {  
+						$('.btn[type="submit"]').html('Loading...');
+					} else {
+						$('.btn[type="submit"]').html('<i class="icon-busy"></i>&nbsp;&nbsp;Loading...');
+					}
+				}
+			});
+			$('#request-otp').on('click', function(e){
+				var iframe = "<iframe id='ResendOTPIframe' frameborder='0' style='width:100%;height:180px' src='/otp.aspx'></iframe>";
+				alertModal(iframe, 'One-Time Password (OTP)');
+				//alert($("#ResendOTPIframe").contents().find('#OTPRefCode').val());
+				setInterval(function() {
+					var NewOTPRefCode = $("#ResendOTPIframe").contents().find('#OTPRefCode').val();
+					if (NewOTPRefCode != null)
+					{
+						$("#OTPLoginRefCode").text(NewOTPRefCode);
+					}
+				}, 1000);
+
+				e.preventDefault();
+			});
+			$('#wrap').addClass('plain');
+		</script>
+	</asp:content>

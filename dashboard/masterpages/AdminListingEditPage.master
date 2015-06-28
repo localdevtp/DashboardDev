@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+
+</asp:content>
+	
+<asp:content ContentPlaceHolderId="content" runat="server">
+	
+	<!--<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/listings?ListingType=Car"><i class="icon-list-2"></i> Listings</a></li>
+	</ul>	
+	
+	<ul class="nav nav-pills">
+		<% if(Session["easylist-IsRetailUser"] != "true") { %>
+		<li class="active">
+			<a href="/listings?ListingType=Car"><i class="icon-list-2">&nbsp;</i> Listings</a>
+		</li>
+		<li>
+			<a href="/bulk-upload"><i class="icon-stack-1">&nbsp;</i> Bulk Upload</a>
+		</li>
+		<li>
+			<a href="/download"><i class="icon-download-2">&nbsp;</i> Download Photo Management App</a>
+		</li>
+		<% } %>
+	</ul>
+	-->
+	
+	<umbraco:Macro listingCode="[@listing]" Alias="EasyListEditItem" runat="server"></umbraco:Macro> 
+
+</asp:content>	
+	
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	
+	<umbraco:Macro files="easylist.editimages,easylist.editvideos,easylist.editfeatures,easyList.ImageUpload,eayslist.editlocks,forms,easylist.listingedit" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	
+	<script>
+		
+	</script>
+
+	
+</asp:content>

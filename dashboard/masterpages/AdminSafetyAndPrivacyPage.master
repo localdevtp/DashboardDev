@@ -1,0 +1,271 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ID="Content1" ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ID="Content2" ContentPlaceHolderId="headItems" runat="server">
+	<style>
+		.js aside{ display:none }
+		.child-controls label { width:160px; }
+		label.disable { color:#999; cursor:default; }
+		.thumbnail { display:inline-block;width:auto;margin:0 10px 10px 0; }
+	</style>
+</asp:content>
+	
+<asp:content ID="Content3" ContentPlaceHolderId="content" runat="server">
+	<script runat="server">
+   
+     protected bool IsBlockAccess()
+     {
+        bool isBlockAccess = false;
+			
+		try
+		{
+			EasyList.Data.DAL.Repository.IRepository repo = EasyList.Data.DAL.Repository.RepositorySetup.Setup();
+		
+			string userCode =  Session["easylist-usercode"].ToString();
+			var ELUser = repo.Single<EasyList.Data.DAL.Repository.Entity.Users>(u => u.UserCode == userCode);
+
+			if (ELUser != null)
+			{
+				isBlockAccess = ELUser.BlockAccessLeadsSettings;		
+			}	
+		}
+		catch(Exception ex)
+		{
+			
+		}
+		
+        return isBlockAccess;
+    }      
+		
+	protected string MenuList(){
+		string result = "";
+		if (!IsBlockAccess())
+		{
+			result = @"<li><a href=""/settings/leads-settings""><i class=""icon-bars"">&nbsp;</i> Leads Settings</a></li>";
+		}
+		
+		return result;
+	}
+	</script>
+		
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/settings/safety-and-privacy"><i class="icon-notebook"></i> Settings</a></li>
+	</ul>
+	
+	<ul class="nav nav-pills">
+		
+		<li class="active">
+			<a href="/settings/safety-and-privacy"><i class="icon-eye-blocked">&nbsp;</i> Safety and Privacy</a>
+		</li>
+		
+		<%= MenuList() %>
+	
+		
+	</ul>
+	
+	<umbraco:Macro Alias="EasyListSafetyAndPrivacy" runat="server"></umbraco:Macro>
+	
+</asp:content>
+
+<asp:content ID="Content4" ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script type="text/javascript">
+	    $(function () {
+	        $.metadata.setType('attr', 'data-validate');
+
+	        $.validator.addMethod("alphabets", function (value, element) {
+	            return this.optional(element) || /^[a-zA-Z ]*$/.test(value);
+	        }, "Please enter only alphabets.");
+
+	        $('.form-horizontal').validate();
+
+	        // Hide child-controls if not check and handle behaviour
+	        $('.child-controls').each(function (e) {
+	            var $self = $(this);
+	            var check = ($self.prev().children('input').is(':checked')) ? true : false;
+
+	            if (!check) {
+	                $self.hide();
+	            } else {
+	                $self.show();
+	            }
+
+	            // on checkbox checked
+	            $self.prev('.checkbox').children('input').on('change', function (e) {
+	                if ($(this).is(':checked')) {
+	                    $(this).parent().next('.child-controls').show();
+	                } else {
+	                    $(this).parent().next('.child-controls').hide();
+	                }
+	            });
+
+	            // on radio checked
+	            $self.prev('.radio').children('input').each(function (e) {
+	                var radio = $(this).attr('name');
+	                $('input[name=' + radio + ']').on('change', function (e) {
+	                    $('input[name=' + radio + ']').parent().next('.child-controls').hide();
+	                    if ($(this).is(':checked')) {
+	                        $(this).parent().next('.child-controls').show();
+	                    }
+	                });
+	            });
+
+	        });
+
+	        // Custom check - if commercial customer enter full address disabled display map
+	        if ($('input[name="radio-share-com-address"]:checked').val() === '1') {
+	            $('input[name="check-display-com-location-map"]')
+						.prop('checked', false).prop('disabled', true)
+						.parent().addClass('disabled');
+	        }
+	        $('input[name="radio-share-com-address"]').on('change', function () {
+	            if ($(this).val() === '1') {
+	                $('input[name="check-display-com-location-map"]')
+						.prop('checked', false).prop('disabled', true)
+						.parent().addClass('disable');
+	            } else {
+	                $('input[name="check-display-com-location-map"]')
+						.prop('checked', true).prop('disabled', false)
+						.parent().removeClass('disable');
+	            }
+	        });
+
+	        $('#listing-location').typeahead({
+
+	            source: function (query, process) {
+
+	                // Add load status
+	                var $self = this.$element;
+	                $self.css({
+	                    background: 'url(/media/1111/ajax-loader.gif) no-repeat 95% center'
+	                });
+
+	                // Remove load status on blur
+	                $self.on('blur.load-status', function () { $(this).css('background', 'none'); });
+
+	                // Data source
+	                return $.getJSON(
+						'/api?api=LocSearch&query=' + query,
+						function (data) {
+						    if (data.State == 1) {
+						        $self.css('background', 'none');
+						        var LocInfo = jQuery.parseJSON(data.Result);
+						        return process(LocInfo);
+						    }
+
+						});
+	            },
+
+	            // Highlight typed in result
+	            highlighter: function (item) {
+	                var regex = new RegExp('(' + this.query + ')', 'gi');
+	                return item.replace(regex, "<strong>$1</strong>");
+	            }
+	        });
+
+	        $('#upload-photo').on('click', function (e) {
+	            // Open the popup to upload images
+	            $.magnificPopup.open({
+	                items: {
+	                    src: "/classicuploader.aspx?UploadType=CompanyLogo"
+	                },
+	                type: 'iframe',
+	                //overflowY: 'scroll',
+	                //alignTop: true,
+	                mainClass: 'mfp-full-height',
+	                callbacks: {
+	                    close: function () {
+	                        $("#DisplayCompLogoContainer").empty();
+	                        $("#DisplayCompLogoContainer").text('Loading...');
+
+	                        $("#DisplayCompLogoContainer").load("/account/safety-and-privacy #DisplayCompLogoContainer",
+								function (responseText, textStatus, XMLHttpRequest) {
+								}
+							);
+	                    }
+	                }
+	            });
+	            e.preventDefault();
+	        });
+			
+			function toggleContactInfoSetting() {			
+				if ($("input[name=ContactInfoSetting]:checked").val() == 'HIDE') {
+					toggleFieldDisplay("input[name=DisplayPhoneOnAds-ForDisplayOnly]", "input[name=BusinessPhoneNo]", false);	
+					toggleFieldDisplay("input[name=DisplayMobileOnAds-ForDisplayOnly]", "input[name=RetailContactMobile]", false);
+				}
+				else {
+					toggleFieldDisplay("input[name=DisplayPhoneOnAds-ForDisplayOnly]", "input[name=BusinessPhoneNo]", true);	
+					toggleFieldDisplay("input[name=DisplayMobileOnAds-ForDisplayOnly]", "input[name=RetailContactMobile]", true);
+					
+				}
+			}
+			
+			toggleContactInfoSetting();
+			
+			$("input[name=ContactInfoSetting]").click(function(){
+				toggleContactInfoSetting();
+			});
+			
+			function toggleFieldDisplay(checkboxName, textboxName, disable){
+				if (disable){
+					$(checkboxName).attr("disabled", true);
+					$(checkboxName).prop("checked","true");                    
+				}
+				else {
+					$(checkboxName).removeAttr("disabled");
+				}
+				
+				checkboxEvent(checkboxName, textboxName)				
+			}
+			
+			function checkboxEvent(checkboxName, textboxName)
+			{
+				if ($(checkboxName).is(':checked')) {
+					$(checkboxName).parent().next('.child-controls').show();
+					$(textboxName).attr("class", "requiredfield number");
+					$("label[name='" + $(textboxName).attr('name') + "Msg']").attr("class", "error");
+					$("label[name='" + $(textboxName).attr('name') + "Msg']").hide();
+				}
+				else{
+					$(checkboxName).parent().next('.child-controls').hide();
+					$(textboxName).removeAttr("data-validate");
+					$(textboxName).removeAttr("value");
+					$(textboxName).removeAttr("class");
+					$(textboxName).attr("class", "number");
+					$("label[name='" + $(textboxName).attr('name') + "Msg']").removeAttr("class");
+					$("label[name='" + $(textboxName).attr('name') + "Msg']").hide();
+				}
+			}
+						
+			$("input[name=DisplayPhoneOnAds-ForDisplayOnly]").change(function(){
+				checkboxEvent("input[name=DisplayPhoneOnAds-ForDisplayOnly]", "input[name=BusinessPhoneNo]");
+ 			});
+			
+			$("#safety-and-privacy-form").submit(function(e){
+			   $('span.error_msg').html('');
+				var success = true;
+				$("#safety-and-privacy-form input[type=text]").each(function(){
+					if($(this).val()=="" && $(this).hasClass('requiredfield'))
+					{
+						$(this).attr("class", "error");
+						$("label[name='" + $(this).attr('name') + "Msg']").show();
+						success = false;
+					}
+				});
+				
+				if(success==false){
+					e.preventDefault();
+					return false;
+				}
+			});
+	    });
+
+	    function closeMP() {
+	        $.magnificPopup.close();
+	    }
+	</script>
+</asp:content>

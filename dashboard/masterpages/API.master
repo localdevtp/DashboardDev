@@ -1,0 +1,2 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server"><umbraco:Macro url="[@url]" Alias="EasyListAPI" runat="server"></umbraco:Macro></asp:Content>

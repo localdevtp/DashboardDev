@@ -1,0 +1,86 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+<%@ Import Namespace="System.IO" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	<style>
+		#ContentPlaceHolderDefault_content_content_RequiredFieldValidator1 { display:block; }
+	</style>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	
+	<umbraco:Macro Alias="EasyListIsAuthorized" runat="server" UserGroup="Manager,Editor"></umbraco:Macro>
+	
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/listings?ListingType=Car"><i class="icon-list-2"></i> Listings</a></li>
+	</ul>	
+	
+	<ul class="nav nav-pills">
+		<li>
+			<a href="/listings?ListingType=Car"><i class="icon-list-2">&nbsp;</i> Listings</a>
+		</li>
+		<% if(Session["easylist-IsRetailUser"] != "true") { %>
+		<li class="active">
+			<a href="/bulk-upload"><i class="icon-stack-1">&nbsp;</i> Bulk Upload</a>
+		</li>
+		<li>
+			<a href="/distribution-feed-in"><i class="icon-tree">&nbsp;</i> Distribution</a>
+		</li>
+		<li>
+			<a href="/download"><i class="icon-download-2">&nbsp;</i> Download Photo Management App</a>
+		</li>
+		<% } %>
+	</ul>
+
+	
+	<asp:Panel ID="SuccessPanel" runat="server" visible="false">
+		<div class="alert alert-success">
+			<strong>Success!</strong>
+			<asp:Label ID="SuccessUploadStatusMessage" runat="server"></asp:Label>
+		</div>
+	</asp:Panel>
+	<asp:Panel ID="FailPanel" runat="server" visible="false">
+		<div class="alert alert-error">
+			<strong>Fail!</strong>
+			<asp:Label ID="FailUploadStatusMessage" runat="server"></asp:Label>
+		</div>
+	</asp:Panel>
+	
+	<div class="widget-box">
+		<div class="widget-title">
+			<ul data-tabs="tabs" class="nav nav-tabs" id="tabs">
+				<li class=""><a  href="/bulk-upload.aspx" id="FileUploadTab"><i class="icon-upload"></i> File Upload</a></li>
+				<li class=""><a  href="/bulk-upload/purification.aspx" id="VehiclePurificationTab"><i class="icon-data"></i> Purification</a></li>
+				<li class="active"><a  href="/bulk-upload/last-upload-summary.aspx" id="LastUploadSummaryTab"><i class="icon-file"></i> Last Upload Summary</a></li>
+				<li class=""><a  href="/bulk-upload/file-format.aspx" id="FileFormatTab"><i class="icon-folder-close-alt"></i> File Format</a></li>
+			</ul>
+		</div>
+		<div class="tab-content widget-content">
+			<!-- File Format Content-->		
+			<div class="tab-pane active" id="UploadSummary">
+				<form id="formFileFormat" class="form-horizontal" runat="server">
+					<umbraco:Macro Alias="EasyListFeedInLastUploadSummary" UseIn="EasyList" runat="server"></umbraco:Macro>
+				</form>
+			</div>
+			<!-- /file-format-tab-content -->
+			
+		</div>
+		
+	</div>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="easylist.uploadimages-bulk,easylist.editimages-bulk,forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script>
+		$(function(){
+			$.metadata.setType('attr', 'data-validate');
+			$('.form-horizontal').validate();	
+		});	
+	</script>
+</asp:content>
+	

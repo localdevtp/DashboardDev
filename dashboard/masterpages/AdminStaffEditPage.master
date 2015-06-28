@@ -1,0 +1,198 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+	
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/staff"><i class="icon-users"></i> Staff</a></li>
+	</ul>
+	
+	<!--
+	<ul class="nav nav-pills">
+		<li><a href="/staff/create"><i class="icon-user-add">&nbsp;</i>Add New User</a></li>
+		<li class="active"><a href="/staff"><i class="icon-users">&nbsp;</i>Manage Users</a></li>
+	</ul>
+	-->
+	
+	<div id="account">
+		<umbraco:Macro Alias="EasyListStaffEditPage" runat="server"></umbraco:Macro>
+	</div>
+	
+	<div id = "CountrySelection" style="display:none">
+		<form runat="server">
+			<asp:ScriptManager ID="ScriptManager1" runat="server">
+			</asp:ScriptManager>
+			<div>
+				<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+					<ContentTemplate>
+						<umbraco:Macro Alias="EasyListCountrySelection" runat="server">
+						</umbraco:Macro>
+					</ContentTemplate>
+				</asp:UpdatePanel>
+			</div>	
+		</form>
+	</div>
+	
+	<div id="roles-table" class="hidden">
+		<table class="table center-td">
+			<thead class="center-th">
+				<tr>
+					<th></th>
+					<th>Listing</th>
+					<th>Accounting</th>
+					<th>Staff</th>
+					<th>Report</th>
+					<th>Lead</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>Manager</th>
+					<td><i class="icon-checkmark-circle success"></i></td>
+					<td><i class="icon-checkmark-circle success"></i></td>
+					<td><i class="icon-checkmark-circle success"></i></td>
+					<td><i class="icon-checkmark-circle success"></i></td>
+					<td><i class="icon-checkmark-circle success"></i></td>
+				</tr>
+				<tr>
+					<th>Account</th>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-checkmark-circle success"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+				</tr>
+				<tr>
+					<th>Editor</th>
+					<td><i class="icon-checkmark-circle success"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+				</tr>
+				<tr>
+					<th>Sales</th>
+					<td><i class="icon-checkmark-circle success"></i><br/><small>(View only)</small></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-blocked fail"></i></td>
+					<td><i class="icon-checkmark-circle success"></i></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script type="text/javascript">
+		$(function(){
+			$.metadata.setType('attr', 'data-validate');
+			$('#AccountForm').validate();
+			
+			$('#ResetPassword').on('change',function(){
+				if($(this).is(':checked')) {
+					$('.password-fields').fadeIn();
+					$('input[name="accountNewPassword"]').rules('add', { required: true });
+					$('input[name="accountNewPassword2"]').rules('add', { equalTo: "accountNewPassword" });
+				} else {
+					$('.password-fields').fadeOut();
+					$('input[name="accountNewPassword"]').rules('remove');
+					$('input[name="accountNewPassword2"]').rules('remove');
+				}
+			});
+
+			
+			$("#DeleteAcc").click(function(e) {
+				$("#update-account").val("false");
+				$("#delete-account").val("true");
+				
+				$('#myModal').modal();
+				e.preventDefault();
+			});
+					
+			$("#UpdateAcc").click(function() {
+				$("#update-account").val("true");
+				$("#delete-account").val("false");
+			});
+			
+			$('#ConfirmDeleteAcc').click(function() {
+				  $('#AccountForm').submit();
+			});
+			
+			//----------------------------------------------------------------------
+			// Country selection
+			//----------------------------------------------------------------------
+			if ($("#MyCountrySelectHere").length && $("#MyCountrySelectHere").is(":visible"))
+			{
+				$('#CountrySelection').clone(true).appendTo('#MyCountrySelectHere');
+				$('#CountrySelection').show();
+			}
+
+			$("#UpdateAcc").click(
+				function(e){
+					$('#address-country-code').val($(".add-country").val());
+					
+					if ($(".add-region").length && $(".add-region").is(":visible"))
+					{
+						$('#address-region-id').val($(".add-region").val()); 
+						$('#address-region-name').val($('.add-region option:selected').first().text()); 
+					}else
+					{
+						$('#address-region-id').val("");
+						$('#address-region-name').val("");
+					}
+					
+					// Postal Code
+					if ($(".add-postalcode").length && $(".add-postalcode").is(":visible"))
+					{
+						$('#address-postalcode').val($(".add-postalcode").val());
+					}
+					else
+					{
+						$('#address-postalcode').val("");
+					}
+					
+					// District
+					if ($(".add-district-dropdown").length && $(".add-district-dropdown").is(":visible"))
+					{
+						$('#address-district').val($('.add-district-dropdown option:selected').first().text());
+					}else
+					{
+						$('#address-district').val($(".add-district").val());
+					}
+					
+					$('#AddressLine1').val($.trim($('#AddressLine1').val()));
+					$('#AddressLine2').val($.trim($('#AddressLine2').val()));
+				
+					//e.preventDefault();
+				}
+			);
+			
+			
+			//----------------------------------------------------------------------
+			
+			if(Modernizr.touch) {
+				$('#roles-help').on('click', function(){
+					$.showBasicModal('Roles Access', $('#roles-table').html());
+				});
+			} else {
+				$('#roles-help').popover({
+					html: true,
+					placement: 'top',
+					title: 'Roles Access',
+					trigger: 'hover',
+					content: $('#roles-table').html()
+				});
+			}
+		});
+	</script>
+</asp:content>

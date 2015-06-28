@@ -1,0 +1,516 @@
+2015-06-23 14:02:45,097 [7] INFO  Umbraco.Core.CoreBootManager - [Thread 1] Umbraco application starting
+ - trace   2015-06-23 14:02:45,126 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Determining hash of code files on disk
+ - trace   2015-06-23 14:02:45,137 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Hash determined (took 10ms)
+ - trace   2015-06-23 14:02:45,146 [7] DEBUG Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+ - trace   2015-06-23 14:02:45,242 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter, found 0 (took 94ms)
+ - trace   2015-06-23 14:02:45,246 [7] DEBUG Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of Umbraco.Web.Mvc.SurfaceController
+ - trace   2015-06-23 14:02:45,258 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of Umbraco.Web.Mvc.SurfaceController, found 0 (took 13ms)
+ - trace   2015-06-23 14:02:45,266 [7] DEBUG Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of Umbraco.Core.Media.IThumbnailProvider
+ - trace   2015-06-23 14:02:45,379 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of Umbraco.Core.Media.IThumbnailProvider, found 3 (took 112ms)
+ - trace   2015-06-23 14:02:45,379 [7] DEBUG Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of Umbraco.Core.Media.IImageUrlProvider
+ - trace   2015-06-23 14:02:45,384 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of Umbraco.Core.Media.IImageUrlProvider, found 1 (took 5ms)
+ - trace   2015-06-23 14:02:45,394 [7] DEBUG Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of umbraco.interfaces.IApplicationStartupHandler
+ - trace   2015-06-23 14:02:45,459 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of umbraco.interfaces.IApplicationStartupHandler, found 8 (took 65ms)
+ - trace   2015-06-23 14:02:45,505 [7] INFO  Umbraco.Core.CoreBootManager - [Thread 1] Umbraco application startup complete (took 401ms)
+ - trace   2015-06-23 14:02:45,831 [7] DEBUG Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of umbraco.interfaces.IApplication
+ - trace   2015-06-23 14:02:45,858 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of umbraco.interfaces.IApplication, found 7 (took 26ms)
+ - trace   2015-06-23 14:02:45,870 [7] DEBUG Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of umbraco.interfaces.ITree
+ - trace   2015-06-23 14:02:45,925 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of umbraco.interfaces.ITree, found 27 (took 55ms)
+ - trace   2015-06-23 14:02:46,162 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:02:46,201 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 36ms)
+ - trace   2015-06-23 14:02:46,503 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] Starting resolution types of umbraco.XsltExtensionAttribute
+ - trace   2015-06-23 14:02:46,515 [7] INFO  Umbraco.Core.PluginManager - [Thread 9] Completed resolution of types of umbraco.XsltExtensionAttribute, found 0 (took 10ms)
+ - trace   2015-06-23 14:03:11,550 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:03:11,552 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 14:03:17,601 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:03:17,602 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:03:20,883 [7] WARN  umbraco.macro - <log4net.Error>Exception during StringFormat: Input string was not in a correct format. <format>[Thread 9] Error parsing XSLT file. Exception: System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Xml.Xsl.CompiledQuery.Script1.RedirectTo(String url) in c:\inetpub\wwwroot\xslt\EasyListEditAPIHelper.xslt:line 117
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:template name="compiler:generated">(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator {urn:schemas-microsoft-com:xslt-debug}current, Double {urn:schemas-microsoft-com:xslt-debug}position, Double {urn:schemas-microsoft-com:xslt-debug}last, IList`1 {urn:schemas-microsoft-com:xslt-debug}namespaces) in C:\inetpub\wwwroot\xslt\EasyListUserLogin.xslt:line 256
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:template match="/">(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator {urn:schemas-microsoft-com:xslt-debug}current, Double {urn:schemas-microsoft-com:xslt-debug}position, Double {urn:schemas-microsoft-com:xslt-debug}last, IList`1 {urn:schemas-microsoft-com:xslt-debug}namespaces) in C:\inetpub\wwwroot\xslt\EasyListUserLogin.xslt:line 121
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:apply-templates>(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator , Double , Double )
+   at System.Xml.Xsl.CompiledQuery.Query.Root(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime)
+   at System.Xml.Xsl.CompiledQuery.Query.Execute(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime)
+   at System.Xml.Xsl.XmlILCommand.Execute(Object defaultDocument, XmlResolver dataSources, XsltArgumentList argumentList, XmlWriter writer)
+   at System.Xml.Xsl.XslCompiledTransform.Transform(IXPathNavigable input, XsltArgumentList arguments, TextWriter results)
+   at umbraco.macro.GetXsltTransformResult(XmlDocument macroXML, XslCompiledTransform xslt, Dictionary`2 parameters)
+   at umbraco.macro.LoadMacroXslt(macro macro, MacroModel model, Hashtable pageElements, Boolean throwError)</format><args>{}</args></log4net.Error>
+ - trace   2015-06-23 14:03:20,910 [7] WARN  umbraco.macro - [Thread 9] Error loading XSLT EasyListUserLogin.xslt. Exception: System.Threading.ThreadAbortException: Thread was being aborted.
+   at umbraco.macro.LoadMacroXslt(macro macro, MacroModel model, Hashtable pageElements, Boolean throwError)
+ - trace   2015-06-23 14:03:20,922 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:03:20,922 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:03:22,765 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:03:22,765 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:05:02,811 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:05:02,812 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:06:42,826 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:06:42,829 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 2ms)
+ - trace   2015-06-23 14:08:22,844 [7] DEBUG Umbraco.Core.PluginManager - [Thread 12] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:08:22,845 [7] DEBUG Umbraco.Core.PluginManager - [Thread 12] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:10:02,914 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:10:02,914 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:11:42,928 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:11:42,929 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:13:22,946 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:13:22,947 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:15:02,962 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:15:02,963 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:16:42,978 [7] DEBUG Umbraco.Core.PluginManager - [Thread 16] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:16:42,979 [7] DEBUG Umbraco.Core.PluginManager - [Thread 16] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:18:22,992 [7] DEBUG Umbraco.Core.PluginManager - [Thread 12] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:18:22,995 [7] DEBUG Umbraco.Core.PluginManager - [Thread 12] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 14:20:03,010 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:20:03,011 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:20:41,220 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:20:41,220 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:20:46,835 [7] DEBUG Umbraco.Core.PluginManager - [Thread 12] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:20:46,836 [7] DEBUG Umbraco.Core.PluginManager - [Thread 12] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:20:50,427 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:20:50,428 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:20:50,829 [7] WARN  umbraco.macro - <log4net.Error>Exception during StringFormat: Input string was not in a correct format. <format>[Thread 9] Error parsing XSLT file. Exception: System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Xml.Xsl.CompiledQuery.Script1.RedirectTo(String url) in c:\inetpub\wwwroot\xslt\EasyListEditAPIHelper.xslt:line 117
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:template name="compiler:generated">(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator {urn:schemas-microsoft-com:xslt-debug}current, Double {urn:schemas-microsoft-com:xslt-debug}position, Double {urn:schemas-microsoft-com:xslt-debug}last, IList`1 {urn:schemas-microsoft-com:xslt-debug}namespaces) in C:\inetpub\wwwroot\xslt\EasyListUserLogin.xslt:line 256
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:template match="/">(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator {urn:schemas-microsoft-com:xslt-debug}current, Double {urn:schemas-microsoft-com:xslt-debug}position, Double {urn:schemas-microsoft-com:xslt-debug}last, IList`1 {urn:schemas-microsoft-com:xslt-debug}namespaces) in C:\inetpub\wwwroot\xslt\EasyListUserLogin.xslt:line 121
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:apply-templates>(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator , Double , Double )
+   at System.Xml.Xsl.CompiledQuery.Query.Root(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime)
+   at System.Xml.Xsl.CompiledQuery.Query.Execute(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime)
+   at System.Xml.Xsl.XmlILCommand.Execute(Object defaultDocument, XmlResolver dataSources, XsltArgumentList argumentList, XmlWriter writer)
+   at System.Xml.Xsl.XslCompiledTransform.Transform(IXPathNavigable input, XsltArgumentList arguments, TextWriter results)
+   at umbraco.macro.GetXsltTransformResult(XmlDocument macroXML, XslCompiledTransform xslt, Dictionary`2 parameters)
+   at umbraco.macro.LoadMacroXslt(macro macro, MacroModel model, Hashtable pageElements, Boolean throwError)</format><args>{}</args></log4net.Error>
+ - trace   2015-06-23 14:20:50,829 [7] WARN  umbraco.macro - [Thread 9] Error loading XSLT EasyListUserLogin.xslt. Exception: System.Threading.ThreadAbortException: Thread was being aborted.
+   at umbraco.macro.LoadMacroXslt(macro macro, MacroModel model, Hashtable pageElements, Boolean throwError)
+ - trace   2015-06-23 14:20:50,834 [7] DEBUG Umbraco.Core.PluginManager - [Thread 16] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:20:50,834 [7] DEBUG Umbraco.Core.PluginManager - [Thread 16] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:20:52,005 [7] DEBUG Umbraco.Core.PluginManager - [Thread 12] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:20:52,005 [7] DEBUG Umbraco.Core.PluginManager - [Thread 12] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:22:32,043 [7] DEBUG Umbraco.Core.PluginManager - [Thread 12] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:22:32,044 [7] DEBUG Umbraco.Core.PluginManager - [Thread 12] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:24:13,927 [7] DEBUG Umbraco.Core.PluginManager - [Thread 16] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:24:13,928 [7] DEBUG Umbraco.Core.PluginManager - [Thread 16] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 14:25:30,360 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:25:30,363 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 3ms)
+ - trace   2015-06-23 14:26:00,245 [7] DEBUG Umbraco.Core.PluginManager - [Thread 17] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:26:00,246 [7] DEBUG Umbraco.Core.PluginManager - [Thread 17] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:26:01,443 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:26:01,443 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 14:26:52,515 [7] DEBUG Umbraco.Core.PluginManager - [Thread 17] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:26:52,594 [7] DEBUG Umbraco.Core.PluginManager - [Thread 17] LookupDocument: End resolvers, no document was found (took 79ms)
+ - trace   2015-06-23 14:26:55,464 [7] DEBUG Umbraco.Core.PluginManager - [Thread 17] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:26:55,465 [7] DEBUG Umbraco.Core.PluginManager - [Thread 17] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:27:41,781 [7] DEBUG Umbraco.Core.PluginManager - [Thread 20] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:27:41,781 [7] DEBUG Umbraco.Core.PluginManager - [Thread 20] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:28:45,207 [7] DEBUG Umbraco.Core.PluginManager - [Thread 20] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:28:45,208 [7] DEBUG Umbraco.Core.PluginManager - [Thread 20] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 14:28:57,257 [7] DEBUG Umbraco.Core.PluginManager - [Thread 20] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:28:57,315 [7] DEBUG Umbraco.Core.PluginManager - [Thread 20] LookupDocument: End resolvers, no document was found (took 58ms)
+ - trace   2015-06-23 14:29:00,026 [7] DEBUG Umbraco.Core.PluginManager - [Thread 20] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:29:00,027 [7] DEBUG Umbraco.Core.PluginManager - [Thread 20] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 14:29:15,214 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:29:15,215 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:30:49,699 [7] DEBUG Umbraco.Core.PluginManager - [Thread 20] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:30:49,772 [7] DEBUG Umbraco.Core.PluginManager - [Thread 20] LookupDocument: End resolvers, a document was found (took 71ms)
+ - trace   2015-06-23 14:32:45,517 [7] DEBUG Umbraco.Core.PluginManager - [Thread 25] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:32:45,518 [7] DEBUG Umbraco.Core.PluginManager - [Thread 25] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:32:58,948 [7] DEBUG Umbraco.Core.PluginManager - [Thread 24] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:32:59,005 [7] DEBUG Umbraco.Core.PluginManager - [Thread 24] LookupDocument: End resolvers, no document was found (took 57ms)
+ - trace   2015-06-23 14:33:02,231 [7] DEBUG Umbraco.Core.PluginManager - [Thread 25] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:33:07,108 [7] INFO  Umbraco.Core.CoreBootManager - [Thread 1] Umbraco application starting
+ - trace   2015-06-23 14:33:07,130 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Determining hash of code files on disk
+ - trace   2015-06-23 14:33:07,138 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Hash determined (took 6ms)
+ - trace   2015-06-23 14:33:07,145 [7] DEBUG Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+ - trace   2015-06-23 14:33:07,223 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter, found 0 (took 76ms)
+ - trace   2015-06-23 14:33:07,226 [7] DEBUG Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of Umbraco.Web.Mvc.SurfaceController
+ - trace   2015-06-23 14:33:07,246 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of Umbraco.Web.Mvc.SurfaceController, found 0 (took 20ms)
+ - trace   2015-06-23 14:33:07,251 [7] DEBUG Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of Umbraco.Core.Media.IThumbnailProvider
+ - trace   2015-06-23 14:33:07,262 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of Umbraco.Core.Media.IThumbnailProvider, found 3 (took 10ms)
+ - trace   2015-06-23 14:33:07,262 [7] DEBUG Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of Umbraco.Core.Media.IImageUrlProvider
+ - trace   2015-06-23 14:33:07,268 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of Umbraco.Core.Media.IImageUrlProvider, found 1 (took 5ms)
+ - trace   2015-06-23 14:33:07,272 [7] DEBUG Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of umbraco.interfaces.IApplicationStartupHandler
+ - trace   2015-06-23 14:33:07,292 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of umbraco.interfaces.IApplicationStartupHandler, found 8 (took 20ms)
+ - trace   2015-06-23 14:33:07,719 [7] INFO  Umbraco.Core.CoreBootManager - [Thread 1] Umbraco application startup complete (took 605ms)
+ - trace   2015-06-23 14:33:08,600 [7] DEBUG Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of umbraco.interfaces.IApplication
+ - trace   2015-06-23 14:33:08,623 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of umbraco.interfaces.IApplication, found 7 (took 24ms)
+ - trace   2015-06-23 14:33:08,640 [7] DEBUG Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of umbraco.interfaces.ITree
+ - trace   2015-06-23 14:33:08,699 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of umbraco.interfaces.ITree, found 27 (took 59ms)
+ - trace   2015-06-23 14:33:09,136 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:33:09,176 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 39ms)
+ - trace   2015-06-23 14:33:09,529 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] Starting resolution types of umbraco.XsltExtensionAttribute
+ - trace   2015-06-23 14:33:09,538 [7] INFO  Umbraco.Core.PluginManager - [Thread 9] Completed resolution of types of umbraco.XsltExtensionAttribute, found 0 (took 7ms)
+ - trace   2015-06-23 14:34:50,827 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:34:50,828 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:36:30,905 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:36:30,907 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 14:37:04,563 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] Starting resolution types of umbraco.interfaces.ITree
+ - trace   2015-06-23 14:37:04,680 [7] INFO  Umbraco.Core.PluginManager - [Thread 13] Completed resolution of types of umbraco.interfaces.ITree, found 36 (took 118ms)
+ - trace   2015-06-23 14:38:11,016 [7] DEBUG Umbraco.Core.PluginManager - [Thread 12] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:38:11,016 [7] DEBUG Umbraco.Core.PluginManager - [Thread 12] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:39:50,081 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:39:50,082 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:41:29,490 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:41:29,495 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 4ms)
+ - trace   2015-06-23 14:43:12,760 [7] DEBUG Umbraco.Core.PluginManager - [Thread 11] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:43:12,760 [7] DEBUG Umbraco.Core.PluginManager - [Thread 11] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:44:52,770 [7] DEBUG Umbraco.Core.PluginManager - [Thread 11] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:44:52,771 [7] DEBUG Umbraco.Core.PluginManager - [Thread 11] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 14:46:32,787 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:46:32,790 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:48:12,919 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:48:12,920 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:49:52,937 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:49:52,938 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 14:51:32,949 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:51:32,950 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:53:12,970 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:53:12,971 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:54:52,984 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:54:52,985 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:56:33,556 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:56:33,558 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:58:13,116 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:58:13,116 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 14:59:53,128 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 14:59:53,129 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:01:33,141 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:01:33,142 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:03:13,004 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:03:13,006 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 15:04:53,272 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:04:53,273 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:06:33,289 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:06:33,291 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 15:08:13,307 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:08:13,308 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:09:53,326 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:09:53,327 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:11:33,437 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:11:33,438 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:13:13,454 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:13:13,456 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 15:14:53,473 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:14:53,477 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 3ms)
+ - trace   2015-06-23 15:16:33,490 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:16:33,491 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 15:18:14,104 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:18:14,105 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:19:53,664 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:19:53,665 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:21:33,675 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:21:33,676 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:23:13,698 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:23:13,698 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:24:53,465 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:24:53,466 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:26:33,822 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:26:33,823 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:28:13,834 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:28:13,835 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:29:53,846 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:29:53,847 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 15:31:33,616 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:31:33,617 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:33:13,969 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:33:13,970 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 15:34:53,985 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:34:53,986 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:36:32,976 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:36:32,977 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:36:33,042 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:36:33,043 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:36:40,786 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:36:40,788 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 15:36:44,904 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:36:44,905 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:36:47,724 [7] WARN  umbraco.macro - <log4net.Error>Exception during StringFormat: Input string was not in a correct format. <format>[Thread 9] Error parsing XSLT file. Exception: System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Xml.Xsl.CompiledQuery.Script6.RedirectTo(String url) in c:\inetpub\wwwroot\xslt\EasyListEditAPIHelper.xslt:line 117
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:template name="compiler:generated">(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator {urn:schemas-microsoft-com:xslt-debug}current, Double {urn:schemas-microsoft-com:xslt-debug}position, Double {urn:schemas-microsoft-com:xslt-debug}last, IList`1 {urn:schemas-microsoft-com:xslt-debug}namespaces) in C:\inetpub\wwwroot\xslt\EasyListUserLogin.xslt:line 256
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:template match="/">(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator {urn:schemas-microsoft-com:xslt-debug}current, Double {urn:schemas-microsoft-com:xslt-debug}position, Double {urn:schemas-microsoft-com:xslt-debug}last, IList`1 {urn:schemas-microsoft-com:xslt-debug}namespaces) in C:\inetpub\wwwroot\xslt\EasyListUserLogin.xslt:line 121
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:apply-templates>(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator , Double , Double )
+   at System.Xml.Xsl.CompiledQuery.Query.Root(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime)
+   at System.Xml.Xsl.CompiledQuery.Query.Execute(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime)
+   at System.Xml.Xsl.XmlILCommand.Execute(Object defaultDocument, XmlResolver dataSources, XsltArgumentList argumentList, XmlWriter writer)
+   at System.Xml.Xsl.XslCompiledTransform.Transform(IXPathNavigable input, XsltArgumentList arguments, TextWriter results)
+   at umbraco.macro.GetXsltTransformResult(XmlDocument macroXML, XslCompiledTransform xslt, Dictionary`2 parameters)
+   at umbraco.macro.LoadMacroXslt(macro macro, MacroModel model, Hashtable pageElements, Boolean throwError)</format><args>{}</args></log4net.Error>
+ - trace   2015-06-23 15:36:47,748 [7] WARN  umbraco.macro - [Thread 9] Error loading XSLT EasyListUserLogin.xslt. Exception: System.Threading.ThreadAbortException: Thread was being aborted.
+   at umbraco.macro.LoadMacroXslt(macro macro, MacroModel model, Hashtable pageElements, Boolean throwError)
+ - trace   2015-06-23 15:36:47,759 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:36:47,760 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:36:48,785 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:36:48,786 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:38:28,819 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:38:28,820 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:39:34,942 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:39:34,943 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:39:38,133 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:39:38,134 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:39:42,060 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:39:42,081 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, no document was found (took 21ms)
+ - trace   2015-06-23 15:39:46,443 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:39:46,444 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:39:53,941 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:39:53,942 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:40:03,772 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:40:03,774 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:40:05,397 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:40:05,398 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:40:11,626 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:40:11,627 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:40:12,558 [7] WARN  umbraco.macro - <log4net.Error>Exception during StringFormat: Input string was not in a correct format. <format>[Thread 13] Error parsing XSLT file. Exception: System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Xml.Xsl.CompiledQuery.Script12.CreateCustomerCreditCard() in c:\inetpub\wwwroot\xslt\EasyListAccountHelper.xslt:line 85
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:template name="PaymentMethodEditor">(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator {urn:schemas-microsoft-com:xslt-debug}current, Double {urn:schemas-microsoft-com:xslt-debug}position, Double {urn:schemas-microsoft-com:xslt-debug}last, IList`1 {urn:schemas-microsoft-com:xslt-debug}namespaces) in C:\inetpub\wwwroot\xslt\EasyListAccountPaymentMethod.xslt:line 161
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:template name="LoadPage">(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator {urn:schemas-microsoft-com:xslt-debug}current, Double {urn:schemas-microsoft-com:xslt-debug}position, Double {urn:schemas-microsoft-com:xslt-debug}last, IList`1 {urn:schemas-microsoft-com:xslt-debug}namespaces) in C:\inetpub\wwwroot\xslt\EasyListAccountPaymentMethod.xslt:line 64
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:template match="/">(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator {urn:schemas-microsoft-com:xslt-debug}current, Double {urn:schemas-microsoft-com:xslt-debug}position, Double {urn:schemas-microsoft-com:xslt-debug}last, IList`1 {urn:schemas-microsoft-com:xslt-debug}namespaces) in C:\inetpub\wwwroot\xslt\EasyListAccountPaymentMethod.xslt:line 40
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:apply-templates>(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator , Double , Double )
+   at System.Xml.Xsl.CompiledQuery.Query.Root(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime)
+   at System.Xml.Xsl.CompiledQuery.Query.Execute(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime)
+   at System.Xml.Xsl.XmlILCommand.Execute(Object defaultDocument, XmlResolver dataSources, XsltArgumentList argumentList, XmlWriter writer)
+   at System.Xml.Xsl.XslCompiledTransform.Transform(IXPathNavigable input, XsltArgumentList arguments, TextWriter results)
+   at umbraco.macro.GetXsltTransformResult(XmlDocument macroXML, XslCompiledTransform xslt, Dictionary`2 parameters)
+   at umbraco.macro.LoadMacroXslt(macro macro, MacroModel model, Hashtable pageElements, Boolean throwError)</format><args>{}</args></log4net.Error>
+ - trace   2015-06-23 15:40:12,559 [7] WARN  umbraco.macro - [Thread 13] Error loading XSLT EasyListAccountPaymentMethod.xslt. Exception: System.Threading.ThreadAbortException: Thread was being aborted.
+   at umbraco.macro.LoadMacroXslt(macro macro, MacroModel model, Hashtable pageElements, Boolean throwError)
+ - trace   2015-06-23 15:42:09,271 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:42:09,271 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:43:49,968 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:43:49,969 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:45:29,981 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:45:29,981 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:47:09,997 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:47:09,998 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:48:50,014 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:48:50,015 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:50:30,044 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:50:30,045 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:52:10,061 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:52:10,062 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:53:50,077 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:53:50,077 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:55:30,266 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:55:30,266 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:57:09,992 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:57:09,995 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 15:58:50,088 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:58:50,219 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 130ms)
+ - trace   2015-06-23 15:59:12,789 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:59:12,790 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:59:15,273 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:59:15,273 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:59:18,768 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:59:18,769 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 15:59:19,657 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 15:59:19,658 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 16:00:59,678 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 16:00:59,680 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 16:02:39,693 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 16:02:39,696 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 2ms)
+ - trace   2015-06-23 20:11:13,879 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:11:13,881 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 20:12:53,898 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:12:53,899 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:14:33,914 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:14:33,915 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 20:16:13,932 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:16:13,933 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:17:53,948 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:17:53,949 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:19:33,965 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:19:33,966 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:21:13,981 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:21:13,983 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:22:53,996 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:22:53,997 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:24:34,010 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:24:34,010 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:26:14,027 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:26:14,029 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 20:27:54,042 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:27:54,043 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:29:34,055 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:29:34,057 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 20:31:14,070 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:31:14,071 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:32:54,082 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:32:54,083 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:34:34,097 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:34:34,098 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 20:36:14,116 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:36:14,117 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:37:54,131 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:37:54,132 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:39:34,150 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:39:34,151 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:41:14,165 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:41:14,166 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:42:54,180 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:42:54,182 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:44:34,195 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:44:34,196 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:46:14,212 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:46:14,213 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:47:54,231 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:47:54,232 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:49:34,251 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:49:34,251 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:51:14,264 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:51:14,265 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:52:54,280 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:52:54,281 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:54:34,296 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:54:34,297 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:56:14,314 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:56:14,315 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:57:54,330 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:57:54,331 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 20:59:34,344 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 20:59:34,346 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 21:01:14,362 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:01:14,363 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:02:54,380 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:02:54,382 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 21:04:34,403 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:04:34,404 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:06:14,414 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:06:14,415 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:07:54,432 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:07:54,433 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:09:34,453 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:09:34,454 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:11:14,470 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:11:14,471 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:12:54,495 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:12:54,496 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:14:34,512 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:14:34,513 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:16:14,534 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:16:14,535 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:17:54,550 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:17:54,553 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 2ms)
+ - trace   2015-06-23 21:19:34,572 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:19:34,572 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:21:14,590 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:21:14,590 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:22:54,603 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:22:54,604 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:24:34,617 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:24:34,618 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:26:14,630 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:26:14,631 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:27:54,649 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:27:54,649 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:29:34,665 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:29:34,665 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:31:14,679 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:31:14,680 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:32:54,690 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:32:54,690 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:34:34,705 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:34:34,705 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:36:14,717 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:36:14,717 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:37:54,729 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:37:54,730 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:39:34,743 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:39:34,744 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:40:30,539 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:40:30,539 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:40:35,655 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:40:35,656 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:40:42,281 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:40:42,282 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:40:42,320 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:40:42,322 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 2ms)
+ - trace   2015-06-23 21:40:46,345 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:40:46,346 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:40:50,559 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:40:50,560 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 21:40:54,362 [7] WARN  umbraco.macro - <log4net.Error>Exception during StringFormat: Input string was not in a correct format. <format>[Thread 13] Error parsing XSLT file. Exception: System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Xml.Xsl.CompiledQuery.Script6.RedirectTo(String url) in c:\inetpub\wwwroot\xslt\EasyListEditAPIHelper.xslt:line 117
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:template name="compiler:generated">(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator {urn:schemas-microsoft-com:xslt-debug}current, Double {urn:schemas-microsoft-com:xslt-debug}position, Double {urn:schemas-microsoft-com:xslt-debug}last, IList`1 {urn:schemas-microsoft-com:xslt-debug}namespaces) in C:\inetpub\wwwroot\xslt\EasyListUserLogin.xslt:line 256
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:template match="/">(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator {urn:schemas-microsoft-com:xslt-debug}current, Double {urn:schemas-microsoft-com:xslt-debug}position, Double {urn:schemas-microsoft-com:xslt-debug}last, IList`1 {urn:schemas-microsoft-com:xslt-debug}namespaces) in C:\inetpub\wwwroot\xslt\EasyListUserLogin.xslt:line 121
+   at System.Xml.Xsl.CompiledQuery.Query.<xsl:apply-templates>(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime, XPathNavigator , Double , Double )
+   at System.Xml.Xsl.CompiledQuery.Query.Root(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime)
+   at System.Xml.Xsl.CompiledQuery.Query.Execute(XmlQueryRuntime {urn:schemas-microsoft-com:xslt-debug}runtime)
+   at System.Xml.Xsl.XmlILCommand.Execute(Object defaultDocument, XmlResolver dataSources, XsltArgumentList argumentList, XmlWriter writer)
+   at System.Xml.Xsl.XslCompiledTransform.Transform(IXPathNavigable input, XsltArgumentList arguments, TextWriter results)
+   at umbraco.macro.GetXsltTransformResult(XmlDocument macroXML, XslCompiledTransform xslt, Dictionary`2 parameters)
+   at umbraco.macro.LoadMacroXslt(macro macro, MacroModel model, Hashtable pageElements, Boolean throwError)</format><args>{}</args></log4net.Error>
+ - trace   2015-06-23 21:40:54,362 [7] WARN  umbraco.macro - [Thread 13] Error loading XSLT EasyListUserLogin.xslt. Exception: System.Threading.ThreadAbortException: Thread was being aborted.
+   at umbraco.macro.LoadMacroXslt(macro macro, MacroModel model, Hashtable pageElements, Boolean throwError)
+ - trace   2015-06-23 21:40:54,365 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:40:54,365 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:40:55,328 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:40:55,329 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:40:57,064 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:40:57,064 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:40:57,886 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:40:57,887 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:42:37,923 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:42:37,925 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:44:17,944 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:44:17,945 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:45:57,957 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:45:57,959 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 21:47:38,362 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:47:38,363 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:49:18,083 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:49:18,085 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 21:50:58,099 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:50:58,100 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:52:38,109 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:52:38,110 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:54:18,123 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:54:18,124 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:55:58,136 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:55:58,136 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:57:38,148 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:57:38,149 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 21:59:18,168 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 21:59:18,169 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 22:00:58,189 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 22:00:58,189 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 22:02:38,200 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 22:02:38,202 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 22:04:18,216 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 22:04:18,217 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 22:05:58,230 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 22:05:58,231 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 22:07:38,241 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 22:07:38,242 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 22:09:18,256 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 22:09:18,257 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 22:10:58,275 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 22:10:58,276 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 22:12:38,288 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 22:12:38,289 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 22:14:18,304 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 22:14:18,305 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 22:15:58,410 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 22:15:58,412 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 22:17:38,421 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: Begin resolvers
+ - trace   2015-06-23 22:17:38,423 [7] DEBUG Umbraco.Core.PluginManager - [Thread 9] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   2015-06-23 22:19:18,433 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: Begin resolvers
+ - trace   2015-06-23 22:19:18,433 [7] DEBUG Umbraco.Core.PluginManager - [Thread 10] LookupDocument: End resolvers, a document was found (took 0ms)
+ - trace   2015-06-23 22:20:58,448 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: Begin resolvers
+ - trace   2015-06-23 22:20:58,449 [7] DEBUG Umbraco.Core.PluginManager - [Thread 13] LookupDocument: End resolvers, a document was found (took 1ms)
+ - trace   

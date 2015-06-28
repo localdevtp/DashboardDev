@@ -1,0 +1,174 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/dealers"><i class="icon-user-3"></i> Customers</a></li>
+	</ul>
+	
+	<umbraco:Macro Alias="EasyListDealersPage" runat="server"></umbraco:Macro>
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<script>
+		$(function(){
+
+			$('#loading-bg').hide();
+			$("#loading").hide();
+
+			$(document).ajaxStart(function () {
+				$('#loading-bg').show();
+				$("#loading").show();
+			});
+	
+			$(document).ajaxComplete(function () {
+				$('#loading-bg').hide();
+				$("#loading").hide();
+			});
+
+			// Toggle search / filter / sort button
+			$('.toolbars .btn[data-toggle="collapse"]').on('click',function(){
+				$(this).toggleClass('active');
+			});
+
+			InitialiseFootable();
+			InitialiseStates();
+			InitialisePaging()
+			
+			
+		});
+
+		function InitialiseFootable(){
+			$('.footable').footable({
+				paging: {
+					callbacks: {
+						init: function(){
+							$('#loading-bg').show();
+							$('#loading').show();
+						},
+						start: function(){
+							$('#loading-bg').show();
+							$('#loading').show();
+						},
+						end: function(){
+							$('#loading-bg').hide();
+							$('#loading').hide();
+							if($('html').hasClass('lt-ie9')){
+								replaceIcons();
+							}
+						}
+					}
+				}
+			});
+		}
+
+		function InitialisePaging()
+		{
+			$('#easylist-pagination a').on('click', function(e){
+
+				var URL = $(this).attr('href');
+				
+				$('.widget-content').load(URL.replace(/ /g, '%20') +' #placeholder', 
+					function (responseText, textStatus, XMLHttpRequest) {
+						if (textStatus == "success") {
+							// all good!
+							history.pushState(null,'Customers',URL.replace(/ /g, '%20'));
+							InitialiseFootable();
+							InitialiseStates();
+							InitialisePaging();
+						}
+						if (textStatus == "error") {
+							 // oh noes!
+						}					
+					});
+				
+				e.preventDefault();
+			});
+		}
+
+		function InitialiseStates() {
+			var fs = $.urlParam('company-state');
+			var fn = $.urlParam('company-name');
+			var fa = $.urlParam('company-active');
+			var fsort = $.urlParam('SortOrder');
+			
+			if (fa != 0){
+				fa = fa.replace("+", " ");
+				fa = fa.replace("%20", " ");
+			}
+			$("#company-active").val(fa).attr("selected", "selected");
+			
+			if (fsort != 0){
+				fsort = fsort.replace("+", " ");
+				fsort = fsort.replace("%20", " ");
+			}
+			$("#SortOrder").val(fsort).attr("selected", "selected");
+			
+			if(fs){
+				$('#filter-state .btn').each(function(){
+					if($(this).text() === fs) {
+						$(this).addClass('active');
+					} else if($(this).text() === 'ALL' && fs === 'All+States') {
+						$(this).addClass('active');
+					}	
+				});
+			} else {
+				$('#filter-state .btn:last-child').addClass('active');
+			}
+			
+			if(fn || fa || fa) {
+				//$('.toolbars .btn[data-toggle="collapse"]').trigger('click');
+			}
+				
+			$('#filter-state .btn').on('click',function(e){
+				var f = $('#manage-dealer');
+				var s = '/dealers?company-name=' + $('[name="company-name"]').val() 
+					 + '&company-active=' + $('[name="company-active"]').val()
+					 + '&SortOrder=' + $('[name="SortOrder"]').val()
+					 + '&IsPostBack=true';	
+				switch($(this).text()) {
+					case "NSW":
+						s += '&company-state=NSW';
+						break;
+					case "ACT":
+						s += '&company-state=ACT';
+						break;
+					case "NT":
+						s += '&company-state=NT';
+						break;
+					case "QLD":
+						s += '&company-state=QLD';
+						break;
+					case "SA":
+						s += '&company-state=SA';
+						break;
+					case "TAS":
+						s += '&company-state=TAS';
+						break;
+					case "VIC":
+						s += '&company-state=VIC';
+						break;
+					case "WA":
+						s += '&company-state=WA';
+						break;
+					default:
+						s += '&company-state=All+States';
+				}
+				
+				window.location.href = s;
+				
+				e.preventDefault();
+			});
+		}
+	</script>
+</asp:content>

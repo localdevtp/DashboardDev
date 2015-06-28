@@ -1,0 +1,60 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	<style>
+		.download-brief, .download-link, .download-req { margin-bottom:10px; }
+		.download-req > a { font-size:18px; }
+		.download-image { text-align:center; }
+		.download-steps { margin:20px 0; }
+		.download-steps img { display:block; margin:0 auto 10px; width:100%; box-sizing:border-box; height:auto; }
+		.download-problem { margin:20px 0 0; }
+		.widget-content h2 { margin-top:0; }
+	</style>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/listings?ListingType=Car"><i class="icon-list-2"></i> Listings</a></li>
+	</ul>	
+	
+	<ul class="nav nav-pills">
+		<li>
+			<a href="/listings?ListingType=Car"><i class="icon-list-2">&nbsp;</i> Listings</a>
+		</li>
+		<% if(Session["easylist-IsRetailUser"] != "true") { %>
+		<li>
+			<a href="/bulk-upload"><i class="icon-stack-1">&nbsp;</i> Bulk Upload</a>
+		</li>
+		<li>
+			<a href="/distribution-feed-in"><i class="icon-tree">&nbsp;</i> Distribution</a>
+		</li>
+		<li class="active">
+			<a href="/download"><i class="icon-download-2">&nbsp;</i> Download Photo Management App</a>
+		</li>
+		<% } %>
+	</ul>
+
+	<umbraco:Macro brief="[#brief]" installation="[#installation]" requirement="[#requirement]" link="[#link]" others="[#others]" Alias="EasylistDownload" runat="server"></umbraco:Macro>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<script>
+		$(function(){
+			$('#video-help').on('click',function(e){
+				var url = $(this).attr('href');
+				var width = ($(this).data('width')) ? $(this).data('width') : 700;
+				var height = ($(this).data('height')) ? $(this).data('height') : 700;
+				// normal window popup
+				try {
+					var left = (screen.width/2)-(width/2);
+					var top = (screen.height/2)-(height/2);
+					window.open(url,null,"height="+ height +",width="+ width +",status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no,resizable=no,top="+top+", left="+left);
+				} catch(e) {
+					window.open(url,null,"height="+ height +",width="+ width +",status=yes,toolbar=no,menubar=no,scrollbars=yes,location=no,resizable=no");
+				}
+				e.preventDefault();
+			});
+		});
+	</script>
+</asp:content>

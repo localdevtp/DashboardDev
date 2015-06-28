@@ -1,0 +1,1 @@
+<%@ Application Codebehind="Global.asax.cs" Inherits="EasyList.Data.API.REST.Global" Language="C#" %>

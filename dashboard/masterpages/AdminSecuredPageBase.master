@@ -1,0 +1,55 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminMaster.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	<asp:ContentPlaceHolder ID="metaTags" runat="server" />
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	<asp:ContentPlaceHolder ID="headItems" runat="server" />
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	
+  	<%
+      // Check for active user session variables
+      if(Session["easylist-username"] == null
+        || Session["easylist-usercode"] == null
+		|| Session["SessionInfo"] == null
+        || string.IsNullOrEmpty(Session["easylist-username"].ToString())
+        || string.IsNullOrEmpty(Session["easylist-usercode"].ToString())
+		)
+      {
+		// Build the redirect AURL
+		/* string url = "/login";
+		
+		if(!string.IsNullOrEmpty(Request.Path) && Request.Path !="/" ){
+			url += "?go="+ Request.Path;
+			if(Request.QueryString != null && !string.IsNullOrEmpty(Request.QueryString.ToString())){
+				url += "&q="+ Request.QueryString.ToString().Replace("&", "|").Replace("=","~");
+			}
+		}
+	
+        Response.Redirect(url);  */
+      }
+  	%>
+
+		<iframe src="/Keepalive.aspx" width="1" height="1" frameborder="0" style="visibility: hidden; position:absolute;" ></iframe> 
+		
+
+		
+		<asp:ContentPlaceHolder Id="mainNavigation" runat="server">
+			<umbraco:Macro Alias="EasyListMainMenu" runat="server"></umbraco:Macro>
+		</asp:ContentPlaceHolder>
+		
+		<div id="page">
+			<div class="container">
+				<asp:ContentPlaceHolder ID="content" runat="server" />
+			</div>
+		</div>
+	  
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<asp:ContentPlaceHolder ID="scripts" runat="server" />
+</asp:content>

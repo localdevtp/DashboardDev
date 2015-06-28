@@ -1,0 +1,157 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/umbraco/masterpages/default.master" AutoEventWireup="true" %>
+	
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderDefault" runat="server">
+	<%
+	
+	// Check for active user session variables
+	if(Session["easylist-username"] == null
+	|| Session["easylist-usercode"] == null
+	|| Session["SessionInfo"] == null
+	|| string.IsNullOrEmpty(Session["easylist-username"].ToString())
+	|| string.IsNullOrEmpty(Session["easylist-usercode"].ToString())
+	)
+	{
+	// Build the redirect URL
+	string url = "/login";
+	
+	if(!string.IsNullOrEmpty(Request.Path) && Request.Path !="/" ){
+	url += "?go="+ Request.Path;
+	if(Request.QueryString != null && !string.IsNullOrEmpty(Request.QueryString.ToString())){
+	url += "&q="+ Request.QueryString.ToString().Replace("&", "|").Replace("=","~");
+	}
+	}
+	
+	Response.Redirect(url);
+	}
+	%>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<title><umbraco:Item field="browserTitle" textIfEmpty="TradingPost" runat="server" /></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<link href="https://tradingpost-dashboard.easylist.com.au/css/bootstrap.css" rel="stylesheet">
+		<link href="https://tradingpost-dashboard.easylist.com.au/css/bootstrap-responsive.css" rel="stylesheet">
+		<link href="https://tradingpost-dashboard.easylist.com.au/fa/css/font-awesome.css" rel="stylesheet">
+		<link href="https://tradingpost-dashboard.easylist.com.au/css/main.css" rel="stylesheet">
+		<link href="https://tradingpost-dashboard.easylist.com.au/css/colors.css" rel="stylesheet">
+		
+		<!-- Necessary conditional css for the greater good -->
+		<!--[if IE]>
+		<link rel="stylesheet" type="text/css" href="https://tradingpost-dashboard.easylist.com.au/css/all-ie-only.css" />
+		<![endif]-->
+		<!--[if lt IE 8]> 
+		<link rel="stylesheet" type="text/css" href="https://tradingpost-dashboard.easylist.com.au/fa/css/font-awesome-ie7.css" />
+		<![endif]-->
+		
+		<link rel="shortcut icon" href="https://tradingpost-dashboard.easylist.com.au/img/tp/favicon.ico">
+
+		<script src="https://tradingpost-dashboard.easylist.com.au/scripts/vendor/modernizr.js"></script>
+	
+	</head>
+
+	<body>
+		
+		<header class="top container">
+			<a href="/" class="brand">
+				<h1>Trading Post</h1>
+			</a>
+			
+			<div class="navbar navbar-inverse">
+				<div class="navbar-inner">
+					<div class="container">
+						<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="float-text-left">MENU</span><span class="icon-bar">&nbsp;</span><span class="icon-bar">&nbsp;</span><span class="icon-bar">&nbsp;</span></button>
+						<div class="nav-collapse collapse">
+							<ul class="nav">
+								<li class="home"><a href="#"><i class="tp-sprite-home">&nbsp;</i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<div class="container">
+	
+			<asp:ContentPlaceHolder Id="previewContent" runat="server"></asp:ContentPlaceHolder>
+			<umbraco:Macro Alias="EasyListListingPreview" runat="server"></umbraco:Macro>
+			
+		</div> <!-- /container -->
+
+		
+		<footer class="bottom container">
+			<div class="related-sites">
+				<div class="row-fluid">
+					<div class="span-half">
+						<span class="hidden-phone">Related Websites:</span>
+						<a href=""> <i class="tp-sprite-car-showroom"></i> </a> 
+						<a href=""> <i class="tp-sprite-domain"></i> </a> 
+					</div>
+					<div class="span-half">
+						<a href=""> <i class="tp-sprite-fblike"></i> </a> 
+						<a href=""> <i class="tp-sprite-twrfollow"></i> </a> 
+					</div>
+				</div>
+			</div>
+		</footer>
+		
+		<script src="https://tradingpost-dashboard.easylist.com.au/scripts/vendor/jquery.js"></script>
+		<script src="https://tradingpost-dashboard.easylist.com.au/scripts/vendor/jquery.customSelect.js"></script>
+		<script src="https://tradingpost-dashboard.easylist.com.au/scripts/vendor/jquery.flexslider.js"></script>
+		<script src="https://tradingpost-dashboard.easylist.com.au/scripts/vendor/jquery.windy.js"></script>
+		<script src="https://tradingpost-dashboard.easylist.com.au/scripts/vendor/jquery.transit.min.js"></script>
+		<script src="https://tradingpost-dashboard.easylist.com.au/scripts/vendor/waypoints.js"></script>
+		<script src="https://tradingpost-dashboard.easylist.com.au/scripts/vendor/waypoints-sticky.js"></script>
+		<script src="https://tradingpost-dashboard.easylist.com.au/scripts/vendor/bootstrap.js"></script>
+		<script src="https://tradingpost-dashboard.easylist.com.au/scripts/site.js"></script>
+		
+		
+		<asp:ContentPlaceHolder Id="previewScript" runat="server">
+			<script>
+				$(function(){
+					$('#inputLocation').typeahead({
+			
+						source: function (query, process) {
+							
+							// Add load status
+							var $self = this.$element;
+							$self.css({
+								background:'#FFF url(/media/1111/ajax-loader.gif) no-repeat 95% center'
+							});
+							
+							// Remove load status on blur
+							$self.on('blur.load-status',function(){ $(this).css('background','#FFF'); });
+							
+							// Data source
+							return $.getJSON(
+								'/api?api=LocSearch&query=' + query,
+								function (data) {
+									if (data.State == 1)
+									{
+										$self.css('background','#FFF');
+										var LocInfo = jQuery.parseJSON(data.Result);
+										return process(LocInfo);
+									}
+									
+								});
+						},
+						
+						// Highlight typed in result
+						highlighter: function (item) {
+							var regex = new RegExp( '(' + this.query + ')', 'gi' );
+							return item.replace( regex, "<strong>$1</strong>" );
+						}
+					});
+				});
+			</script>
+		</asp:ContentPlaceHolder>
+	</body>
+</html>	
+	
+</asp:Content>

@@ -1,0 +1,150 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/PublicMaster.master" AutoEventWireup="true" %>
+
+	<asp:content ContentPlaceHolderId="content" runat="server">
+		
+		<div class="masthead">
+			<div class="container">
+				<h1>
+					Sell your ads at Tradingpost<br />
+					<span>Select the item you're selling...</span>
+				</h1>
+				<div class="category-grid">
+					<div class="row-fluid">
+						<div class="span6">
+							<div class="well">
+								<h2>Cars, Caravans, Trucks &amp; Buses</h2>
+								<ul class="quick-select">
+									<li><i class="icon-tag-2">&nbsp;</i><a href="/new.aspx?CatPath=Automotive/Cars/Cars For Sale">Used car</a></li>
+									<li><i class="icon-tag-2">&nbsp;</i><a href="#">Classic or unique car</a></li>
+									<li><i class="icon-tag-2">&nbsp;</i><a href="#">Truck or bus</a></li>
+									<li><i class="icon-tag-2">&nbsp;</i><a href="/new.aspx?CatPath=Caravans/Caravans">Caravan or Camper Trailer</a></li>
+								</ul>
+								<div class="select">
+									<select class="selectpicker" data-style="btn-primary" data-width="100%" name="">
+										<option value="">Select an item</option>
+										<option value="/new.aspx?CatPath=Automotive/Cars/Cars For Sale">Used car</option>
+										<option value="">Classic or unique car</option>
+										<option value="">Truck or bus</option>
+										<option value="/new.aspx?CatPath=Caravans/Caravans">Caravan or Camper Trailer</option>
+									</select>
+								</div>
+								<div class="price">
+									<strong>Total Cost</strong>
+									<span>$50</span>
+								</div>
+							</div>
+						</div>
+						<div class="span6">
+							<div class="well">
+								<h2>Motorbikes, Boats &amp; More Auto</h2>
+								<ul class="quick-select">
+									<li><i class="icon-tag-2">&nbsp;</i><a href="/new.aspx?CatPath=Automotive/Motorbikes">Motorbike or ATV</a></li>
+									<li><i class="icon-tag-2">&nbsp;</i><a href="/new.aspx?CatPath=Boats and Marine&CatSel=1">Boat</a></li>
+									<li><i class="icon-tag-2">&nbsp;</i><a href="#">Heavy machinery or farm equipment</a></li>
+									<li><i class="icon-tag-2">&nbsp;</i><a href="#">Go kart or buggy</a></li>
+									<li><i class="icon-tag-2">&nbsp;</i><a href="#">Relocatable</a></li>
+								</ul>
+								<div class="select">
+									<select class="selectpicker" data-style="btn-primary" data-width="100%" name="">
+										<option value="">Select an item</option>
+										<option value="/new.aspx?CatPath=Automotive/Motorbikes">Motorbike or ATV</option>
+										<option value="">Boat</option>
+										<option value="">Heavy machinery or farm equipment</option>
+										<option value="">Go kart or buggy</option>
+										<option value="">Relocatable</option>
+									</select>
+								</div>
+								<div class="price">
+									<strong>Total Cost</strong>
+									<span>$40</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<div class="span6">
+							<div class="well">
+								<h2>Household items, Pets &amp; Auto Accessories</h2>
+								<ul class="quick-select">
+									<li><i class="icon-tag-2">&nbsp;</i><a href="/new.aspx?CatPath=Automotive/Trailers">Trailer</a></li>
+									<li><i class="icon-tag-2">&nbsp;</i><a href="/new.aspx?CatPath=">Wheel, car part or accessory</a></li>
+									<li><i class="icon-tag-2">&nbsp;</i><a href="/new.aspx?CatPath=House and Garden&CatSel=1">Household, garden or outdoor item</a></li>
+									<li><i class="icon-tag-2">&nbsp;</i><a href="/new.aspx?CatPath=Sports and Leisure&CatSel=1">Sport, leisure or travel item</a></li>
+									<li><i class="icon-tag-2">&nbsp;</i><a href="/new.aspx?CatPath=Pets and Horses&CatSel=1">Pet</a></li>
+									<li><i class="icon-tag-2">&nbsp;</i><a href="/new.aspx?CatPath=">Other</a></li>
+								</ul>
+								<div class="select">
+									<select class="selectpicker" data-style="btn-primary" data-width="100%" name="">
+										<option value="">Select an item</option>
+										<option value="/new.aspx?CatPath=Automotive/Trailers">Trailer</option>
+										<option value="/new.aspx?CatPath=">Wheel, car part or accessory</option>
+										<option value="/new.aspx?CatPath=House and Garden&CatSel=1">Household, garden or outdoor item</option>
+										<option value="/new.aspx?CatPath=Sports and Leisure&CatSel=1">Sport, leisure or travel item</option>
+										<option value="/new.aspx?CatPath=Pets and Horses&CatSel=1">Pet</option>
+										<option value="">Other</option>
+									</select>
+								</div>
+								<div class="price">
+									<strong>Total Cost</strong>
+									<span>$20</span>
+								</div>
+							</div>
+						</div>
+						<div class="span6">
+							<div class="well">
+								<h2>Or sell items priced under $500 for FREE</h2>
+								<p>If the item you are selling is priced under $500, it is FREE to list on Tradingpost. 
+									Excludes live animals.<br /><br /><a href="#">Fair use policy</a> applies.</p>
+								<div class="select">
+									<select class="selectpicker" data-style="btn-primary" data-width="100%" id="selectcategory" name="selectcategory"> 
+										<option value="/new.aspx?CatPath=">Select an item</option>
+										<option value="/new.aspx?CatPath=">Household item</option> 
+										<option value="/new.aspx?CatPath=">Home renovation item</option> 
+										<option value="/new.aspx?CatPath=">Garden or outdoor item</option> 
+										<option value="/new.aspx?CatPath=Sports and Leisure&CatSel=1">Sport or leisure item</option> 
+										<option value="/new.aspx?CatPath=">Travel item</option>
+										<option value="/new.aspx?CatPath=">Heavy machinery</option> 
+										<option value="/new.aspx?CatPath=">Farm equipment</option>
+										<option value="/new.aspx?CatPath=">Parts or accessories</option>
+										<option value="/new.aspx?CatPath=">Motorbike or ATV</option>
+										<option value="/new.aspx?CatPath=">Boat</option>Caravan 
+										<option value="/new.aspx?CatPath=">Trailer</option>
+										<option value="/new.aspx?CatPath=">Used car</option> 
+										<option value="/new.aspx?CatPath=">Classic or unique car</option>
+										<option value="/new.aspx?CatPath=">Truck or bus</option>
+										<option value="/new.aspx?CatPath=">Other</option>
+									</select>
+								</div>
+								<div class="price">
+									<strong>Total Cost</strong>
+									<span>$0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="action">
+					<h3>Not a member?</h3>
+					<a href="/login" class="btn btn-primary btn-large">Sign up for free</a>
+				</div>
+			</div>
+		</div>
+		
+	</asp:content>
+
+	<asp:content ContentPlaceHolderId="scripts" runat="server">
+		<umbraco:Macro files="plugins/jquery.customSelect" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+		<script>
+			// Pretified custom select box
+			$('.selectpicker').selectpicker();
+			//if(!$('html').hasClass('lt-ie9')){
+				//$('select').customSelect();
+			//}
+			
+			// On selection do?
+			$('select').on('change',function(){
+				//alertModal('This is where you are supposed to send "'+ $('option:selected',this).val() +'" category to the new listing','Redirect','info');	
+				window.location.href = $('option:selected',this).val() ;
+			});
+		</script>
+	</asp:content>

@@ -1,0 +1,53 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/PublicMaster.master" AutoEventWireup="true" %>
+
+
+<asp:Content ContentPlaceHolderId="headItems" runat="server">
+	<style>
+		.video-single { margin-bottom:10px; }
+		.video-single iframe { width:640px; height:360px; }
+		.video-single .description { margin-top:10px; }
+		
+		.video-single .hero-video { position:relative; padding-bottom:56.25%; padding-top:25px; height:0; }
+		.video-single .hero-video iframe { position:absolute; top:0; left:0; width:100%; height:100%; }
+		
+		.video-list ul { list-style:none; margin:0; padding:0 }
+		.video-list ul li .video { position:relative; padding:10px 10px 10px 195px; margin-bottom:10px; min-height:98px; border:1px solid #CCC; }
+		.video-list ul li figure { position:absolute; width:175px; height:98px; top:10px; left:10px; margin:0; }
+		.video-list ul li figure .play-icon { position:absolute; top:50%; left:50%; margin-top:-18px; margin-left:-18px; padding:4px; background:#333; background:rgba(0,0,0,.7); border-radius:3px; }
+		.video-list ul li .description { overflow:hidden; height:60px; }
+		
+		@media only screen and (min-width:968px) {
+			.video-list ul li .header { overflow:hidden; white-space: nowrap; text-overflow: ellipsis; }
+			.video-list ul li { float:left; width:50%; }
+			.video-list ul li .video { margin-right:10px; }
+		}
+		@media only screen and (max-width:767px) {
+			#page h1 { font-size:18px; line-height:24px; }
+			#page h2 { font-size:16px; line-height:22px; }
+		}
+		@media only screen and (max-width:479px) {
+			.video-list ul li .description { display:none; }
+		}
+	</style>
+</asp:Content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<div id="page">
+		<div class="container">
+			
+			<ul class="breadcrumb">
+				<li class="active"><i class="icon-facetime-video">&nbsp;</i> Videos</li>
+			</ul>
+			
+			<h1><umbraco:Item field="pageTitle" runat="server" /></h1>
+			
+			<div class="video-list">
+				<umbraco:Macro recordsPerPage="10" render="latest" Alias="EasylistVideoList" runat="server"></umbraco:Macro>
+			</div>
+		</div>
+	</div>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+
+</asp:content>

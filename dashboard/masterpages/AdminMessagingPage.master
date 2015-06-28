@@ -1,0 +1,300 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li class="active"><i class="icon-paperplane"></i> Messaging</li>
+	</ul>
+	
+	<!-- Modal(s) -->
+	<div id="emailContentModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">Email Content</h3>
+			</div>
+			<div class="modal-body">
+				<textarea id="content" style="width: 100%; height: 300px"></textarea>
+			</div>
+			<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		</div>
+	</div>
+	
+	<umbraco:Macro Alias="EasyListMessaging" runat="server"></umbraco:Macro>
+	
+</asp:content>
+	
+
+<asp:Content ContentPlaceHolderId="scripts" runat="server">
+	<script>
+		$(function(){
+			
+			$(document).ajaxStart(function () {
+				$('#loading-bg').show();
+				$("#loading").show();
+			});
+	
+			$(document).ajaxComplete(function () {
+				$('#loading-bg').hide();
+				$("#loading").hide();
+			});
+			
+			// Toggle search / filter / sort button
+			$('.toolbars .btn[data-toggle="collapse"]').on('click',function(){
+				$(this).toggleClass('active');
+			});
+
+			InitialiseTabs();
+			InitialiseFootable();
+			InitialisePaging();
+			InitializeSubmitButton();
+			
+			$('#loading-bg').hide();
+			$("#loading").hide();
+			$('.toolbars .btn-info').trigger('click');			
+		});		
+		
+		function InitializeDatetimeFields() {
+			$('[type="datetime-local"]').each(function() {
+				if($('html').hasClass('no-appleios')) {
+					$(this).prop('type','text');
+					$(this).prop('placeholder','dd/mm/yyyy hh:mm AM');
+					$(this).datetimepicker({ format: 'dd/mm/yyyy HH:ii P', showMeridian: true });
+				}
+			});
+		}
+		
+		function RandomParam() {
+			return "&random=" + Math.random() + "_" + (new Date()).getTime();
+		}
+		
+		function InitializeMenuActions() {
+			$('#select-all-menu').click(function(e){
+				e.preventDefault();
+				$('.cls-resend-chk').prop('checked', true);
+			});
+			
+			$('#unselect-all-menu').click(function(e){
+				e.preventDefault();
+				$('.cls-resend-chk').prop('checked', false);
+			});
+			
+			$('#resend-menu').click(function(e){
+				e.preventDefault();
+				
+				$('#resend-ids').val('');
+				
+				var listToResend = new Array();
+				$('.cls-resend-chk').each(function(index, value){
+					var $value = $(value);
+
+					if ($value.prop('checked')) {
+						listToResend.push($value.val());
+					}
+				});
+				
+				if (listToResend.length == 0) {
+					alert("Nothing to resend");
+					return;
+				}
+				
+				// For showing selected ids
+				// alert(listToResend.join(','));
+				
+				$('#resend-ids').val(listToResend.join(','));
+				
+				resendTrigger = true;
+				
+				// Trigger a submit
+				$('.form-horizontal #search').click();
+			});
+		}
+		
+		var resendTrigger = false;
+		
+		function InitializeSubmitButton() {
+			$('.form-horizontal #search').on('click', function(e){
+				
+				e.preventDefault();
+				
+				if (resendTrigger == false) {
+					$('#resend-ids').val('');
+				}
+				resendTrigger = false;
+				
+				var t = $('#tabs .active a').attr('href');
+			
+				$.ajax({
+					type: "GET",
+					url: '/messaging',
+					data: $('.form-horizontal').serialize() + RandomParam() + t,
+					success: function(data) {
+					
+						$('#search-result').remove();
+						$('#easylist-pagination').remove();
+						
+						/* To show resending result message if available */
+						$('#resend-message').remove();
+						if ($(data).find('#resend-message').length !=0 ) {
+							$(data).find('#resend-message').appendTo(t);
+						}
+					
+						var searchResult = $(data).find('#search-result');					
+					
+						if (searchResult.length == 0) {
+							window.location = "/login?go=/messaging/" + t;
+						}
+						
+						searchResult.appendTo(t);
+				
+						$(data).find('#easylist-pagination').appendTo('#detail-panel');
+
+						InitialiseFootable();
+						InitialisePaging();
+						InitializeMenuActions();
+				
+						$('#search').resetbtnload();
+						
+						InitialiseModal();
+					},
+					dataType: 'html'
+				});
+			});
+		}
+		
+		function InitialiseModal() {
+			$('.footable').on('click', '.popover-email-content', function(e){
+				e.preventDefault();
+				$('#emailContentModal .modal-body #content').text($(this).attr('data-content'));
+				$('#emailContentModal').modal({show: true});
+			});
+		}
+			
+		function InitialiseFootable(){
+			$('.active .footable').footable({
+				paging: {
+					callbacks: {
+						init: function(){
+							$('#loading-bg').show();
+							$('#loading').show();
+						},
+						start: function(){
+							$('#loading-bg').show();
+							$('#loading').show();
+						},
+						end: function(){
+							$('#loading-bg').hide();
+							$('#loading').hide();
+							if($('html').hasClass('lt-ie9')){
+								replaceIcons();
+							}
+						}
+					}
+				}
+			});
+		}
+		
+		function InitialiseTabs(){
+			$('.tab-pane').not('.active').remove();
+			$('[data-toggle="tab"]').on('click',function(e){
+				
+				$('#resend-ids').val('');
+				
+				var t = $(this).attr('href');
+				$(".tab-content").load("/messaging " + t, 
+					function (responseText, textStatus, XMLHttpRequest) {
+						if (textStatus == "success") {
+							// all good!
+							$(t).addClass('active');
+							
+							// Toggle search / filter / sort button
+							$('.toolbars .btn[data-toggle="collapse"]').on('click',function(){
+								$(this).toggleClass('active');
+							});
+							
+							InitialiseFootable();
+							InitialisePaging();
+							InitializeSubmitButton();
+							InitializeDatetimeFields();
+							
+							$('.toolbars .btn-info').trigger('click');
+							
+							/* To show resending result message if available */
+							$('#resend-message').remove();
+							if ($(responseText).find('#resend-message').length !=0 ) {
+								$(responseText).find('#resend-message').appendTo(t);
+							}
+							
+							var searchResult = $(responseText).find('#search-result');
+					
+							if (searchResult.length == 0) {
+								window.location = "/login?go=/messaging/" + t;
+							}
+						
+							searchResult.appendTo(t);
+						}
+						if (textStatus == "error") {
+							 // oh noes!
+						}					
+					});
+				e.preventDefault();
+			});
+		}
+		
+		function InitialisePaging() {
+			$('#easylist-pagination a').on('click', function(e){
+				e.preventDefault();				
+				
+				$('#resend-ids').val('');
+				
+				var t = $('#tabs .active a').attr('href');
+				
+				$.ajax({
+					type: "GET",
+					url: '/messaging',
+					data: $(this).attr('href') + "&" + $('.form-horizontal').serialize() + RandomParam() + t,
+					success: function(data) {
+					
+						$('#search-result').remove();
+						$('#easylist-pagination').remove();					
+					
+						/* To show resending result message if available */
+						$('#resend-message').remove();
+						if ($(data).find('#resend-message').length !=0 ) {
+							$(data).find('#resend-message').appendTo(t);
+						}
+					
+						var searchResult = $(data).find('#search-result');
+					
+						if (searchResult.length == 0) {
+							window.location = "/login?go=/messaging/";
+						}
+					
+						searchResult.appendTo(t);
+						$(data).find('#easylist-pagination').appendTo('#detail-panel');
+					
+						InitialiseFootable();
+						InitialisePaging();
+						InitializeMenuActions();
+				
+						InitialiseModal();
+					},
+					dataType: 'html'
+				});
+			});
+		}
+		
+		function getURLParam(name) {
+			name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+			var regexS = "[\\?&]" + name + "=([^&#]*)";
+			var regex = new RegExp(regexS);
+			var results = regex.exec(window.location.href);
+			if (results == null)
+				return "";
+			else
+				return results[1];
+    	}
+		
+	</script>
+</asp:Content>

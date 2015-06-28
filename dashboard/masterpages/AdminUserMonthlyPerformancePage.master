@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/reporting"><i class="icon-bars"></i> Monthly Performance Report</a></li>
+	</ul>
+	
+	<umbraco:Macro Alias="EasyListUserMonthlyPerformancePage" runat="server" />
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<script type="text/javascript">
+		$(function(){
+			Initialise()
+		})
+			
+		function Initialise() {
+			$('.toolbars .btn[data-toggle="collapse"]').on('click',function(){
+				$(this).toggleClass('active');
+			});
+			
+			$(document).ajaxStart(function () {
+				$('#loading-bg').show();
+				$("#loading").show();
+			});
+	
+			$(document).ajaxComplete(function () {
+				$('#loading-bg').hide();
+				$("#loading").hide();
+			});	
+			
+			$("#ReportSearch").on("click",function(e) {
+				var usercode = "";
+				$('#listing-usercode :selected').each(function(i, selected){ 
+					if (usercode !="") usercode += ",";
+					usercode += $(selected).val(); 
+				});
+				var url = "/reporting?childcodes="+usercode;
+				$("#EasyListReportList").load(url + " #EasyListReportList", 
+					function (responseText, textStatus, XMLHttpRequest) {
+						if (textStatus == "success") {
+	
+						}
+						if (textStatus == "error") {
+	
+						}					
+				});
+				e.preventDefault();
+			});
+		}
+	</script>
+</asp:content>

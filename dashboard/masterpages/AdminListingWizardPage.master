@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/listings/create"><i class="icon-list-2"></i> New Listings</a></li>
+	</ul>
+	
+	<umbraco:Macro UserType="Business" Alias="EasyListListingNew" runat="server"></umbraco:Macro>
+	
+	<!--
+	<div class="alert alert-info">
+		The new Tradingpost website is not yet live.<br />
+		Please use existing methods to add a new listings to the Tradingpost website.
+	</div>
+	
+	<i class="icon-lab-2" style="display:block;margin:20px auto;font-size:96px;width:96px;height:96px"></i>
+	-->
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	
+	<umbraco:Macro files="jquery.validate,bbq,jquery.form.wizard,easylist.editimages,easylist.editvideos,easylist.editfeatures,easylist.ImageUpload,easylist.glasses,forms,easylist.newlisting" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+
+	<script type="text/javascript">
+	
+	</script>
+
+	
+</asp:content>

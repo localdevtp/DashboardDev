@@ -1,0 +1,459 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+<%@ Import Namespace="System.IO" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	<style>
+		#ContentPlaceHolderDefault_content_content_RequiredFieldValidator1 { display:block; }
+		
+		.form-horizontal .controls {
+			margin-left: 240px;
+		}
+		
+		.form-horizontal .control-label {
+			float: left;
+			width: 230px;
+			padding-top: 5px;
+			text-align: right;
+		}
+		
+		.generatedcontent .alert-info:before {
+			content: "";
+		}
+		
+		.generatedcontent .alert-info {
+			padding-left: 8px;
+		}
+	</style>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<umbraco:Macro Alias="EasyListIsAuthorized" runat="server" UserGroup="Manager,Editor"></umbraco:Macro>
+	
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/listings?ListingType=Car"><i class="icon-list-2"></i> Listings</a></li>
+	</ul>	
+	
+	<ul class="nav nav-pills">
+		<li>
+			<a href="/listings?ListingType=Car"><i class="icon-list-2">&nbsp;</i> Listings</a>
+		</li>
+		<% if(Session["easylist-IsRetailUser"] != "true") { %>
+		<li class="active">
+			<a href="/bulk-upload"><i class="icon-stack-1">&nbsp;</i> Bulk Upload</a>
+		</li>
+		<li>
+			<a href="/distribution-feed-in"><i class="icon-tree">&nbsp;</i> Distribution</a>
+		</li>
+		<li>
+			<a href="/download"><i class="icon-download-2">&nbsp;</i> Download Photo Management App</a>
+		</li>
+		<% } %>
+	</ul>
+
+	
+	<asp:Panel ID="SuccessPanel" runat="server" visible="false">
+		<div class="alert alert-success">
+			<strong>Success!</strong>
+			<asp:Label ID="SuccessUploadStatusMessage" runat="server"></asp:Label>
+		</div>
+	</asp:Panel>
+	<asp:Panel ID="FailPanel" runat="server" visible="false">
+		<div class="alert alert-error">
+			<strong>Fail!</strong>
+			<asp:Label ID="FailUploadStatusMessage" runat="server"></asp:Label>
+		</div>
+	</asp:Panel>
+	
+	<div class="widget-box">
+		<div class="widget-title">
+			<ul data-tabs="tabs" class="nav nav-tabs" id="tabs">
+				<li class="active"><a  href="/bulk-upload.aspx" id="FileUploadTab"><i class="icon-upload"></i> File Upload</a></li>
+				<li class=""><a  href="/bulk-upload/purification.aspx" id="VehiclePurificationTab"><i class="icon-data"></i> Purification</a></li>
+				<li class=""><a  href="/bulk-upload/last-upload-summary.aspx" id="LastUploadSummaryTab"><i class="icon-file"></i> Last Upload Summary</a></li>
+				<li class=""><a  href="/bulk-upload/file-format.aspx" id="FileFormatTab"><i class="icon-folder-close-alt"></i> File Format</a></li>
+			</ul>
+		</div>
+		<div class="tab-content widget-content">
+			<!-- File Upload Content-->
+			<div class="tab-pane active" id="FileUpload">
+			<form id="formUpload" class="form-horizontal" runat="server">
+				<%--
+				<fieldset>
+					<legend style="margin-top:-10px;">1. Download latest CSV file</legend>
+					<div class="alert alert-info" style="margin-top:-10px;">
+						We have simplified our bulk ad import file to make filling out the form quicker and easier for you.<br />
+						Select your appropriate CSV file below:
+					</div>
+
+					<div class="accordion" id="csv-accordion">
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle collapsed" data-toggle="collapse" href="#collapseOne">
+									<span class="accordion-icon"></span> CSV For Vehicle Listing
+								</a>
+							</div>
+							<div id="collapseOne" class="accordion-body collapse">
+								<div class="accordion-inner">
+									<ul class="download-list">
+										<li><a href="/files/SampleCSVv2.csv"><i class="icon-download">&nbsp;</i> <strong>Download the Advanced Import Sample File (CSV)</strong></a></li>
+									</ul>
+									<br />
+									<aside class="help">
+										<header><i class="icon-question">&nbsp;</i> <strong>Need help? download the example files and guides</strong></header>
+										<i class="icon-file-excel">&nbsp;</i><a href="/files/TradingPostCategoryList.xls">Category List (Excel)</a><br />
+										<i class="icon-file-xml">&nbsp;</i><a href="/files/SampleCSVv2.csv">Advanced Import Sample File (CSV)</a><br />
+										<i class="icon-file-pdf">&nbsp;</i><a href="/files/FieldGuidePlusv2.pdf" download="FieldGuidePlusv2">Field Guide for Advance Ad Tools Plus (PDF)</a><br />
+									</aside>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle collapsed" data-toggle="collapse" href="#collapseTwo">
+									<span class="accordion-icon"></span> CSV For General Listing
+								</a>
+							</div>
+							<div id="collapseTwo" class="accordion-body collapse">
+								<div class="accordion-inner">
+									<ul class="download-list">
+										<li><a href="/files/SampleCSVv2.csv"><i class="icon-download">&nbsp;</i> <strong>Download the Advanced Import Sample File (CSV)</strong></a></li>
+									</ul>
+									<br />
+									<aside class="help">
+										<header><i class="icon-question">&nbsp;</i> <strong>Need help? download the example files and guides</strong></header>
+										<i class="icon-file-excel">&nbsp;</i><a href="/files/TradingPostCategoryList.xls">Category List (Excel)</a><br />
+										<i class="icon-file-xml">&nbsp;</i><a href="/files/SampleCSVv2.csv">Advanced Import Sample File (CSV)</a><br />
+										<i class="icon-file-pdf">&nbsp;</i><a href="/files/FieldGuidePlusv2.pdf" download="FieldGuidePlusv2">Field Guide for Advance Ad Tools Plus (PDF)</a><br />
+									</aside>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<i class="icon-question info">&nbsp;</i> <a href="http://en.wikipedia.org/wiki/Comma-separated_values" target="_blank">What is CSV file?</a>
+					<br /><br />
+				</fieldset>
+				--%>
+				
+				<umbraco:Macro Alias="EasyListBulkUploadCatalogControl" runat="server"></umbraco:Macro>
+				
+				<!-- Select Catalogue -->
+				<div class ="control-group listingCatalog" style="display:none"><span style="display:none">&nbsp;</span></div>
+				
+				<div class ="control-group listingCatalogFeedInTemplate" style="display:none"><span style="display:none">&nbsp;</span></div>
+				
+				<!--<div class="control-group">
+					<label class="control-label">Catalogue ID</label>
+					<div class="controls">
+						<select id="catalogueid" class="drop-down">
+							<option value="">Catalogue 1</option>
+							<option value="">Catalogue 2</option>
+						</select>
+					</div>
+				</div>-->
+				<!-- /Select Catalogue -->
+				
+				<!-- Default File Format Template -->
+				<!--<div class="control-group">
+					<label class="control-label">Default File Format Template</label>
+					<div class="controls">
+						<label></label>
+					</div>
+				</div>-->
+				<!-- /Default File Format Template -->
+				
+				<!-- Select File -->
+				<div class="control-group">
+					<label class="control-label">Select File <i class="icon-info-2" data-toggle="tooltip" title="" data-original-title="Search your computer to choose the file you want to upload here.">&nbsp;</i></label>
+					<div class="controls">
+						<div id="ClassicUploaderContainer" style="margin-bottom:-15px">
+						<asp:FileUpload ID="ClassicUploader" runat="server" title="Choose your file" class="file-input primary">
+						</asp:FileUpload>
+						<asp:RegularExpressionValidator ID="uplValidator" runat="server" class="error" style="color:red" ControlToValidate="ClassicUploader"
+							ErrorMessage="Only CSV,XML,Txt,Xls,Xlsx file formats are allowed" 
+						ValidationExpression="(.*\.([Cc][Ss][Vv])|.*\.([Xx][Mm][Ll])|.*\.([Tt][Xx][Tt])|.*\.([Xx][Ll][Ss][Xx])|.*\.([Xx][Ll][Ss]))"></asp:RegularExpressionValidator>
+						
+						 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ClassicUploader" ErrorMessage="Please select your file to upload." style="color:red"></asp:RequiredFieldValidator>
+						
+						<%--<small>Only CSV(.csv) file are supported.<br /></small>--%>
+					</div>
+						<!--<input type="file" name="bulk-upload-file" title="Choose your CSV file" class="file-input primary">
+							<xsl:attribute name="data-validate">{ required: true , messages:{ required:'Please select your template file to upload.' }}</xsl:attribute>
+						</input>
+						<label for="bulk-upload-file" generated="true" class="error" style="display:none">&nbsp;</label>-->
+					</div>
+				</div>
+				<!-- /Select File -->
+				
+				<!-- Publish Options -->
+				<div class="control-group">
+					<label class="control-label">Publish Options</label>
+					<div class="controls">
+						<label class="radio">
+							<input type="radio" name="bulk-upload-treatment" value="1" class="required" checked="checked"/> Publish ads now <strong>and delete live ads not in template</strong>
+							<i class="icon-info-2" data-toggle="tooltip" title="" data-original-title="Choose this option to add new ads or to replace existing live ads with the same stock number, any active ads not on the new file will be withdrawn.">&nbsp;</i><br/>
+						</label>
+						<label class="radio">
+							<input type="radio" name="bulk-upload-treatment" value="2" class="required" /> Publish ads now	
+							<i class="icon-info-2" data-toggle="tooltip" title="" data-original-title="Choose this option to add new ads or to replace existing live ads with the same stock number, and to retain existing active ads not on the new file.">&nbsp;</i>
+						</label>
+					</div>
+				</div>
+				
+				<label for="bulk-upload-treatment" generated="true" class="error" style="display:none">&nbsp;</label>
+				<!-- /Publish Options -->	
+				
+				<!-- Upload Button -->
+					<div class="form-actions center">
+						<%--<button type="submit" id="submit" class="btn btn-large btn-success"><i class="icon-upload">&nbsp;</i> Upload</button>--%>
+						<!--<i class="icon-info-2" data-toggle="tooltip" title="" data-original-title="Click on this button to upload your chosen file.">&nbsp;</i>-->
+						<asp:Button ID="UploadFile" runat="server" Text="Upload" class="UploadeFileControl btn btn-success ignore-load" />
+					</div>
+				<!-- /Upload Button -->
+				
+				<input type="hidden" id="IsPostBack" name="IsPostBack" value="true" />
+			</form>
+			</div>	
+			<!-- /file-upload-tab-content -->
+			
+
+			
+		</div>
+		<%-- /widget-content --%>
+		
+	</div>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="easylist.uploadimages-bulk,easylist.editimages-bulk,forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script>
+		$(function(){
+			$.metadata.setType('attr', 'data-validate');
+			$('.form-horizontal').validate();
+			
+			UserCodeCatalogFeedInTemplate();
+			
+			$("#listing-usercode").change(function (e) {
+		        UserCodeCatalogFeedInTemplate();
+		    });			
+		});	
+		
+		
+		function UserCodeCatalogFeedInTemplate() {
+			var UserCode = $('#listing-usercode option:selected').val();
+			var CatalogData = $('#listing-usercode option:selected').attr('data-catalog');
+			
+			var CatalogSelectControlDiv = "<div class='control-group'><label class='control-label'>Select Catalog "+
+					"<i class='icon-info-2' data-toggle='tooltip' title='' data-original-title=' If you have more than one account or catalogue then choose by clicking on the drop down arrow.'>&nbsp;</i>"+
+					"</label>" +
+					"<div class='controls'>";
+			
+			if (CatalogData != "" && CatalogData != "[]" && CatalogData != undefined) {
+				var CatalogObj = jQuery.parseJSON(CatalogData);
+				
+				CatalogSelectControlDiv += "<select class='drop-down required' id='listing-catalog' name='listing-catalog'>";
+				
+				$.each(CatalogObj, function (key, catalog) {
+					
+					 var Selected = "";
+					 if (catalog.Selected == "1") {
+		                    Selected = "selected='selected'";
+					 }
+					
+				     CatalogSelectControlDiv += "<option value='" + catalog.ID 
+						+ "' data-feedInTemplate='" + catalog.FeedInTemplate + "'" 
+						+ " data-feedInFormat='" + catalog.FeedInFileFormat + "'" 
+						+ " data-feedInType='" + catalog.FeedInType + "'" 
+						+ " " + Selected + " >" + catalog.Name + "</option>";
+				});
+				
+		        CatalogSelectControlDiv += "</select>";
+		        CatalogSelectControlDiv += "</div></div>";
+				
+				$('.listingCatalog').html(CatalogSelectControlDiv);
+				$('.listingCatalog').show();
+				$("i").tooltip();
+				
+				$("#listing-catalog").change(function (e) {
+					CatalogChanged();
+				});
+				
+				$("#listing-catalog").change();
+				
+				$('.file-input').removeAttr('disabled');
+				$('.UploadeFileControl').removeAttr('disabled');
+			} 
+			else 
+			{
+				CatalogSelectControlDiv += "<label id = 'listing-usercode-ErrorMsg' style='color: red !important;'>No Catalog and default file format template defined!</label>";
+				CatalogSelectControlDiv += "</div></div>";
+				
+				$('.listingCatalog').html(CatalogSelectControlDiv);
+				$('.listingCatalog').show();
+												
+				$('.listingCatalogFeedInTemplate').empty();
+		        $('.listingCatalogFeedInTemplate').hide();
+				
+				$('.file-input').attr('disabled','disabled');
+				$('.UploadeFileControl').attr('disabled','disabled');
+		    }
+			
+		}
+		
+		function CatalogChanged() {
+			
+			$('.listingCatalogFeedInTemplate').empty();
+			
+			var Catalog = $('#listing-catalog option:selected').val();
+			var CatalogFeedInTemplate = $('#listing-catalog option:selected').attr('data-feedInTemplate');
+			var FeedInFileFormat = $('#listing-catalog option:selected').attr('data-feedInFormat');
+			var FeedInType = $('#listing-catalog option:selected').attr('data-feedInType');
+			
+			var CatalogFeedInTemplateControlDiv = "";
+			
+			//CatalogFeedInTemplateControlDiv = "<div class='control-group'><label class='control-label'>Default File Format Template <i class='icon-info-2' data-toggle='tooltip' title='' data-original-title='Click on the File Format tab above to choose an existing template or to configure a new template'>&nbsp;</i></label>" +
+			//	"<div class='controls'>";
+			
+			if (CatalogFeedInTemplate != '')
+			{
+				CatalogFeedInTemplateControlDiv = "<div class='control-group'><label class='control-label'>Default File Format Template <i class='icon-info-2' data-toggle='tooltip' title='' data-original-title='Click on the File Format tab above to choose an existing template or to configure a new template'>&nbsp;</i></label>" +
+				"<div class='controls'>";
+				CatalogFeedInTemplateControlDiv 
+				+= "<input class='text allow-lowercase valid'" + 
+				   " id='listing-catalog-FeedInTemplate' name='listing-catalog-FeedInTemplate'" + 
+				   " type='text' readonly='readonly' value='" + CatalogFeedInTemplate + "' />";
+				
+				CatalogFeedInTemplateControlDiv += "<input name='listing-catalog-FeedInFileFormat' type='hidden' value='" + FeedInFileFormat + "' />";
+				CatalogFeedInTemplateControlDiv += "<input name='listing-catalog-FeedInType' type='hidden' value='" + FeedInType + "' />";
+				
+				$('.file-input').removeAttr('disabled');
+				$('.UploadeFileControl').removeAttr('disabled');
+			} 
+			else
+			{
+				CatalogFeedInTemplateControlDiv = "<div class='control-group'><label class='control-label'>Default File Format Template <i class='icon-info-2' data-toggle='tooltip' title='' data-original-title='Click on the File Format tab above to choose an existing template or to configure a new template'>&nbsp;</i></label>" +
+				"<div class='controls'>";
+				CatalogFeedInTemplateControlDiv += "<div class='alert alert-info'>You haven't yet configured your data feed. Click <a href='/bulk-upload/file-format.aspx'>here</a> to configure it now.</div>";
+				
+				$('.file-input').attr('disabled','disabled');
+				$('.UploadeFileControl').attr('disabled','disabled');
+			}
+			CatalogFeedInTemplateControlDiv += "</div></div>";
+			
+			$('.listingCatalogFeedInTemplate').html(CatalogFeedInTemplateControlDiv);
+			$('.listingCatalogFeedInTemplate').show();
+			$("i").tooltip();
+			
+		}
+	</script>
+</asp:content>
+	
+<script runat="server">
+	protected void Page_Load(object sender, EventArgs e)
+	{
+		try
+		{
+			//var LocalRootPath = @"\\10.0.1.242\el-ftp\Data Feeds\EasyList";
+			
+			//var LocalRootPath = @"C:\EasyList\el-ftp\Data Feeds\EasyList";
+			
+			var LocalRootPath = ConfigurationManager.AppSettings["dataDir"];
+			
+			var LocalFolderPath = "";	// Temporary path in local drive
+            var LocalFilePath = "";		// Temporary filepath in local drive
+			var FileName = "";
+			
+			//-------------------------------------------------------------------------------
+			// Post file
+			//-------------------------------------------------------------------------------
+			if (IsPostBack && ClassicUploader.HasFile)
+			{
+				/*if (HttpContext.Current.Session["easylist-usercode"] != null)
+				UserCode = HttpContext.Current.Session["easylist-usercode"].ToString();*/
+				
+				var UserCode = Request.Form["listing-usercode"];
+				var Catalog = Request.Form["listing-catalog"];
+				var FeedInTemplateName = Request.Form["listing-catalog-FeedInTemplate"];
+				var FeedInFileFormat = Request.Form["listing-catalog-FeedInFileFormat"];
+				var FeedInType = Request.Form["listing-catalog-FeedInType"];
+				
+				var BulkUploadTreatmentValue = Request.Form["bulk-upload-treatment"];
+				var BulkUploadTreatment = "";
+				if (BulkUploadTreatmentValue == "1") BulkUploadTreatment = "-2";
+				
+				if (String.IsNullOrEmpty(UserCode))
+				{
+					throw new Exception("User code not exists!");
+				} 	
+				if (String.IsNullOrEmpty(FeedInTemplateName))
+				{
+					throw new Exception("Feed in template is required!");
+				}
+				if (String.IsNullOrEmpty(FeedInFileFormat))
+				{
+					throw new Exception("Feed in file format is required!");
+				}
+				if (String.IsNullOrEmpty(FeedInType))
+				{
+					throw new Exception("Feed in type is required!");
+				}
+					
+				var CurrentFileTimeStamp = DateTime.Now.ToString("yyyyMMddhhmmss");
+				
+				int fileSize = ClassicUploader.PostedFile.ContentLength;
+
+				// Allow only files less than 10MB
+				if (fileSize > 10000000)
+				{
+					throw new Exception("System only allow file size less than 10MB!");
+				}
+				
+				LocalFolderPath = string.Format(@"{0}\{1}", LocalRootPath, UserCode);
+				if (!System.IO.Directory.Exists(LocalFolderPath))
+					System.IO.Directory.CreateDirectory(LocalFolderPath);
+				
+				var FileExt = Path.GetExtension(ClassicUploader.FileName);
+				
+				if (FileExt.ToLower().IndexOf(FeedInFileFormat.ToLower()) < 0)
+				{
+					throw new Exception("File format for template " + FeedInTemplateName + " have to be in " + FeedInFileFormat.ToUpper() + " format!");
+				}
+				
+				if (FeedInType == "ThirdParty")
+				{
+					FileName = string.Format("{0}-{1}{2}{3}", UserCode, Catalog, BulkUploadTreatment, FileExt);
+				}
+				else
+				{
+					FileName = string.Format("{0}-{1}{2}{3}", FeedInTemplateName, Catalog , BulkUploadTreatment, FileExt);
+				}
+				
+				LocalFilePath = string.Format(@"{0}\{1}", LocalFolderPath, FileName);
+								
+				ClassicUploader.SaveAs(LocalFilePath);
+                if (System.IO.File.Exists(LocalFilePath))
+                {
+					SuccessPanel.Visible=true;
+					FailPanel.Visible=false;
+					SuccessUploadStatusMessage.Text = "Success! You successfully uploaded " + ClassicUploader.FileName + ".  It will take a few minutes to process your updated file. Please refer to the Last Upload Summary tab to see the results of processing.";
+				}
+				else
+				{
+					throw new Exception("File upload failed!");
+				}
+			}
+		}
+        catch (Exception ex)
+        {
+			SuccessPanel.Visible = false;
+			FailPanel.Visible = true;
+			FailUploadStatusMessage.Text = ex.Message;
+			//Response.Write("Something bad happened! Error: " + ex);
+        }
+	}
+</script>

@@ -1,0 +1,129 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+	
+	<asp:content ContentPlaceHolderId="metaTags" runat="server">
+		
+	</asp:content>
+	
+	<asp:content ContentPlaceHolderId="headItems" runat="server">
+		<style>
+			.js aside{ display:none }
+			.child-controls label { width:160px; }
+			label.disable { color:#999; cursor:default; }
+			.thumbnail { display:inline-block;width:auto;margin:0 10px 10px 0; }
+		</style>
+	</asp:content>
+	
+	<asp:content ContentPlaceHolderId="content" runat="server">
+		<ul class="breadcrumb">
+			<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+			<li><a href="/account/retail-view-payments"><i class="icon-notebook"></i> Account</a></li>
+		</ul>
+		
+		<ul class="nav nav-pills">
+			<li><a href="/account/retail-view-payments"><i class="icon-account">&nbsp;</i> View Payments</a></li>
+			<li class="active"><a href="/account/retail-safety-and-privacy"><i class="icon-eye-blocked">&nbsp;</i> Safety and Privacy</a></li>	
+		</ul>	
+		
+		<umbraco:Macro Alias="EasyListSafetyAndPrivacy" runat="server"></umbraco:Macro>
+	</asp:content>
+	
+	<asp:content ContentPlaceHolderId="scripts" runat="server">
+		<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+		<script type="text/javascript">
+			$(function(){
+				$.metadata.setType('attr', 'data-validate');
+				
+				$.validator.addMethod("alphabets", function(value, element) { 
+					return this.optional(element) || /^[a-zA-Z ]*$/.test(value); 
+				}, "Please enter only alphabets.");
+				
+				$('.form-horizontal').validate();
+				
+				// Hide child-controls if not check and handle behaviour
+				$('.child-controls').each(function(e){
+					var $self = $(this);
+					var check = ($self.prev().children('input').is(':checked')) ? true : false;
+					
+					if(!check) {
+						$self.hide();
+					} else {
+						$self.show();
+					}
+					
+					// on checkbox checked
+					$self.prev('.checkbox').children('input').on('change',function(e){
+						if($(this).is(':checked')) {
+							$(this).parent().next('.child-controls').show();
+						} else {
+							$(this).parent().next('.child-controls').hide();
+						}
+					});
+					
+					// on radio checked
+					$self.prev('.radio').children('input').each(function(e){
+						var radio = $(this).attr('name');
+						$('input[name='+ radio +']').on('change',function(e){
+							$('input[name='+ radio +']').parent().next('.child-controls').hide();
+							if($(this).is(':checked')) {
+								$(this).parent().next('.child-controls').show();
+							}
+						});
+					});
+					
+				});
+				
+				// Custom check - if commercial customer enter full address disabled display map
+				if($('input[name="radio-share-com-address"]:checked').val() === '2') {
+					$('input[name="check-display-com-location-map"]')
+						.prop('checked', false).prop('disabled', true)
+						.parent().addClass('disabled');
+				}
+				$('input[name="radio-share-com-address"]').on('change',function(){
+					if($(this).val() === '2') {
+						$('input[name="check-display-com-location-map"]')
+							.prop('checked', false).prop('disabled', true)
+							.parent().addClass('disable');
+					} else {
+						$('input[name="check-display-com-location-map"]')
+							.prop('checked', true).prop('disabled', false)
+							.parent().removeClass('disable');
+					}
+				});
+				
+				$('#listing-location').typeahead({
+	
+				source: function (query, process) {
+					
+					// Add load status
+					var $self = this.$element;
+					$self.css({
+						background:'url(/media/1111/ajax-loader.gif) no-repeat 95% center'
+					});
+					
+					// Remove load status on blur
+					$self.on('blur.load-status',function(){ $(this).css('background','none'); });
+					
+					// Data source
+					return $.getJSON(
+						'/api?api=LocSearch&query=' + query,
+						function (data) {
+							if (data.State == 1)
+							{
+								$self.css('background','none');
+								var LocInfo = jQuery.parseJSON(data.Result);
+								return process(LocInfo);
+							}
+							
+						});
+				},
+				
+				// Highlight typed in result
+				highlighter: function (item) {
+					var regex = new RegExp( '(' + this.query + ')', 'gi' );
+					return item.replace( regex, "<strong>$1</strong>" );
+				}
+			});
+				
+			});
+		</script>
+	</asp:content>

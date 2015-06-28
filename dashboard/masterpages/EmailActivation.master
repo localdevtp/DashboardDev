@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/EmailMaster.master" AutoEventWireup="true" %>
+
+<asp:Content ContentPlaceHolderID="EmailContents" runat="server">
+
+	<div style="font-weight: bold; font-size: 14px; line-height: 20px; text-align:left; color: #007dc3">
+		Test Account
+		<br />
+		ACN: 123456789
+	</div><br />
+	
+	Hi Test,
+	<br /><br />
+	
+	We are pleased to confirm that you are now registered with tradingpost.com.au and 
+	successfully subscribed to <strong>Ad Tool</strong> – a tool that makes uploading and editing your 
+	Tradingpost ads in bulk a whole lot easier. 
+	
+	<br /><br />
+	
+	<div style="font-weight: bold; font-size:14px; line-height:20px;">
+		To start using Ad Tool:
+	</div>
+	
+	<ul>
+		<li><strong>Step 1:</strong> Click on the button below to activate your account.</li>
+		<li><strong>Step 2:</strong> Enter your new password and security details.</li>
+	</ul>
+	
+	<!-- Button -->
+	<table border="0" cellpadding="0" cellspacing="0" align="center">
+		<tr>
+			<td align="center" width="200" bgcolor="#f7a116" style="background: #f7a116; padding-top: 12px; padding-bottom: 12px; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; color: #ffffff; font-size:16px; font-weight: bold; text-decoration: none; font-family: Helvetica, Arial, sans-serif;">
+				<a href="#" style="color: #ffffff; text-decoration: none;">Activate Ad Tool Now</a>
+			</td>
+		</tr>
+	</table>
+	<!-- /Button -->
+	
+	<br /><br />
+	
+</asp:Content>

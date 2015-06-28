@@ -1,0 +1,85 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+
+	<asp:content ContentPlaceHolderId="content" runat="server">
+		<ul class="breadcrumb">
+			<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+			<li><a href="/listings/landing"><i class="icon-asterisk"></i> New Listings</a></li>
+		</ul>
+		
+		<umbraco:Macro AdminTemplate="true" Alias="EasyListListingLanding" runat="server"></umbraco:Macro>	
+	</asp:content>
+
+	<asp:content ContentPlaceHolderId="scripts" runat="server">
+		<umbraco:Macro files="plugins/jquery.customSelect" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+		<script>
+			// Pretified custom select box
+			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+				$('.selectpicker').selectpicker('mobile');
+			} else {
+				$('.selectpicker').selectpicker();
+			}
+			
+			// On selection do?
+			$('select').on('change',function(){
+				//alertModal('This is where you are supposed to send "'+ $('option:selected',this).val() +'" category to the new listing','Redirect','info');	
+				window.location.href = $('option:selected',this).val() ;
+			});
+			
+			$(function(){			
+				var UserTempKey = getCookie('ELID');
+				var UserCode = getCookie('ELUS');
+				
+				// Check if user have saved listin
+				
+				if ($('#TempListingExists').val() == "true")
+				{
+					var PopupMsg = "We've noticed you have previously saved an ad on Tradingpost. <br/>What would you like to do now?<br/>";
+					PopupMsg += "<br/><ul><li><a href='/listings/create'>Complete my saved ad</a></li>";
+					//PopupMsg += "<br/><li><a href='' onclick=\"deleteCookie(\'ELID\'); return false;\"'>Start a brand new ad</a></li></ul><br/>";
+					PopupMsg += "<br/><li><a href='/listings/landing' onclick=\"setCookie(\'ELID\',\'\',2)\"'>Start a brand new ad</a></li></ul><br/>";
+					alertModal(PopupMsg,'You have saved ad','warning',false);
+				}
+			});
+			
+			// PopupMsg += "<br/><li><a href='/listings/landing' onclick=\"setCookie(\'ELID\',\'\',\'2\')\"'>Start a brand new ad</a></li></ul><br/>";
+			function deleteCookie(c_name) {
+				document.cookie = encodeURIComponent(c_name) + "=deleted; expires=" + new Date(0).toUTCString();
+				location.href="/listings/landing";
+			}
+			
+			function getCookie(c_name)
+			{
+				var c_value = document.cookie;
+				var c_start = c_value.indexOf(" " + c_name + "=");
+				if (c_start == -1)
+				  {
+				  c_start = c_value.indexOf(c_name + "=");
+				  }
+				if (c_start == -1)
+				  {
+				  c_value = null;
+				  }
+				else
+				  {
+				  c_start = c_value.indexOf("=", c_start) + 1;
+				  var c_end = c_value.indexOf(";", c_start);
+				  if (c_end == -1)
+				  {
+				c_end = c_value.length;
+				}
+				c_value = unescape(c_value.substring(c_start,c_end));
+				}
+				return c_value;
+			}
+			
+			
+			function setCookie(c_name,value,exdays)
+			{
+				var exdate= new Date();
+				exdate.setDate(exdate.getDate() + exdays);
+				var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString() + "; path=/");
+				document.cookie=c_name + "=" + c_value;
+			}
+		</script>
+	</asp:content>

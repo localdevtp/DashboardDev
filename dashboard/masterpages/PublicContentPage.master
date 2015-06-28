@@ -1,0 +1,19 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/PublicMaster.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<div id="page">
+		<div class="container">
+			
+			<umbraco:Item field="content" runat="server" />
+			
+			<br />
+			
+			<umbraco:Item field="richContent" runat="server" />
+
+		</div>
+	</div>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	
+</asp:content>

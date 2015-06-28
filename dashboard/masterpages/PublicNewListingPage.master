@@ -1,0 +1,487 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/PublicMaster.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+
+	<div id="page">
+		<div class="container">
+			<umbraco:Macro UserType="Private" Alias="EasyListListingNew" runat="server"></umbraco:Macro>
+		</div>
+	</div>
+
+</asp:content>
+	
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+
+	<umbraco:Macro files="jquery.validate,bbq,jquery.form.wizard,easylist.editimages,easylist.editvideos,easylist.editfeatures,easylist.ImageUpload,easylist.carselect,easylist.glasses,forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+
+	<script type="text/javascript">
+		var RESTURL = "http://rest.mongodbv1.dev.easylist.com.au/";
+		
+		function RefreshControls() {
+			var selectcontrols = $('#AutomotiveListing select');
+			for (var i = 0; i < $(selectcontrols).length; i++) {
+				var c = $(selectcontrols[i]).parents('.control-group');
+				if($('option',selectcontrols[i]).length > 1) {
+					$(c).removeClass('hidden');
+				} else {
+					$(c).addClass('hidden');
+				}
+			}
+		}
+		
+		function RefreshMotorControls() {
+			var selectcontrols = $('#MotorcycleListing select');
+			for (var i = 0; i < $(selectcontrols).length; i++) {
+				var c = $(selectcontrols[i]).parents('.control-group');
+				if($('option',selectcontrols[i]).length > 1) {
+					$(c).removeClass('hidden');
+				} else {
+					$(c).addClass('hidden');
+				}
+			}
+		}
+		
+		function CatChange(element, childID) {
+			// Get Sub categories
+			var NewChildID = childID + 1;			
+			
+			// Destroy all child underneath
+			$('.CatLvl' + NewChildID).remove();
+			for (var i = NewChildID; i < 6; i++) {
+				$('.CatLvl' + i).remove();
+			}
+			
+			if ($(element).val() == 0){
+				//$("#next").hide();
+				return;
+			}
+			
+			var CatLvl = $(element).val();
+			
+			// Check if category have UI Editor
+			$.getJSON(RESTURL + 'Category/CatInfo?CatID=' + CatLvl, function (data) {
+				var CatInfo = jQuery.parseJSON(data.Result);
+				$('#CustomAttr').empty();
+				$('.lst-condition').show();
+				if (CatInfo.UIEditor)
+				{
+					$("#listing-category-id").val(CatInfo.ID);
+					$("#listing-category-name").val(CatInfo.Name);
+					$("#listing-category-path").text(CatInfo.Path);
+					$("#next").show();
+					if (CatInfo.UIEditor == 'AutomotiveListing'){
+						$("#UIEditorLink").val("AutomotiveListing");
+						$('#listing-title').prop('readonly', true);
+						
+						$(".AutomotiveListingTemplate").show();
+						$(".MotorcycleListingTemplate").hide();
+						$(".GMListingTemplate").hide();
+					}
+					else if(CatInfo.UIEditor == 'MotorcycleListing')
+					{
+						$("#UIEditorLink").val("MotorcycleListing");
+						$(".AutomotiveListingTemplate").hide();
+						$(".MotorcycleListingTemplate").show();
+						$(".GMListingTemplate").hide();
+					}
+					else if(CatInfo.UIEditor == 'Custom')
+					{
+						
+						$('#listing-title').val('');
+						$('#listing-title').prop('readonly', false);
+						
+						$(".AutomotiveListingTemplate").hide();
+						$(".MotorcycleListingTemplate").hide();
+						
+						$.getJSON(RESTURL + 'Category/CatUI?CatID=' + CatLvl + '&Mode=New', function (data) {
+							if (data.State == 1)
+							{
+								//alert(CatLvl);
+								if (CatLvl == 528 || CatLvl == 530 || CatLvl == 532 || CatLvl == 533  || CatLvl == 536  || CatLvl == 538) { $('.lst-condition').hide(); }
+								
+								$('#CustomAttr').append(data.Result);
+								$('.GMListingTemplate').show();
+								
+								// Init Bootstrap Tooltips
+								$('[data-toggle="tooltip"]').tooltip();
+								
+								$.metadata.setType('attr', 'data-validate');
+								$('#listing-wizard').each(function () {
+									$(this).validate();	
+								});
+							}
+							
+							$("#UIEditorLink").val("GM");
+						});
+						
+					}else
+					{
+						if (CatLvl == 528 || CatLvl == 530 || CatLvl == 532 || CatLvl == 533  || CatLvl == 536  || CatLvl == 538) { $('.lst-condition').hide(); }
+						
+						$('#listing-title').val('');
+						$('#listing-title').prop('readonly', false);
+						
+						$(".AutomotiveListingTemplate").hide();
+						$(".MotorcycleListingTemplate").hide();
+						$("#UIEditorLink").val("GM");
+						$(".GMListingTemplate").hide();
+						//$("#next").click();
+					}
+					return;
+				}
+				else
+				{
+					$(".AutomotiveListingTemplate").hide();
+					$(".MotorcycleListingTemplate").hide();
+					$(".GMListingTemplate").hide();
+					
+					$("#next").hide();
+					$.getJSON(RESTURL + 'Category/sublevelHTML?ParentCatID=' + CatLvl, function (data) {
+						
+						//-----------------------------------------------------------
+						// Run again in case if user keep on select parent category
+						// Get Sub categories
+						var NewChildID = childID + 1;			
+						
+						// Destroy all child underneath
+						$('.CatLvl' + NewChildID).remove();
+						for (var i = NewChildID; i < 6; i++) {
+							$('.CatLvl' + i).remove();
+						}
+						//-----------------------------------------------------------
+						
+						//  No more subcategory, and no UI explicitly indicated, go to GM Type
+						if (data.Result == '<option value="0">Select</option>'){
+							$("#listing-category-id").val(CatInfo.ID);
+							$("#listing-category-name").val(CatInfo.Name);
+							$("#listing-category-path").text(CatInfo.Path);
+							$("#next").show();
+							$("#UIEditorLink").val("GM");
+							$("#next").click();
+							return;
+						}
+						
+						$('<select/>', {
+							'id': 'CatLvl' + NewChildID,
+							'class': 'CatLvl' + NewChildID,
+							'style': 'display: block; margin-top:10px;',
+							'onchange': 'CatChange(this, ' + NewChildID + ');',
+							html: data.Result
+						}).appendTo($('#CategorySelection'));
+					});
+				}
+			});
+		}
+		
+		$(function(){
+			// init validation plugin
+			$.metadata.setType('attr', 'data-validate');
+			$('#new-listing').each(function () {
+				$(this).validate();
+			});
+			
+			// setup form fields
+			$("#listing-price").maskMoney();
+			$("#listing-was-price").maskMoney();
+			
+			$("#parent-selector :input").attr("disabled", true);
+			
+			$('#listing-summary').val($('#listing-summary').val().trim());
+			$('#listing-description').val($('#listing-description').val().trim());
+			$('#group-standard-features').hide();
+			$('#group-optional-features').hide();
+			//$('#group-car-spec').hide();
+			$('#group-motor-spec').hide();
+			
+			// setup form functions - Listing condition logic
+			$(".listing-condition").change(function(e){
+				if ($('.listing-condition option:selected').val() == 'New' || $('.listing-condition option:selected').val() == '' )
+				{
+					$(".listing-condition-desc").hide();
+					$(".listing-condition-desc").removeClass("required");
+				}else
+				{
+					$(".listing-condition-desc").show();
+					$(".listing-condition-desc").addClass("required");
+				}
+			});
+			
+			$(".listing-condition-desc").hide();
+			
+			// setup form function - Category load
+			$.getJSON(RESTURL + 'Category/rootlevelHTML', function (data) {
+				var items = [];
+				$("#CatLvl1").html(data.Result);
+				$("#CatLvl1").show();
+				
+				var CatSel = getURLParameter('CatSel');
+				if (CatSel == 1)
+				{
+					// Reload category info only if the listing not saved before
+					if($("#ListingCode").val() == "")
+					{
+						$("#CatLvl1 option[value='" + $("#CatPathSet").val() + "']").attr("selected", "selected");
+						CatChange("#CatLvl1", 1);
+					}
+				}
+			});
+			
+			// setup form function - Load car & motorcycle attributes
+			LoadAllCarMakes();
+			LoadAllMotorMakes();
+			
+			ReloadImages();
+			
+			$("#ReloadImage").click(function(e){
+				ReloadImages();
+			});
+	
+			$("#ResetCat").click(function(e){
+				$(".CatSelected").hide();	
+				$("#CatSelection").show();
+				$("#CustomAttribute").empty();
+				
+				$(".AutomotiveListingTemplateSelected").hide();	
+				$(".AutomotiveListingTemplate").hide();	
+				
+				$(".MotorcycleListingTemplateSelected").hide();	
+				$(".MotorcycleListingTemplate").hide();	
+				
+				$(".GMListingTemplate").hide();	
+				
+				$("#reset-car-attr").val("true");	
+				
+				e.preventDefault();
+			});
+			
+			$("#checkout").click(function(e){
+				$("#IsPostBack").val("false");
+				$("#PublishListing").val("false");
+				$("#CheckoutListing").val("true");
+				
+				FieldValidation();
+				
+				ResetCatAttr();
+			});
+			
+			$("#submit").click(function(e){
+				$("#IsPostBack").val("true");
+				$("#PublishListing").val("false");
+				$("#CheckoutListing").val("false");
+				
+				FieldValidation();
+				
+				ResetCatAttr();
+				//e.preventDefault();
+			});
+			
+			$('#listing-location').typeahead({
+				
+				source: function (query, process) {
+					
+					// Add load status
+					var $self = this.$element;
+					$self.css({
+						background:'url(/media/1111/ajax-loader.gif) no-repeat 95% center'
+					});
+					
+					// Remove load status on blur
+					$self.on('blur.load-status',function(){ $(this).css('background','none'); });
+					
+					
+					return $.getJSON(
+						'http://rest.search.mongodbv1.dev.easylist.com.au/Location/Search',
+						{ query: query },
+						function (data) {
+							if (data.State == 1)
+							{
+								$self.css('background','none');
+								var LocInfo = jQuery.parseJSON(data.Result);
+								return process(LocInfo);
+							}
+							
+						});
+				},
+				
+				// Highlight typed in result
+				highlighter: function (item) {
+					var regex = new RegExp( '(' + this.query + ')', 'gi' );
+					return item.replace( regex, "<strong>$1</strong>" );
+				}
+				
+			});
+		});
+		
+		function FieldValidation()
+		{
+			//--------------------------------------
+			// Required field Validation
+			$("#CatLvl1").removeClass("required");
+			$("#listing-location").addClass("required");
+			$("#listing-title").addClass("required");
+			$("#listing-summary").addClass("required");
+			$("#listing-description-wysiwyg").addClass("required");
+			$("#listing-price").addClass("required");
+			$("#listing-was-price").addClass("required");
+			
+			if ($("#reset-car-attr").val() == "false") return;
+				
+			//$("#CatLvl1").addClass("required");
+			
+			var UIEditorLink = $("#UIEditorLink").val();
+			switch (UIEditorLink)
+			{
+				case "GM":
+					$("#easylist-Makes").removeClass("required");
+					$("#easylist-Models").removeClass("required");
+					$("#easylist-Years").removeClass("required");
+					$("#easylist-Styles").removeClass("required");
+					$("#easylist-Transmission").removeClass("required");
+					$("#easylist-Variant").removeClass("required");
+					
+					$("#easylist-Motor-Makes").removeClass("required");
+					$("#easylist-Motor-Models").removeClass("required");
+					$("#easylist-Motor-Years").removeClass("required");
+					$("#easylist-Motor-Styles").removeClass("required");
+					$("#easylist-Motor-Transmission").removeClass("required");
+					$("#easylist-Motor-Variant").removeClass("required");
+					
+					break;
+					
+				case "AutomotiveListing":
+					$("#easylist-Makes").addClass("required");
+					$("#easylist-Models").addClass("required");
+					$("#easylist-Years").addClass("required");
+					$("#easylist-Styles").addClass("required");
+					$("#easylist-Transmission").addClass("required");
+					$("#easylist-Variant").addClass("required");
+					
+					$("#easylist-Motor-Makes").removeClass("required");
+					$("#easylist-Motor-Models").removeClass("required");
+					$("#easylist-Motor-Years").removeClass("required");
+					$("#easylist-Motor-Styles").removeClass("required");
+					$("#easylist-Motor-Transmission").removeClass("required");
+					$("#easylist-Motor-Variant").removeClass("required");
+					
+					break;
+					
+				case "MotorcycleListing":
+					$("#easylist-Makes").removeClass("required");
+					$("#easylist-Models").removeClass("required");
+					$("#easylist-Years").removeClass("required");
+					$("#easylist-Styles").removeClass("required");
+					$("#easylist-Transmission").removeClass("required");
+					$("#easylist-Variant").removeClass("required");
+					
+					$("#easylist-Motor-Makes").addClass("required");
+					$("#easylist-Motor-Models").addClass("required");
+					$("#easylist-Motor-Years").addClass("required");
+					$("#easylist-Motor-Styles").addClass("required");
+					$("#easylist-Motor-Transmission").addClass("required");
+					$("#easylist-Motor-Variant").addClass("required");
+					
+					break;
+					
+				default:
+			}
+			
+			//--------------------------------------
+		}
+		
+		function ResetCatAttr()
+		{
+			if ($("#reset-car-attr").val() == "true")
+			{
+				$("#listing-make").val($("#easylist-Makes option:selected").val().trim());
+				$("#listing-model").val($("#easylist-Models option:selected").val().trim());
+				$("#listing-year").val($("#easylist-Years option:selected").val().trim());
+				$("#listing-body-style").val($("#easylist-Styles option:selected").val().trim());
+				$("#listing-transmission").val($("#easylist-Transmission option:selected").val().trim());
+				$("#listing-variant").val($("#easylist-Variant option:selected").text().trim());
+				
+				$("#listing-motor-make").val($("#easylist-Motor-Makes option:selected").val().trim());
+				$("#listing-motor-model").val($("#easylist-Motor-Models option:selected").val().trim());
+				$("#listing-motor-year").val($("#easylist-Motor-Years option:selected").val().trim());
+				$("#listing-motor-variant").val($("#easylist-Motor-Variant option:selected").text().trim());
+				
+			}
+		}
+		
+		function ReloadImages()
+		{
+			var UserTempKey = getCookie('ELID');
+			var UserCode = getCookie('ELUS');
+			var ImageOrder = $("#photo-order").val();
+			var NewImageOrder = '';
+			
+			// Load temporary Images
+			$.getJSON('http://rest.beta.mongodbv1.dev.easylist.com.au/ListingTemp/Image/' + UserCode + '/' + UserTempKey + '?ImageOrder=' + ImageOrder, 
+				function (data) {
+					var items = [];	
+					
+					$.each(jQuery.parseJSON(data.Result), function (key, value) {
+						items.push(RenderImageLI(UserCode, UserTempKey, value.ImageCode, value.Url));
+						
+						if (NewImageOrder != '') NewImageOrder += ','
+						NewImageOrder += value.ImageCode;
+					});
+					
+				$('#listing-thumbnails').html(items.join(''));
+				$("#photo-order").val(NewImageOrder);
+            });
+		}
+		
+		function RenderImageLI(UserCode, UserTempKey, ImgCode, ImgURL) {
+			var ImageDeleteURL = 'http://rest.beta.mongodbv1.dev.easylist.com.au/ListingTemp/Image/' + UserCode + '/' + UserTempKey + '/' + ImgCode;
+			
+			var NewImgLI = 
+				'<li class="span3 thumb" data-photo-id="'+ ImgCode + '" data-photo-caption="' + ImgCode + '">' +
+					'<div class="thumbnail">' +
+						'<img src="' + ImgURL + '" alt="'+ ImgCode + '" />' +
+					'</div>' + 
+					'<a href="' + ImgURL + '" class="lightbox view-image">' +
+						'<i class="icon-eye"></i>' +
+					'</a>' +
+					'<a href="' + ImageDeleteURL + '" id="delete-image-new" class="delete-image IsNew" data-image-id="' + ImgCode + '" title="Delete photo">' +
+						'<i class="icon-remove"></i>' +
+					'</a>' +
+				'</li>';
+			
+			return NewImgLI;
+		}
+		
+		
+		function getCookie(c_name)
+		{
+			var c_value = document.cookie;
+			var c_start = c_value.indexOf(" " + c_name + "=");
+			if (c_start == -1)
+			  {
+			  c_start = c_value.indexOf(c_name + "=");
+			  }
+			if (c_start == -1)
+			  {
+			  c_value = null;
+			  }
+			else
+			  {
+			  c_start = c_value.indexOf("=", c_start) + 1;
+			  var c_end = c_value.indexOf(";", c_start);
+			  if (c_end == -1)
+			  {
+			c_end = c_value.length;
+			}
+			c_value = unescape(c_value.substring(c_start,c_end));
+			}
+			return c_value;
+		}
+		
+		function getURLParameter(name) {
+			return decodeURI(
+				(RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+			);
+		}
+				
+	</script>	
+	
+</asp:content>

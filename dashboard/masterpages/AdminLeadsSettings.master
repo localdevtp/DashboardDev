@@ -1,0 +1,102 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+
+<ul class="breadcrumb">
+		<li><a href="/"><i class="icon-home"></i> Home</a> <i class="icon-dot"></i></li>
+		<li><a href="/settings/safety-and-privacy"><i class="icon-notebook"></i> Settings</a></li>
+	</ul>
+	
+	<ul class="nav nav-pills">
+		
+		<li>
+			<a href="/settings/safety-and-privacy"><i class="icon-eye-blocked">&nbsp;</i> Safety and Privacy</a>
+		</li>
+		<li class="active">
+			<a href="/settings/leads-settings"><i class="icon-bars">&nbsp;</i> Leads Settings</a>
+		</li>
+	</ul>
+	
+	<div id="account">
+		<form id="DealerForm" class="form-horizontal break-desktop-large" autocomplete="off" method="post" runat="server">
+			<umbraco:Macro Alias="EasyListLeadsSettings" runat="server"></umbraco:Macro>
+		</form>
+	</div>	
+</asp:content>
+	
+
+<asp:Content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script>
+		$(function(){
+			$.metadata.setType('attr', 'data-validate');
+			$('#DealerForm').validate();
+			
+			//----------------------------------------------------------------------
+			// New Email Lead
+			//----------------------------------------------------------------------
+			
+			// Hide email add if there is 6 email already
+			if($('.LeadsEmailSet input').length == 6) {
+				$('#email-leads-add').hide();
+			}
+			
+			$('#AddNewEmailLead').live("click", function() {
+				var NoOfControl = $('.LeadsEmailSet input').length ;
+				
+				if (NoOfControl < 6 )
+				{
+					var NewControl = NoOfControl + 1;
+					//$('.LeadsEmailSet').append('<p>' +$('#LeadsEmail' + NoOfControl).val() + ' ' + $('.LeadsEmailSet input').length +'</p>');
+					$('.LeadsEmailSet').append(
+						'<div class="control-group LeadsEmailDiv'+ NewControl + '">' + 
+						'<label class="control-label">'+
+						'<button type="button" id="RemoveEmailLead'+ NewControl + '" class="btn btn-danger btn-small"><i class="icon-minus">&nbsp;</i>&nbsp;Remove</button>&nbsp;' +
+						'&nbsp;and:</label>' + 
+						'<div class="controls"><input type="text" id="LeadsEmail'+ NewControl + '" name="LeadsEmail" class="input-xlarge email" /></div>' +
+						'</div>'
+					);
+					
+					if($('html').hasClass('lt-ie9')){
+						$('.LeadsEmailSet div:last-child .icon-minus').each(function(){
+							addIcon($(this).get(0), '&#xe07d;');
+							Cufon.replace($(this).get(0));
+						});
+					}
+					
+					if(NoOfControl > 4) {
+						$('#email-leads-add').hide();
+					} else {
+						$('#email-leads-add').show();
+					}
+					
+				}
+				else
+				{
+					//alertModal('You could only add up to 6 email leads.','Fail','error',false);
+					return false;
+				}
+				
+			});
+			
+			$('#RemoveEmailLead3').live("click", function() {
+				$('.LeadsEmailDiv3').remove();
+				$('#email-leads-add').show();
+			});
+			$('#RemoveEmailLead4').live("click", function() {
+				$('.LeadsEmailDiv4').remove();
+				$('#email-leads-add').show();
+			});
+			$('#RemoveEmailLead5').live("click", function() {
+				$('.LeadsEmailDiv5').remove();
+				$('#email-leads-add').show();
+			});
+			$('#RemoveEmailLead6').live("click", function() {
+				$('.LeadsEmailDiv6').remove();
+				$('#email-leads-add').show();
+			});
+			
+    	});
+		
+	</script>
+</asp:Content>

@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/PublicMaster.master" AutoEventWireup="true" %>
+
+
+<asp:Content ContentPlaceHolderId="headItems" runat="server">
+	<!--[if lt IE 9]>
+	<style>
+		.container { width:auto !important; }
+		#page { width:auto !important; }
+		body { min-width: 0 !important; }
+		#header h1 { width:auto !important; margin:0 20px !important; }
+	</style>
+	<![endif]-->
+</asp:Content>
+
+	
+<asp:content ContentPlaceHolderId="content" runat="server">
+	<%
+	
+	// Check for active user session variables
+	if(Session["easylist-username"] == null
+	|| Session["easylist-usercode"] == null
+	|| Session["SessionInfo"] == null
+	|| string.IsNullOrEmpty(Session["easylist-username"].ToString())
+	|| string.IsNullOrEmpty(Session["easylist-usercode"].ToString())
+	)
+	{
+	// Build the redirect URL
+	string url = "/403.html";
+	// Response.Redirect(url);
+	}
+	%>
+	
+	<div id="page">
+		<div class="container">
+			
+			<umbraco:Item field="content" runat="server" />
+			
+			<umbraco:Item field="richContent" runat="server" />
+			
+		</div>
+	</div>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	
+</asp:content>

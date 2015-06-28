@@ -1,0 +1,303 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/ActionMaster.master" AutoEventWireup="true" %>
+	
+<asp:Content ContentPlaceHolderID="content" runat="server">
+
+	<form id="activation" class="form-horizontal break-desktop" autocomplete="off" method="post" runat="server">
+		<asp:ScriptManager ID="ScriptManager1" runat="server">
+		</asp:ScriptManager>
+		
+		<umbraco:Macro Alias="EasyListActionActivation" runat="server"></umbraco:Macro>
+		
+		<div id ="DisplayAdd" style="display:none">
+			<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+				<ContentTemplate>
+					<umbraco:Macro Alias="EasyListCountrySelectionDisplayAdd" runat="server"></umbraco:Macro>
+				</ContentTemplate>
+			</asp:UpdatePanel>
+		</div>	
+		<div id ="BillingAdd" style="display:none">
+			<asp:UpdatePanel ID="UpdatePanel2" runat="server">
+				<ContentTemplate>
+					<umbraco:Macro Alias="EasyListCountrySelectionBilling" runat="server"></umbraco:Macro>
+				</ContentTemplate>
+			</asp:UpdatePanel>
+		</div>	
+	</form>
+			
+</asp:Content>
+	
+
+<asp:Content ContentPlaceHolderId="scripts" runat="server">
+	<umbraco:Macro files="forms" local="1" Alias="ScriptLoader" runat="server"></umbraco:Macro>
+	<script type="text/javascript">
+		$(function(){
+			
+			$('#DisplayAdd').appendTo('#DisplayCountrySelection');
+			$('#BillingAdd').appendTo('#BillingCountrySelection');
+			
+			/*$('input[name="paymentType"]').on('change',function(){
+				if($(this).val() === 'CC') { $('.cc-fields-reset,.billing-preference').fadeIn(); }
+				else { $('.cc-fields-reset,.billing-preference').fadeOut(); }
+			});*/
+			
+			$.metadata.setType('attr', 'data-validate');
+			$('#activation').validate();
+			
+			if($('input[name="payment-method"]').val() !== 'CC'){
+				$('#ccNo').removeClass('required');
+					$('#ccName').removeClass('required');
+					$('#ccCvv2').removeClass('required');
+					$('#billing-preference').removeClass('required');
+			}
+			
+			$('input[name="payment-method"]').on('change',function(){
+				if($(this).val() === 'CC') { 
+					$('.cc-fields-reset,.billing-preference').fadeIn(); 
+					$('#ccNo').addClass('required');
+					$('#ccName').addClass('required');
+					$('#ccCvv2').addClass('required');	
+					$('#billing-preference').addClass('required');	
+				}
+				else { 
+					$('.cc-fields-reset,.billing-preference').fadeOut(); 
+					$('#ccNo').removeClass('required');
+					$('#ccName').removeClass('required');
+					$('#ccCvv2').removeClass('required');
+					$('#billing-preference').removeClass('required');	
+				}
+			});
+			
+			$("#submit").click(
+				function(e){
+					$('#activate-account').val('true');
+					$('#activate-account-temppass').val('false');
+					
+					UpdateCountryInfo();
+				}
+			);
+			
+			$("#SubmitTempPass").click(
+				function(e){
+					$('#activate-account').val('false');
+					$('#activate-account-temppass').val('true');
+				}
+			);
+			
+			if ($('#activate-account').length)
+			{
+				$('#DisplayAdd').show();
+				$('#BillingAdd').show();
+			}
+			
+			
+			/*
+			// Move error to last place to avoid breaking layout
+			function updateError(parent){
+				var error = $('label.error', parent).remove();
+				if(error) { $(parent).append(error); }
+			}
+			function updateErrors(form) {
+				$('.controls',form).each(function(){
+					updateError(this)
+				});
+			}
+			$('#activation input[type="text"]').on('keyup blur',function(e){
+				updateError($(this).parent());
+			});
+			$('#activation').on('submit',function(){
+				updateErrors(this);
+			});
+			*/
+			//----------------------------------------------------------------------
+			// New Email Lead
+			//----------------------------------------------------------------------
+			
+			// Hide email add if there is 6 email already
+			if($('.LeadsEmailSet input').length == 6) {
+				$('#email-leads-add').hide();
+			}
+			
+			$('#AddNewEmailLead').live("click", function() {
+				var NoOfControl = $('.LeadsEmailSet input').length ;
+				
+				if (NoOfControl < 6 )
+				{
+					var NewControl = NoOfControl + 1;
+					//$('.LeadsEmailSet').append('<p>' +$('#LeadsEmail' + NoOfControl).val() + ' ' + $('.LeadsEmailSet input').length +'</p>');
+					$('.LeadsEmailSet').append(
+						'<div class="control-group LeadsEmailDiv'+ NewControl + '">' + 
+						'<label class="control-label">'+
+						'<button type="button" id="RemoveEmailLead'+ NewControl + '" class="btn btn-danger btn-small"><i class="icon-minus">&nbsp;</i>&nbsp;Remove</button>&nbsp;' +
+						'&nbsp;and:</label>' + 
+						'<div class="controls"><input type="text" id="LeadsEmail'+ NewControl + '" name="LeadsEmail" class="input-xlarge email" /></div>' +
+						'</div>'
+					);
+					
+					if($('html').hasClass('lt-ie9')){
+						$('.LeadsEmailSet div:last-child .icon-minus').each(function(){
+							addIcon($(this).get(0), '&#xe07d;');
+							Cufon.replace($(this).get(0));
+						});
+					}
+					
+					if(NoOfControl > 4) {
+						$('#email-leads-add').hide();
+					} else {
+						$('#email-leads-add').show();
+					}
+					
+				}
+				else
+				{
+					//alertModal('You could only add up to 6 email leads.','Fail','error',false);
+					return false;
+				}
+				
+			});
+			
+			$('#RemoveEmailLead3').live("click", function() {
+				$('.LeadsEmailDiv3').remove();
+				$('#email-leads-add').show();
+			});
+			$('#RemoveEmailLead4').live("click", function() {
+				$('.LeadsEmailDiv4').remove();
+				$('#email-leads-add').show();
+			});
+			$('#RemoveEmailLead5').live("click", function() {
+				$('.LeadsEmailDiv5').remove();
+				$('#email-leads-add').show();
+			});
+			$('#RemoveEmailLead6').live("click", function() {
+				$('.LeadsEmailDiv6').remove();
+				$('#email-leads-add').show();
+			});
+			
+		});
+		
+		function UpdateCountryInfo()
+		{
+			//----------------------------------------------------------------------
+			// Billing Info
+			//----------------------------------------------------------------------
+			
+			$('#BillingCountryCode').val($(".add-billing-country").val());
+			
+			if ($(".add-billing-region").length && $(".add-billing-region").is(":visible"))
+				{
+					$('#BillingRegionID').val($(".add-billing-region").val()); 
+					$('#BillingRegionName').val($('.add-billing-region option:selected').first().text()); 
+				}else
+				{
+					$('#BillingRegionID').val("");
+					$('#BillingRegionName').val("");
+				}
+			
+			// Postal Code
+			if ($(".add-billing-postalcode").length && $(".add-billing-postalcode").is(":visible"))
+				{
+					$('#BillingPostalCode').val($(".add-billing-postalcode").val());
+				}
+			else
+			{
+				$('#BillingPostalCode').val("");
+			}
+			
+			// District
+			if ($(".add-billing-district-dropdown").length && $(".add-billing-district-dropdown").is(":visible"))
+				{
+					$('#BillingDistrict').val($('.add-billing-district-dropdown option:selected').first().text());
+				}else
+				{
+					$('#BillingDistrict').val($(".add-billing-district").val());
+				}
+			
+			$('#BillingAddressLine1').val($.trim($('#BillingAddressLine1').val()));
+			$('#BillingAddressLine2').val($.trim($('#BillingAddressLine2').val()));
+			
+			//----------------------------------------------------------------------
+			// Display Add Info
+			//----------------------------------------------------------------------
+			
+			$('#DisplayCountryCode').val($(".add-display-country").val());
+			
+			if ($(".add-display-region").length && $(".add-display-region").is(":visible"))
+				{
+					$('#DisplayRegionID').val($(".add-display-region").val()); 
+					$('#DisplayRegionName').val($('.add-display-region option:selected').first().text()); 
+				}else
+				{
+					$('#DisplayRegionID').val("");
+					$('#DisplayRegionName').val("");
+				}
+			
+			// Postal Code
+			if ($(".add-display-postalcode").length && $(".add-display-postalcode").is(":visible"))
+				{
+					$('#DisplayPostalCode').val($(".add-display-postalcode").val());
+				}
+			else
+			{
+				$('#DisplayPostalCode').val("");
+			}
+			
+			// District
+			if ($(".add-display-district-dropdown").length && $(".add-display-district-dropdown").is(":visible"))
+				{
+					$('#DisplayDistrict').val($('.add-display-district-dropdown option:selected').first().text());
+				}else
+				{
+					$('#DisplayDistrict').val($(".add-display-district").val());
+				}
+			
+			$('#DisplayAddressLine1').val($.trim($('#DisplayAddressLine1').val()));
+			$('#DisplayAddressLine2').val($.trim($('#DisplayAddressLine2').val()));
+
+		}
+		
+		//----------------------------------------------------------------------
+		// Billing Preference (Introductory EasyList Bonus)
+		//----------------------------------------------------------------------
+		function toggleWellControls(w, enable) {
+			//$('input',w).prop('checked',false);
+			$('input',w).parent().removeAttr('style');
+			
+			if(enable) {
+				$(w).removeClass('disabled').show();
+				//$('input',w).prop('disabled',false);
+			} else {
+				$(w).addClass('disabled').hide();
+				//$('input',w).prop('disabled',true);
+			}
+		}
+		
+		// Enable bonus options according to selection
+		$('.billing-preference-controls [name="billing-preference"]').on('change',function(){
+			toggleWellControls($('.billing-preference-controls .well'), false);
+			toggleWellControls($(this).closest('label').next('.well'), true);
+		});
+		
+		// Hide all bonus options first load
+		$('.billing-preference-controls .well').addClass('disabled').hide();
+		
+		// Show bonus if there is settings
+		$('.billing-preference-controls [name="billing-preference"]:checked').each(function(){
+			$(this).closest('label').next('.well').removeClass('disabled').show()
+		});
+		
+		/*
+		// (NOT ACTIVE) Two bonus checkbox selection logic (Disabled 3rd control when there is 2 selected)
+		$('.billing-preference-controls [name="billing-preference-promotion-2"]').on('change',function(){
+			var l = $('.billing-preference-controls [name="billing-preference-promotion-2"]:checked').length;
+			if(l >= 2){
+				$('.billing-preference-controls [name="billing-preference-promotion-2"]')
+					.not(':checked')
+					.prop('disabled', true)
+					.parent().css({ color: '#999' });
+			} else {
+				$('.billing-preference-controls [name="billing-preference-promotion-2"]')
+					.prop('disabled', false)
+					.parent().removeAttr('style');
+			}
+});*/
+	</script>
+</asp:Content>

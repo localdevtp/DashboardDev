@@ -1,0 +1,23 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/masterpages/AdminSecuredPageBase.master" AutoEventWireup="true" %>
+
+<asp:content ContentPlaceHolderId="metaTags" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="headItems" runat="server">
+	<script type="text/javascript">
+		window.location.replace("/account/status");
+	</script>
+</asp:content>
+
+<asp:content ContentPlaceHolderId="mainNavigation" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="content" runat="server">
+	
+</asp:content>
+
+<asp:content ContentPlaceHolderId="scripts" runat="server">
+	
+</asp:content>
