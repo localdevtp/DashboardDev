@@ -1,4 +1,4 @@
-<?xml version="1.agen0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xsl:stylesheet [
   <!ENTITY nbsp "&#x00A0;">
 ]>
@@ -34,9 +34,7 @@
   </xsl:template>
 
   <xsl:template name="ShowCardInfo">
-
     <xsl:variable name="CCInfo" select="ActScripts:GetCustomerCreditCardById($ID)" /> 
-    
     <div class="widget-box">
     <div class="widget-title">
       <h2>
@@ -45,7 +43,7 @@
     </div>
     <div class="widget-content no-padding">
       <form>
-        <table class="table table-balance table-balance-info table-balance-paid">
+        <table class="table table-balance table-balance-info">
           <tbody>
 
             <tr>

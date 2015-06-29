@@ -587,49 +587,9 @@
 
 		    public XPathNodeIterator GetAccountInfo()
         {
-            XPathNodeIterator nodeIterator = null;
-            nodeIterator = EasyList.Common.Helpers.Utils.XMLGetErrorIterator("");
-			      string UserID = "";
-            
-            try
-            {
-                UserID = HttpContext.Current.Session["easylist-username"].ToString();
-                if (string.IsNullOrEmpty(UserID)) return ErrorNodeIterator("User ID not exists!");
-
-				long MainEmpID = SSOHelper.FindRootEmployeeID(UserID);
-                if (MainEmpID != 0)
-                {
-					Uniquemail.SingleSignOn.User userInfo = SSOHelper.GetUser(MainEmpID);
-                	if (userInfo != null)
-               	 	{
-						// Check if EmployeeOf is null, then check if have binding to account
-						if ((userInfo.EmployeeOf == null) && (!string.IsNullOrEmpty(userInfo.LoginName)))
-						{
-							Account accInfo = AccountHelper.GetAccount(userInfo.LoginName);
-	
-							if (accInfo != null)
-							{
-								ELAccInfo NewAccInfo = new ELAccInfo();
-								NewAccInfo.CompanyName = accInfo.CompanyName;
-								NewAccInfo.ContactPhone = accInfo.ContactPhone;
-								NewAccInfo.DisplayAddressHtml = accInfo.DisplayAddressHtml;
-								NewAccInfo.LoginName = accInfo.MemberID;
-								NewAccInfo.PrimaryEmail = accInfo.PrimaryEmail;
-								NewAccInfo.SecondaryEmail = accInfo.SecondaryEmail;
-								NewAccInfo.CurrentOutstandingBalance = accInfo.CurrentOutstandingBalance;
-	              NewAccInfo.CustomerTokenId = accInfo.CustomerTokenId;
-								var accInfoXML = NewAccInfo.ToXml();
-								nodeIterator = EasyList.Common.Helpers.Utils.XMLGetNodeIterator(accInfoXML);
-							}
-						}
-					}
-                }
-            }
-            catch (Exception ex)
-            {
-                return ErrorNodeIterator("GetAccountInfo failed for ID " + UserID + "! Error:" + ex.ToString());
-            }
-            return nodeIterator;
+            var UserID = HttpContext.Current.Session["easylist-username"].ToString();
+            var dashBoardPaymentServiceProvider = new DashBoardPaymentServiceProvider();
+            return dashBoardPaymentServiceProvider.GetAccountInfo(UserID);
         }
 
         public XPathNodeIterator GetCreditCard()
@@ -817,8 +777,36 @@
             var dashBoardPaymentServiceProvider = new DashBoardPaymentServiceProvider();
             return dashBoardPaymentServiceProvider.ProcesPayment(UserID);
         }
- 		
-  		#region Helpers
+        
+        public string UpdateCustomerCreditCard()
+        {
+            string ErrMsg = "";
+            try
+            {
+                log.Info("Saving credit card ");
+                
+                var UserID = HttpContext.Current.Session["easylist-username"].ToString();
+                
+                DashBoardPaymentProvider dashBoardPaymentProvider = new DashBoardPaymentProvider();
+                var accessCodeAuthorizationResponse = dashBoardPaymentProvider.UpdateCreditCardPaymentMethod(UserID, 
+                "http://localhost/account/payment-method", "http://localhost/account/payment-method");
+                
+                if (accessCodeAuthorizationResponse.PaymentStatus == ServerResponseState.Success && 
+                !string.IsNullOrEmpty(accessCodeAuthorizationResponse.SharedPaymentUrl))
+                {
+                  System.Web.HttpContext.Current.Response.Redirect(accessCodeAuthorizationResponse.SharedPaymentUrl);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrMsg  = ex.Message;
+            }
+            
+            return ErrMsg;
+          }
+          
+          
+  		  #region Helpers
 
  		    public XPathNodeIterator ErrorNodeIterator(string ErrMsg)
         {

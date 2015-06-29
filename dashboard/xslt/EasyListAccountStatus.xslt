@@ -20,10 +20,7 @@
   <xsl:variable name="IsPostBack" select="umbraco.library:Request('submit-payment')" />
 
   <xsl:variable name="StaffAccInfo" select="ActScripts:GetAccountInfo()" />
-
-  <!-- 
-<xsl:variable name="CCInfo" select="ActScripts:GetCreditCard()" /> -->
-
+  
   <xsl:param name="currentPage"/>
 
   <xsl:template match="/">
@@ -98,14 +95,16 @@
         <xsl:value-of select="$StaffAccInfo/ELAccInfo/CurrentOutstandingBalance" />
       </xsl:attribute>
     </input>
+    <xsl:choose>
+      <xsl:when test="string-length($StaffAccInfo/ELAccInfo/CustomerTokenId) &gt; 0">
+        <input type="hidden" id="CCInfoExists" name="CCInfoExists" value="True"/>
 
-    <xsl:if test="string-length($StaffAccInfo/ELAccInfo/CustomerTokenId) &gt; 0">
-      <!--	<div class="alert alert-error"><xsl:value-of select="$CCInfo/error" /></div> -->
-      <input type="hidden" id="CCInfoExists" name="CCInfoExists">
-        <xsl:attribute name="value">True</xsl:attribute>
-      </input>
-    </xsl:if>
-
+      </xsl:when>
+      <xsl:otherwise>
+        <input type="hidden" id="CCInfoExists" name="CCInfoExists" value="False"/>
+      </xsl:otherwise>
+    </xsl:choose>
+    
     <div class="widget-box" id="account-status">
       <div class="widget-title">
         <h2>

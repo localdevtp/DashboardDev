@@ -64,19 +64,6 @@
     <![CDATA[
     
 	      static Logger log = LogManager.GetCurrentClassLogger();		
-	      string SiteName = "dashboard.easylist.com.au";			
-
-        public bool SaveCustomerTokenId(string ID, string accessCode)
-        {
-            DashBoardPaymentProvider dashBoardPaymentProvider = new DashBoardPaymentProvider();
-            return dashBoardPaymentProvider.SaveCustomerTokenId(accessCode, ID);
-        }
-        
-        public XPathNodeIterator GetCustomerCreditCardById(string ID)
-        {
-            DashBoardPaymentProvider dashBoardPaymentProvider = new DashBoardPaymentProvider();
-            return dashBoardPaymentProvider.GetCustomerCreditCardById(ID);
-        }
         
         public string UpdateCustomerCreditCard()
         {

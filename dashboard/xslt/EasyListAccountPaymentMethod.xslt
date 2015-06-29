@@ -10,13 +10,16 @@ xmlns:umbraco.library="urn:umbraco.library" xmlns:Exslt.ExsltCommon="urn:Exslt.E
 exclude-result-prefixes="msxml umbraco.library Exslt.ExsltCommon Exslt.ExsltDatesAndTimes Exslt.ExsltMath Exslt.ExsltRegularExpressions Exslt.ExsltStrings Exslt.ExsltSets ">
 	
 	<xsl:output method="xml" omit-xml-declaration="yes"/>
-	<xsl:include href="EasyListAccountHelper.xslt" /> 
-	<xsl:include href="EasyListStaffHelper.xslt" /> 
-	
-	<xsl:variable name="IsPostBackSaveCC" select="umbraco.library:Request('Save-CC')" />
+
+  <xsl:include href="EasyListAccountHelper.xslt" />
+  <xsl:include href="EasyListStaffHelper.xslt" />
+  
+  
+  <xsl:variable name="IsPostBackSaveCC" select="umbraco.library:Request('Save-CC')" />
 	<xsl:variable name="IsPostBackDelCC" select="umbraco.library:Request('Delete-CC')" />
   <xsl:variable name="IsPostBackCreateCC" select="umbraco.library:Request('Create-CC')" />
   <xsl:variable name="StaffAccInfo" select="ActScripts:GetAccountInfo()" />
+  <xsl:variable name="CCInfo" select="ActScripts:GetCustomerCreditCard()" />
   
 	<xsl:param name="currentPage"/>
 	
@@ -115,10 +118,9 @@ exclude-result-prefixes="msxml umbraco.library Exslt.ExsltCommon Exslt.ExsltDate
 			</xsl:choose>
 		</xsl:when>
 		
-    
 		<!-- Save Credit Card -->
 		<xsl:when test="$IsPostBackSaveCC = 'true'"> 
-			<xsl:variable name="SaveResponse" select="ActScripts:SaveCreditCard()" />
+			<xsl:variable name="SaveResponse" select="ActScripts:UpdateCustomerCreditCard()" />
 			<xsl:choose>
 				<!-- Check if error message is not empty -->
 				<xsl:when test="string-length($SaveResponse) &gt; 0">
@@ -177,10 +179,8 @@ exclude-result-prefixes="msxml umbraco.library Exslt.ExsltCommon Exslt.ExsltDate
 	  </xsl:template>
 	  
 	  <xsl:template name="PaymentMethodInfo">
-		  <xsl:param name="Show"/>
-      
-		  <xsl:variable name="CCInfo" select="ActScripts:GetCustomerCreditCard()" /> 
-		  <div id ="payment-info-div">
+      <xsl:param name="Show"/>
+      <div id ="payment-info-div">
 			  <xsl:if test="$Show ='False'">
 				  <xsl:attribute name="style">display:none</xsl:attribute>
 			  </xsl:if>
@@ -207,10 +207,11 @@ exclude-result-prefixes="msxml umbraco.library Exslt.ExsltCommon Exslt.ExsltDate
 									  </tbody>
 								  </table>
 								  <input type="hidden" id="Delete-CC" name="Delete-CC" value="false" />
-								  
+                  <input type="hidden" id="Save-CC" name="Save-CC" value="true" />
 								  <div class="form-actions center">
-									  <a href="#" id="payment-edit" class="btn btn-large"><i class="icon-pencil">&nbsp;</i> Change</a>
-									  &nbsp;
+                    <button type="submit" id = "payment-save" name="submit" class="btn btn-large btn-success">
+                      <i class="icon-disk">&nbsp;</i> Change
+                    </button>
 									  <!-- <button type="submit" id = "payment-remove" name="submitDelCC" class="btn btn-large btn-danger"><i class="icon-remove">&nbsp;</i> Remove</button> -->
 								  </div>
 							  </form>
@@ -240,7 +241,7 @@ exclude-result-prefixes="msxml umbraco.library Exslt.ExsltCommon Exslt.ExsltDate
 	  <!-- Payment Edit Template -->
 	  <xsl:template name="PaymentMethodEdit"> 
 		  <xsl:param name="Show"/>
-		  <!--  <textarea>
+      <!--  <textarea>
 	<xsl:value-of select="$Show" />
   </textarea>
  -->  <div class="widget-box" id="payment-edit-form">
@@ -258,31 +259,20 @@ exclude-result-prefixes="msxml umbraco.library Exslt.ExsltCommon Exslt.ExsltDate
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label">Credit Card Type</label>
-				<div class="controls">
-					<label class="radio inline">  
-						<input type="radio" name="ccType" value="Mastercard" checked="checked" />
-						<img class="retina" src="/images/payments/mastercard.png" alt="Mastercard" style="width:51px;height:32px" />
-					</label>
-					<label class="radio inline">  
-						<input type="radio" name="ccType" value="Visa" />
-						<img class="retina" src="/images/payments/visa.png" alt="Visa" style="width:51px;height:32px" />
-					</label>
-				</div>
-			</div>
-			<div class="control-group">
 				<label class="control-label">Credit Card No.</label>
 				<div class="controls">
-					<input type="text" id="ccNo" name="ccNo" value="" maxlength="16" autocomplete="off">
+					<input type="text" id="ccNo" name="ccNo" maxlength="16" autocomplete="off">
 						<xsl:attribute name="data-validate">{required: true, regex:/^\d{16}$/, minlength: 16, maxlength: 16, messages: {required: 'Please enter the Credit Card No.'}}</xsl:attribute>
-					</input>
+            <xsl:attribute name="value"><xsl:value-of select="$CCInfo/GetCustomerResponse/Customers/DirectPaymentCustomer/CardDetails/Number" /> </xsl:attribute>
+          </input>
 				</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label">Card Holder Name</label>
 				<div class="controls">
-					<input type="text" id="ccName" name="ccName" value="" autocomplete="off">
+					<input type="text" id="ccName" name="ccName" autocomplete="off">
 						<xsl:attribute name="data-validate">{required: true, minlength: 3, maxlength: 200, messages: {required: 'Please enter the Card Holder Name'}}</xsl:attribute>
+            <xsl:attribute name="value"><xsl:value-of select="$CCInfo/GetCustomerResponse/Customers/DirectPaymentCustomer/CardDetails/Name" /></xsl:attribute>
 					</input>
 				</div>
 			</div>
@@ -342,11 +332,11 @@ exclude-result-prefixes="msxml umbraco.library Exslt.ExsltCommon Exslt.ExsltDate
 				</div>
 			</div>
 			
-			<input type="hidden" id="Save-CC" name="Save-CC" value="true" />
+			<input type="hidden" id="Save-CC1" name="Save-CC1" value="true" />
 			<div class="form-actions center">
 				<a href="#" id="cancel-payment-edit" class="btn btn-large"><i class="icon-close">&nbsp;</i> Cancel</a>
 				&nbsp;
-				<button type="submit" id = "payment-save" name="submit" class="btn btn-large btn-success"><i class="icon-disk">&nbsp;</i> Save</button>
+				<button type="submit" id = "payment-save2" name="submit" class="btn btn-large btn-success"><i class="icon-disk">&nbsp;</i> Save</button>
 			</div>
 		</form>
 	</div>
