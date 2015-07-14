@@ -1,6 +1,12 @@
 Purpose - to allow easy setup for dashboard so dev can do local developer and debugging. 
 Hopefully this is faster, and also to provide source control for Dashboard - atleast on xslt level.
 
+
+http://localhost/umbraco/umbraco.aspx#content
+
+-username : admin 
+-password : admin123
+
 - #1 Setup Dashboard on the ROOT for IIS - easiest would be to copy to C:\inetpub\wwwroot folder
 
 - #2 Create new site to host general.api.easylist.com.au 
